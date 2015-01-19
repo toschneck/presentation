@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="utf-8">
@@ -17,7 +17,7 @@
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
     <link rel="stylesheet" href="css/reveal.css">
-    <link rel="stylesheet" href="css/theme/beige.css" id="theme">
+    <link rel="stylesheet" href="css/theme/white.css" id="theme">
 
     <!-- Code syntax highlighting -->
     <link rel="stylesheet" href="lib/css/zenburn.css">
@@ -31,9 +31,9 @@
         document.getElementsByTagName('head')[0].appendChild(link);
     </script>
 
-		<!--[if lt IE 9]>
-		<script src="lib/js/html5shiv.js"></script>
-		<![endif]-->
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
 </head>
 
 <body>
@@ -42,415 +42,372 @@
     <!-- Any section element inside of this container is displayed as a slide -->
     <div class="slides">
         <section>
-            <img src="pics/sakuli-logo.png" style="border: 0;" alt="Sakuli">
+            <img class="image" height="180px" , style="background-color: #ffffff" src="pics/sc_logo.png">
+            <h4>Spring Cloud</h4>
 
-            <h3 style="padding-top: 25px">End-to-end testing</h3>
-
-            <h3 style="padding: 30px 0 40px 0;  text-transform: inherit">
-                for web sites and common UIs with full Nagios integration
+            <h3 style="padding: 0px 0 30px 0;  text-transform: inherit">
+                Das Microservice-Framework?
             </h3>
 
             <p>
-                <small>Created by <a href="http://www.consol.de">ConSol*</a> /
-                    <b><a href="https://github.com/ConSol/sakuli">@GitHub</a></b></small>
+                <small>
+                    <a href="http://projects.spring.io/spring-cloud/">projects.spring.io/spring-cloud</a>
+                    </br>
+                    <a href="https://github.com/spring-cloud">github.com/spring-cloud</a>
+                </small>
             </p>
         </section>
 
         <section>
             <h2>Motivation</h2>
-            <img class="image" width="40%" src="pics/chain.png" style="border: 0">
             <ul>
-                <li>Business-kritische Applikationen bestehen oft aus einer Vielzahl an Komponenten</li>
-                <li>Applikations-Qualität aus Anwendersicht ist nur am Ende der Funktionskette messbar</li>
-                <li>UI-Interfaces sind schwer kontinuierlich zu testen</li>
-            </ul>
-        </section>
-
-        <section>
-            <h2>Herausforderung</h2>
-            <ul>
-                <li>Web-UI-Test-Tools haben nur Zugriff auf DOM-Elemente</li>
-                <li>Wie kann man Nicht-HTML-Inhalte testen bzw. damit umgehen? =>
-                    <b>Flash, PKI-Abfragen, Java Applets, Plugins</b>
-
-                    <div style="text-align: center"><img class="image" src="pics/java_applet.png"
-                                                         style="height: 6em;border: 0"></div>
-                </li>
-                <li>Grafisch basierte Tests sind ressourcenintensiv</li>
-                <li>OS unabhängiges Framework</li>
-                <li>UI-Rendering testbar?</li>
-            </ul>
-            <aside class="notes">
+                <li>Microservices stellen neue Herausforderungen an den Entwickler:</li>
                 <ul>
-                    <li>Sahi, Selenium, Casperjs, Webinject...</li>
-                    <li>AutoIT, Sikuli, Autohotkey, .... Grenzen (fairerweise: ihre natürlichen).</li>
-                    <li>zu speziell: blinde Flecken (oder auch PIN-Abfrage!)</li>
-                    <li>(teilweise) OS-abhängig: z.b. Auto IT -> WIndows</li>
-                    <li>zu generisch: für Web- -> Seitenaufbau (DOM) kennt.</li>
-                    <li>Realitätsbezug: Tools die Browsr simulieren -> Rendering-Engine? . D.h. ob die Seite beim User
-                        wirklich
-                        so aussieht?
-                    </li>
+                    <li><b>Koordination</b> zwischen den Diensten</li>
+                    <b>
+                        <li>Konfiguration</li>
+                        <li>Fehlerbehandlung</li>
+                    </b>
                 </ul>
-            </aside>
-
-            <h3 style="text-transform: none; margin-top: 1em" class="fragment">
-                Was macht Sakuli?
-            </h3>
-
+                <li>Wie die neue Ansätze "einfach" und schnell anwenden?</li>
+                <li>Wie vermeidet man boiler plate code?</li>
+                <li>Deployment-Unterstützung für Cloud-Plattformen</li>
+            </ul>
         </section>
 
         <section>
+            <h2>Spring IO Plattform</h2>
+            <img src="pics/spring-io-tree.png">
+        </section>
+
+        <section>
+            <h2>Kommunikation</h2>
+            <h5>in einer Microservice Architektur</h5>
+            <img src="pics/CustomersStores.svg" style="border: 0; width: 65%">
+        </section>
+
+        <section>
+            <section>
+                <h2>Spring Cloud Config Server</h2>
+<pre><code class="java" data-trim style="font-size: 0.6em">
+    @Configuration
+    @EnableAutoConfiguration
+    @EnableConfigServer
+    public class ConfigServerApplication {
+
+    public static void main(String[] args) {
+    SpringApplication.run(ConfigServerApplication.class, args);
+    }
+    }
+</code></pre>
+                <ul style="font-size: 0.8em">
+                    <li>Versionierte Konfiguration via GIT</li>
+                    <li>Rollbackfähig</li>
+                    <li>Konfiguration liegt außerhalb des Mircoservices</li>
+                    <li>Verschlüsselte Kommunikation und Speicherung</li>
+                    <li>Anbindung via JSON/REST</li>
+                    <li>Environment bezogenes Property-Handling</li>
+                    <ul>
+                        <li>Default environment <b>application.properties</b></li>
+                        <li><b>&#60appname&#62-&#60envname&#62.yml</b> oder <b>*.properties</b></li>
+                    </ul>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Spring Cloud Config Client</h2>
+
+                <div style="text-align: left">
+                    <b>Application Properties:</b>
+
+                    <p/>
+
+<pre><code class="java" data-trim style="font-size: 0.8em">
+    @Component
+    @ConfigurationProperties
+    public class FooProperties {
+
+    private String foo;
+
+    }
+</code></pre>
+
+                    <ul style="font-size: 0.8em;">
+                        <li>Autokonfig via Config Server</li>
+                        <li>POST to <b>/refresh</b> => erneuert und rebind aller Properties</li>
+                        <li>POST to <b>/restart</b> => neustart des Application-Context</li>
+                        <li>POST to <b>/env</b> => erneuert die Environment</li>
+                        <li>Atomic updates (bei einem refresh)</li>
+                        <li>Reset loggers bei geänderten Logging-Levels</li>
+                    </ul>
+                </div>
+            </section>
+            <section>
+                <h2>Spring Cloud Config Client</h2>
+
+                <p/>
+
+                <h1>DEMO</h1>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Spring Cloud Netflix</h2>
+                <h4>Service Discovery - Eureka</h4>
+                <ul>
+                    <li>Verwaltung für alle verfügbaren Service-Instanzen</li>
+                    <ul>
+                        <li>Dienste registrieren</li>
+                        <li>Fremde Dienste suchen</li>
+                    </ul>
+                    <li>Implementiert <b>Client + Server</b> auf Basis von Spring Boot</li>
+                    <li>Leichte Code-Seitige Anbindung von Eureka-Clients via <b>@EnableEurekaClient</b></li>
+                </ul>
+            </section>
+            <section>
+                <h2>Spring Cloud Netflix</h2>
+                <h4>Circuit Breaker - Hystrix</h4>
+                <table>
+                    <tbody>
+                    <tr>
+                        <td height="350em" style="vertical-align: top; horiz-align: left">
+                            <img src="pics/hystrix-logo-tagline-vertical.png" style="border-style: none"></td>
+                        <td></td>
+                        <td height="350em" width="60%">
+                            <img src="pics/HystrixFallback.svg" style="border-style: none">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                Netflix-Implementierung des Circuit Breaker - Patterns
+            </section>
+            <section>
+                <h2>Spring Cloud Netflix</h2>
+                <h4>Circuit Breaker - Hystrix</h4>
+
+                <div style="text-align: left">
+                    <b>Eigenschaften:</b>
+                    <ul style="padding-bottom: 25px">
+                        <li>Behandlung von Latenz- /Verfügbarkeitsproblemen</li>
+                        <li>Isoliert die Dienste untereinander</li>
+                        <li>Verhindert kaskadierende Fehler</li>
+                    </ul>
+
+                    <b>Implementierung:</b>
+                    <br>
+                    <ul>
+                        <li>Fallback Methoden</li>
+                        <li>Synchronous, Future, Observable Objekte</li>
+                        <li>Hystrix Dashboard</li>
+                        <li>Metric Aggregation</li>
+                    </ul>
+                    </br>
+                </div>
+            </section>
+            <section>
+                <h2>Spring Cloud Netflix</h2>
+                <h4>weitere Komponenten</h4>
+
+                <div style="text-align: left; font-size: 0.8em">
+                    <div>
+                        <b>Ribbon -</b>
+                        <a href="https://github.com/Netflix/ribbon">github.com/Netflix/ribbon</a>
+                        <br/>
+
+                        <ul style="padding-bottom: 1em; padding-top: 0px">
+                            <li>Load-Balancing auf Client-Seite</li>
+                            <li>Nutze Hystrix und Eureka</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <b>Feign -</b>
+                        <a href="https://github.com/Netflix/feign">github.com/Netflix/feign</a>
+                        <br/>
+                        <ul style="padding-bottom: 1em; padding-top: 0px">
+                            <li>Einbindung von Rest-Webservice per Interface</li>
+                            <li>Nutzung der Service soll so einfach wie normalen Java-Objekten sein</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <b>Zuul -</b>
+                        <a href="https://github.com/Netflix/zuul">github.com/Netflix/zuul</a>
+                        <br/>
+                        <ul style="padding-bottom: 1em; padding-top: 0px">
+                            <li>Rounting der Micro-Service nach außen</li>
+                            <li>Mapped URLS auf andere Server</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </section>
+        </section>
+
+        <section>
+            <h2>Spring Cloud Bus</h2>
+            <ul>
+                <li>Lightweight Messaging Bus auf Basis von Spring Integration</li>
+                <li>Anbindung via <b>spring-amqp</b>, <b>rabbitmq</b> oder <b>http</b></li>
+                <li>Nachricht wird nur an einen Node gesendet</li>
+                <li>POST to <b>/bus/env</b> sends environment updates
+                <li>POST to <b>/bus/refresh</b> sends a refresh command</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Starters</h2>
+            <ul>
+                <li>Einfache Project-Config (maven-parent-pom)</li>
+                <li>Aufbau analog zu Spring Boot</li>
+            </ul>
+            <table style="margin-top: 1.5em; font-size: 0.7em">
+                <tbody>
+                <tr style="border: 1px solid">
+                    <td style="border: 1px solid">spring-cloud-starter</td>
+                    <td>spring-cloud-starter-hystrix</td>
+                </tr>
+                <tr style="border: 1px solid">
+                    <td style="border: 1px solid">spring-cloud-starter-bus-amqp</td>
+                    <td>spring-cloud-starter-hystrix-dashboard</td>
+                </tr>
+                <tr style="border: 1px solid">
+                    <td style="border: 1px solid">spring-cloud-starter-cloudfoundry</td>
+                    <td>spring-cloud-starter-turbine</td>
+                </tr>
+                <tr style="border: 1px solid">
+                    <td style="border: 1px solid">spring-cloud-starter-eureka</td>
+                    <td>spring-cloud-starter-zuul</td>
+                </tr>
+                <tr style="border: 1px solid">
+                    <td style="border: 1px solid">spring-cloud-starter-eureka-server</td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Weitere Komponenten</h2>
+            <ul style="padding-top: 1em">
+                <li>Spring Cloud <b>Security</b></li>
+                <ul style="font-size: 0.8em">
+                    <li>Unterstützt OAuth2</li>
+                    <li>Zentrales Token-Handling</li>
+                </ul>
+                <li>Spring Cloud <b>CLI</b></li>
+                <ul style="font-size: 0.8em">
+                    <li>command line Unterstützung für Spring Cloud in Groovy</li>
+                </ul>
+                <li>Spring Cloud for <b>Cloud Foundry</b></li>
+                <li>Spring Cloud for <b>Amazon Web Services</b></li>
+                <li>Spring Cloud <b>Connectors</b></li>
+                <ul style="font-size: 0.8em">
+                    <li>Einstiegspunkt für andere PaaS-Umgebungen</li>
+                    <li>Konfiguration via Java/XML (auf Spring Boot Basis)</li>
+                </ul>
+
+            </ul>
+        </section>
+
+
+        <section>
+            <h2>Erfahrungen</h2>
             <table>
+                <thead>
+                <tr style="border-bottom: solid">
+                    <td style="padding-right: 1em">Bewertung</td>
+                    <td>Kategorie</td>
+                </tr>
+                </thead>
                 <tbody>
                 <tr>
-                    <td width="40%" style="padding: 0"></td>
-                    <td style="margin: 0;padding:0">
-                        <img style="border: 0; padding: 0; margin: 0; box-shadow: none" src="pics/sakuli-logo.png"></td>
-                    <td width="40%" style="padding: 0"></td>
+                    <td style="text-align: center">
+                        <img src="pics/bubble_gray.png"
+                             style="max-height: 1em;  border: 0; box-shadow: none">
+                    </td>
+                    <td style="vertical-align: middle; font-size: 0.8em">
+                        <b>Technologie</b>
+                        <ul>
+                            <li>Komponenten decken einen großen Bereich des Microservice-Spektrums ab</li>
+                            <li>Zusammenspiel der Komponeten ist noch nicht ausgereift</li>
+                            <li>Zu viel Spring-Magic</li>
+                        </ul>
+                    </td>
                 </tr>
                 <tr>
-                    <td style="text-align: center; padding:0; background: url(pics/dom.png) no-repeat bottom; background-size: 100%">
-                        <img style="border: 0; padding: 0; margin: 0; height: 3em; box-shadow: none"
-                             src="pics/sahi.png">
+                    <td style="text-align: center">
+                        <img src="pics/bubble_red.png"
+                             style="max-height: 1em;  border: 0; box-shadow: none">
                     </td>
-                    <td style="text-align: center"><h1 style="padding: 0; margin: 0">+</h1></td>
-                    <td style="text-align: center;padding: 0; background: url(pics/screen_shots.png) no-repeat bottom; background-size: 80%">
-                        <img style="border: 0; padding: 0; margin: 0;height: 3em; box-shadow: none"
-                             src="pics/sikuli.png">
+                    <td style="vertical-align: middle; font-size: 0.8em">
+                        <b>Einstieg</b>
+                        <ul>
+                            <li>Zu viel Konfiguration via <b>.yml</b> oder <b>.properties</b> files</li>
+                            <li>Minimal Beispiel funktionierte nicht :-(</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center">
+                        <img src="pics/bubble_red.png"
+                             style="max-height: 1em;  border: 0; box-shadow: none">
+                    </td>
+                    <td style="vertical-align: middle; font-size: 0.8em">
+                        <b>Dokumenation</b>
+                        <ul>
+                            <li>Funktionsweise des Technologie-Stacks wird kaum erklärt</li>
+                            <li>Konfigurationsmöglichkeiten nicht vollständig</li>
+                            <li>Status <b>Release-Candidate</b> fraglich</li>
+                        </ul>
                     </td>
                 </tr>
                 </tbody>
             </table>
+        </section>
+        <section>
+            <h2>Erfahrungen</h2>
             <table>
+                <thead>
+                <tr style="border-bottom: solid">
+                    <td style="padding-right: 1em">Bewertung</td>
+                    <td>Kategorie</td>
+                </tr>
+                </thead>
                 <tbody>
-                <tr style="font-size: 0.9em;">
-                    <td width="47%" style="padding: 0; vertical-align: top; font-size: 0.7em">
-                        <ul>
-                            <li>Aktionsbereich: Browser-Inhalt <br/>(z.b. kein Scrollen notwendig)</li>
-                            <li>Objekt-Adressierung von DOM-Elementen</li>
-                            <li>Java-API</li>
-                            <li>Erkennt wenn Seiten/AJAX-Requests fertig geladen sind</li>
-                            <li>Guter Umgang mit AJAX & Web-Frameworks</li>
-                            <li>Recorder-Funktionalität</li>
-                            <li>Assert Funktionalität</li>
-                        </ul>
-                        <!--<div class="backgrounds">-->
-                        <!--<img src="pics/dom.png" style="opacity: 0.7; border: 0;">-->
-                        <!--</div>-->
+                <tr>
+                    <td style="text-align: center">
+                        <img src="pics/bubble_gray.png"
+                             style="max-height: 1em;  border: 0; box-shadow: none">
                     </td>
-                    <td style="padding: 10px"></td>
-                    <td width="47%" style="padding: 0; vertical-align: top; font-size: 0.7em">
+                    <td style="vertical-align: middle; font-size: 0.8em">
+                        <b>Potenzial</b>
                         <ul>
-                            <li>Aktionsbereich:Bildschirm-Inhalt <br/>(Scrollen u.U. notwendig)</li>
-                            <li>Objekt-Adressierung über Grafik-Patterns</li>
-                            <li>Java-API</li>
-                            <li>Keine Beschränkung auf den Browser</li>
-                            <li>Sieht und steuert das, was der User sieht</li>
-                            <li>Flexible Region-Pattern</li>
-                            <li>OCR-Features
-                                <small style="vertical-align: baseline">(experimental)</small>
+                            <li>Derzeit Haupt-Commiter:<b>Dave Syer</b></li>
+                            <li>Kein focusiertes Projekt bei Spring</li>
+                            <li>Technologisch sehr interessant, allerdings (leider) noch nicht ausgereift</li>
+                            <li>Community ist noch sehr schwach. Fragen bei Stackoverflow:
+                                <ul>
+                                    <li><b>42</b> zu #spring-cloud</li>
+                                    <li><b>1.800</b> zu #spring-boot</li>
+                                </ul>
                             </li>
-                            <li>Setzt auf <b>java.awt.Robot</b> und <b>openCV</b> auf</li>
                         </ul>
                     </td>
                 </tr>
                 </tbody>
             </table>
-        </section>
-
-        <section>
-            <h2>Stärken der Vereinigung</h2>
-            <table>
-                <tbody>
-                <tr>
-                    <td width="15%" style="padding: 0; vertical-align: middle; text-align: center">
-                        <img class="image"
-                             src="pics/sahi_worker.png" style="height: 20%; border: 0;">
-                    </td>
-                    <td width="15%" style="padding: 0; vertical-align: middle; text-align: center">
-                        <img class="image"
-                             src="pics/sikuli_worker.png" style="height: 20%; border: 0;">
-                    </td>
-                    <td width="15%" style="padding: 0; vertical-align: middle;text-align: center">
-                        <img class="image"
-                             src="pics/sakuli-logo.png" style=" border: 0; box-shadow: none">
-                    </td>
-                    <td style="padding: 0; vertical-align: middle;text-align: center; border-left: 1px">
-                        <h3>Kategorie</h3>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center"><img src="pics/bubble_red.png"
-                                                        style="max-height: 45px; border: 0; box-shadow: none"></td>
-                    <td style="text-align: center"><img src="pics/bubble_green.png"
-                                                        style="max-height: 45px; border: 0; box-shadow: none"></td>
-                    <td style="text-align: center"><img src="pics/bubble_green.png"
-                                                        style="max-height: 45px; border: 0; box-shadow: none"></td>
-                    <td style="margin:0; padding: 0; vertical-align: middle; font-size: 0.8em">
-                        Beschränkung auf den Browser
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center"><img src="pics/bubble_green.png"
-                                                        style="max-height: 45px; border: 0; box-shadow: none"></td>
-                    <td style="text-align: center"><img src="pics/bubble_red.png"
-                                                        style="max-height: 45px; border: 0; box-shadow: none"></td>
-                    <td style="text-align: center"><img src="pics/bubble_green.png"
-                                                        style="max-height: 45px; border: 0; box-shadow: none"></td>
-                    <td style="margin:0; padding: 0; vertical-align: middle; font-size: 0.8em">
-                        Web Tests (DOM basiert)
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center"><img src="pics/bubble_green.png"
-                                                        style="max-height: 45px; border: 0; box-shadow: none"></td>
-                    <td style="text-align: center"><img src="pics/bubble_green.png"
-                                                        style="max-height: 45px; border: 0; box-shadow: none"></td>
-                    <td style="text-align: center"><img src="pics/bubble_gray.png"
-                                                        style="max-height: 45px; border: 0; box-shadow: none"></td>
-                    <td style="margin:0; padding: 0; vertical-align: middle; font-size: 0.8em">
-                        Open Source & Java API
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center"><img src="pics/bubble_gray.png"
-                                                        style="max-height: 45px; border: 0; box-shadow: none"></td>
-                    <td style="text-align: center"><img src="pics/bubble_red.png"
-                                                        style="max-height: 45px; border: 0; box-shadow: none"></td>
-                    <td style="text-align: center"><img src="pics/bubble_green.png"
-                                                        style="max-height: 45px; border: 0; box-shadow: none"></td>
-                    <td style="margin:0; padding: 0; vertical-align: middle; font-size: 0.8em">
-                        Automatisierbarkeit, Ergebnisauswertung über DB / Nagios
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center"><img src="pics/bubble_green.png"
-                                                        style="max-height: 45px; border: 0; box-shadow: none"></td>
-                    <td style="text-align: center"><img src="pics/bubble_gray.png"
-                                                        style="max-height: 45px; border: 0; box-shadow: none"></td>
-                    <td style="text-align: center"><img src="pics/bubble_gray.png"
-                                                        style="max-height: 45px; border: 0; box-shadow: none"></td>
-                    <td style="margin:0; padding: 0; vertical-align: middle; font-size: 0.8em">
-                        Unterstützung bei Testerstellung (Recorder, Screenshot-Finder)
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <section>
-            <section>
-                <h2>DEMO</h2>
-                <a href="video/example_test_case.avi" target="_blank"><img width="70%" class="image"
-                                                                           src="pics/video_preview.png"></a>
-            </section>
-            <section>
-                <h2>File Structure</h2>
-                <img width="40%" class="image" src="pics/test_suite_aufbau.png">
-            </section>
-            <section>
-                <h3 style="text-transform: inherit">Test Case Aufbau</h3>
-        <pre><code class="java" data-trim contenteditable style="font-size: 0.8em">
-            // tc.js
-            /*************************************
-            * Initialization of the JAVA backend
-            * and set warning and critical time
-            *************************************/
-            _dynamicInclude($includeFolder);
-            var testCase = new TestCase(60, 70);
-            var env = new Environment();
-            var appNotepad = new Application("gedit");
-            var region = new Region();
-
-            /******************************
-            * Description of the test case
-            ******************************/
-            try {
-
-            //...
-
-            /************************************************
-            * Exception handling and shutdown of test case
-            **********************************************/
-            } catch (e) {
-            testCase.handleException(e);
-            } finally {
-            testCase.saveResult();
-            }
-        </code></pre>
-            </section>
-
-            <section>
-                <h3 style="text-transform: inherit">Aufruf von Sahi-Funktionen</h3>
-        <pre><code class="java" data-trim contenteditable style="font-size: 0.8em">
-            // tc.js
-            /************************
-            * Call Sahi Functions
-            ***********************/
-            _navigateTo("http://labs.consol.de/lang/en");
-            _highlight(_link("Projects"));
-            _click(_link("Projects"));
-            _highlight(_link("check_mysql_health"));
-            _click(_link("check_mysql_health"));
-            _highlight(_link("check_oracle_health"));
-            _click(_link("check_oracle_health"));
-            _setValue(_textbox("s"), "nagios");
-            _click(_link("Home[1]"));
-            testCase.endOfStep("project", 20);
-        </code></pre>
-            </section>
-
-            <section>
-                <h3 style="text-transform: inherit">Fluent API</h3>
-        <pre><code class="java" data-trim contenteditable style="font-size: 0.8em">
-            /*** calculator app ***/
-            var calculatorApp = new Application("galculator")
-            .setSleepTime(1);
-            .open();
-            testCase.endOfStep("Open Calculator", 3);
-
-            /**********
-            * calculate 525 + 100
-            *********/
-            var calculatorRegion = calculatorApp.getRegion();
-            calculatorRegion.type("525");
-            env.sleep(2);
-            calculatorRegion.find("plus.png")
-            .click()
-            .type("100")
-            .find("calculate")
-            .click();
-            testCase.endOfStep("calculate 525 +100", 20);
-        </code></pre>
-            </section>
-
-            <section>
-                <h3 style="text-transform: inherit">Definition eines Ablaufs</h3>
-        <pre><code class="java" data-trim contenteditable style="font-size: 0.8em">
-            // tc.js
-            /************************
-            * Some Variables
-            ***********************/
-            var $cl_home = "http://labs.consol.de/lang/en";
-            var $cl_projekte = "Projects";
-            var $cl_c_mysql_h = "check_mysql_health";
-            var $cl_c_oracle_h = "check_oracle_health";
-
-            /************************
-            * Step for Notepad
-            ***********************/
-            appNotepad.open();
-            env.type("Welcome to Sakuli!\n")
-            .type("I will help you to test your projects, like webapplications...\n")
-            .sleep(2);
-            testCase.endOfStep("notepad", 20);
-
-            /************************
-            * Step for labs.consol
-            ***********************/
-            switchWindow();
-            _navigateTo($cl_home);
-            _highlight(_link($cl_projekte));
-            _click(_link($cl_projekte));
-            env.sleep(5)
-            .takeScreenshot("C:\\sakuli\\testscreenshot.png");
-            _highlight(_link($cl_c_mysql_h));
-            _click(_link($cl_c_mysql_h));
-            _highlight(_link($cl_c_oracle_h));
-            _click(_link($cl_c_oracle_h));
-            _setValue(_textbox("s"), "nagios");
-            _click(_link("Home[1]"));
-            testCase.endOfStep("project", 20);
-
-
-            /*****************
-            * print test client
-            *****************/
-            backToNotepad();
-            env.type("I can also test client applications, like gedit...\n")
-            .sleep(2);
-            testCase.endOfStep("print_test_client", 10);
-        </code></pre>
-            </section>
-
-            <section>
-                <h3 style="text-transform: inherit">Custom Functions</h3>
-        <pre><code class="java" data-trim contenteditable style="font-size: 0.8em">
-            // tc.js
-            /**********
-            * TAB+ALT
-            *********/
-            function switchWindow() {
-            env.type(Key.TAB, Key.ALT);
-            }
-
-            /***************
-            * Go back to notepad
-            **************/
-            function backToNotepad() {
-            switchWindow();
-            env.type("Finish!\n\n");
-            }
-        </code></pre>
-
-            </section>
-        </section>
-        </section>
-
-        <section>
-            <h2>Architektur</h2>
-            <img width="80%" style="background: whitesmoke; border: none" src="pics/sakuli_architectur.png">
-        </section>
-        <section>
-            <h2>Nagios Integration</h2>
-            <a target="_blank"
-               href="http://10.26.0.68/sakuli/thruk/#cgi-bin/extinfo.cgi?type=2&host=sahi.host.example&service=0004_calc&backend=4b2aa#pnp_th2/1406062443/1406152443">
-                <img width="80%" style="border: 0" src="pics/nagios.png">
-            </a>
-        </section>
-        <section>
-            <h2>Erweiterbarkeit</h2>
-            <img width="80%" style="background: whitesmoke; border: none" src="pics/kombination_with_citrus.png">
-        </section>
-
-        <section>
-            <h2>Ausblick - Queue Architektur</h2>
-            <ul style="font-size: 0.8em">
-                <li>Skalierung durch Client-Worker-Prinzip</li>
-                <li>Einfachere Wartung</li>
-                <li>Zentraler Scheduler</li>
-            </ul>
-            <div style="height: 13em"><img style="background: whitesmoke" src="pics/queue_architecture.png">
-            </div>
-        </section>
-        <section>
-            <h2>Ausblick & Ideen</h2>
-            <ul style="font-size: 0.8em">
-                <li>Unterstützung Sahi-Version 5.0</li>
-                <li>Java-API / TestRunner für Integrationstests</li>
-                <li>Asynchrone <b>wait</b> Funktionen / Callbacks</li>
-                <li>Headless Execution - <b>Linux:</b> xvfb, <b>Windows:</b> ?</li>
-                <li>Aufzeichnung der Testabläufe als Film zur Fehlerdokumentation</li>
-            </ul>
-        </section>
-
-        <section>
-            <h1>Eure</h1>
-
-            <h2 style="text-transform: inherit"> Ideen / Use Cases?</h2>
         </section>
 
         <section>
             <h1>Vielen Dank!</h1>
 
             <div style="text-align: center; padding: 1em">
-                <img src="pics/github.png" style="box-shadow: none; border: none; height: 8em">
+                <img src="pics/github.jpg" style="box-shadow: none; border: none; height: 8em">
             </div>
-            <h4 style="text-transform: inherit">Support us on GitHub</h4>
+            <h4 style="text-transform: inherit">Source-Code:</h4>
             <a style="font-size: 1.5em; font-weight: bold; color: #268bd2" href="https://github.com/ConSol/sakuli"
                target="_blank">
-                github.com/ConSol/sakuli
+                github.com/TODO/sakuli
             </a>
         </section>
 
