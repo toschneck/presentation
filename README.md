@@ -1,4 +1,4 @@
-# Sakuli - End-2-End-Testing - DEV Präsenation
+# Sakuli - End-2-End-Testing - Lightning Talk
 
 Die Einführung in Sakuli in das Thema Sakuli / End-To-End-Testing:
 
