@@ -42,22 +42,33 @@
     <!-- Any section element inside of this container is displayed as a slide -->
     <div class="slides">
         <section>
+            <div style="text-align: left"><img src="pics/background_first_slide_top.png"
+                                               style="vertical-align:top; width:11em; border: 0;box-shadow: none"/>
+            </div>
+            <!--<div style="background:url('pics/background_first_slide_top.png'); height:50%; width:50%; overflow:hidden;">-->
+            <!--</div>-->
+            <h2 style="padding-top: 2em; margin-bottom: 0;text-transform: none">Containerized
+                End-2-End-Testing</h2>
 
-            <h2 style="padding-top: 0.4em; margin-bottom: 0;text-transform: none">Containerized End-2-End-Testing</h2>
-
-            <h2 style="padding-top: 1em; padding-bottom: 1.5em">
-                <img src="pics/sakuli-logo.png" style="width:7em; border: 0;box-shadow: none" alt="Sakuli">
+            <h2 style="padding-top: 0.2em;">
+                <img src="pics/sakuli-logo.png" style="width:5em; border: 0;box-shadow: none" alt="Sakuli">
                 +
-                <img src="pics/docker-img.jpg" style="width:7em; border: 0;box-shadow: none" alt="Sakuli">
+                <img src="pics/docker-img.jpg" style="width:5em; border: 0;box-shadow: none" alt="Docker">
             </h2>
 
-            <p>
-                <small>Created by <a href="mailto:tobias.schneck@consol.de">Tobias Schneck</a> @ <a href="http://www.consol.de">ConSol*</a>
+            <p style="padding-top: 4em; text-align: right">
+                <small>Created by <a href="mailto:tobias.schneck@consol.de">Tobias Schneck</a> @ <a
+                        href="http://www.consol.de">ConSol*</a>
                 </small>
                 </br>
             </p>
 
+            <!--<div style="text-align: right; overflow: hidden; ">-->
+            <!--<img src="pics/background_first_slide_bottom.png"-->
+            <!--style="vertical-align:text-bottom; width:8em; border: 0;box-shadow: none"/>-->
+            <!--</div>-->
         </section>
+
 
         <section>
             <h2>Motivation</h2>
@@ -71,8 +82,90 @@
 
         <section>
             <h2>Testpyramide</h2>
-            <img class="image" width="50%" src="pics/test_pyramide.png" style="border: 0; box-shadow: none">
+            <img class="image" width="40%" src="pics/test_pyramide.png"
+                 style="padding-top: 0.5rem; border: 0; box-shadow: none">
         </section>
+
+        <section>
+            <h2>Anforderung an Testumgebungen</h2>
+            <ul>
+                <li class="coloured"><b>robust</b></li>
+                <ul>
+                    <li>keine "zufälligen" Fehler</li>
+                    <li>Fehler sind reproduzierbar</li>
+                </ul>
+                <li class="coloured"><b>unabhängig</b></li>
+                <ul>
+                    <li>möglichst wenig Abhängikeiten zu externen Systemen</li>
+                    <li>Umgebung sollte exklusiv zur Verfügung stehen</li>
+                </ul>
+                <li class="coloured"><b>isoliert</b></li>
+                <ul>
+                    <li>Tests habe keine Abhängikeit untereinander</li>
+                    <li>Tests sollten parallelisierbar sein</li>
+                </ul>
+                <li class="coloured"><b>schnell</b></li>
+                <ul>
+                    <li>kurze Laufzeiten mit aussagekräfitgen Feedback</li>
+                </ul>
+            </ul>
+            <aside class="notes">
+                Quelle: Roland Huss
+            </aside>
+        </section>
+
+        <section>
+            <h2>Besonderheiten bei End-2-End Tests</h2>
+            <ul>
+                <li class="coloured">unterschiedliche Testarten:</li>
+                <ul>
+                    <li>Regressionstests</li>
+                    <li>funktionale Abnahmetests</li>
+                </ul>
+                <li class="coloured">Parallele Tests in GUIs sind schwieriger</li>
+                <ul>
+                    <li>geteilte Testdaten oder Login-User</li>
+                    <li>User-Sessions mit Stati</li>
+                    <li>Cleanup von Testdaten</li>
+                </ul>
+                <li class="coloured">Testumgebung muss möglichst nah an der <br/>End-User-Umgebung</li>
+                <li class="coloured">manueller Testaufwand <b>></b> Aufwand für Automatisierung</li>
+            </ul>
+            <aside class="notes">
+                Quelle: Roland Huss
+            </aside>
+        </section>
+
+        <section>
+            <h2>Vorteile der Container-Technologien</h2>
+            <h4>Hilfreich für End-End-Testing?</h4>
+            <ul class="fragment">
+                <li><b>Isolation</b> von Umgebungen</li>
+                <li><b>Nachvollziehbarer Aufbau</b> der Umgebung
+                    <br/>(z.B. durch Dockerfile)
+                </li>
+                <li>Container starten <b>on-the-fly</b></li>
+                <li>einfache <b>Parallelisierung</b></li>
+                <ul>
+                    <li>Wenig Speicher-Overhead</li>
+                    <li>Teilen den selben Linux-Kernel</li>
+                </ul>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Virtuelle Maschinen vs. Container
+                <p style="font-size: x-large">(am Beispiel Docker)</p></h2>
+            <img width="95%" src="pics/vm_vs_docker.png">
+        </section>
+        <section>
+            <h2>Immutable Filesystem Layers
+                <p style="font-size: x-large">(am Beispiel Docker)</p></h2>
+            <div style="padding-top: 0.5em;">
+                <img width="60%" src="pics/docker-layers.png">
+            </div>
+        </section>
+
 
         <section>
             <h2>Herausforderung</h2>

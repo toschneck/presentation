@@ -18,7 +18,7 @@ body {
   font-family: 'Source Sans Pro', Arial, sans-serif;
   font-size: 38px;
   font-weight: normal;
-  color: #222; }
+  color: #595959; }
 
 ::selection {
   color: #fff;
@@ -34,7 +34,7 @@ body {
  *********************************************/
 .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
   margin: 0 0 20px 0;
-  color: #222;
+  color: #626262;
   font-family: 'Source Sans Pro', Arial, sans-serif;
   font-weight: 600;
   line-height: 1.2;
@@ -208,7 +208,7 @@ body {
 .reveal section img {
   margin: 15px 0px;
   background: rgba(255, 255, 255, 0.12);
-  border: 4px solid #222;
+  border: 4px solid #595959;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); }
 
 .reveal a img {
@@ -266,6 +266,15 @@ body {
 .reveal .slide-number {
   color: #2a76dd; }
 
+.reveal .slide-background {
+  background: url("pics/background.png");
+  background-position: bottom;
+  background-size: 100%;
+  background-repeat: no-repeat; }
+
+.reveal .controls {
+  right: auto; }
+
 .reveal h1 {
   text-transform: uppercase; }
 
@@ -287,3 +296,6 @@ body {
   max-height: 40em;
   font-size: 0.7em;
   line-height: normal; }
+
+.reveal .coloured {
+  color: #327daf; }

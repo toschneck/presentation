@@ -13,8 +13,8 @@
 // Override theme settings (see ../template/settings.scss)
 $backgroundColor: #fff;
 
-$mainColor: #222;
-$headingColor: #222;
+$mainColor: #595959;
+$headingColor: #626262;
 
 $mainFontSize: 38px;
 $mainFont: 'Source Sans Pro', Arial, sans-serif;
@@ -42,6 +42,16 @@ section.has-dark-background {
 @import "../template/theme";
 // ---------------------------------------------
 
+.reveal .slide-background {
+  background:url("pics/background.png");
+  background-position:bottom;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.reveal .controls {
+  right: auto;
+}
 .reveal h1{
   text-transform: uppercase;
 }
@@ -66,4 +76,8 @@ section.has-dark-background {
   max-height: 40em;
   font-size: 0.7em;
   line-height: normal;
+}
+
+.reveal .coloured {
+  color: #327daf;
 }
