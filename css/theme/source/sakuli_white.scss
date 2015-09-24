@@ -17,8 +17,8 @@ $mainColor: #222;
 $headingColor: #222;
 
 $mainFontSize: 38px;
-$mainFont: 'Source Sans Pro', Helvetica, sans-serif;
-$headingFont: 'Source Sans Pro', Helvetica, sans-serif;
+$mainFont: 'Source Sans Pro', Arial, sans-serif;
+$headingFont: 'Source Sans Pro', Arial, sans-serif;
 $headingTextShadow: none;
 $headingLetterSpacing: normal;
 $headingTextTransform: none;
@@ -46,7 +46,7 @@ section.has-dark-background {
   text-transform: uppercase;
 }
 .reveal h2{
-  text-transform: uppercase;
+  text-transform: none;
 }
 .reveal table td {
   padding: 0;
