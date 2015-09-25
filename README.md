@@ -1,17 +1,15 @@
-# Sakuli - End-2-End-Testing - DEV Präsenation
+# Containerized End-2-End-Testing
 
-Die Einführung in Sakuli in das Thema Sakuli / End-To-End-Testing:
+__Zur Präsentation:__ [Containerized End-2-End-Testing](https://rawgit.com/toschneck/presentation/sakuli-testautomation-day/index.html#/)
 
-__Zur Präsentation:__ [Sakuli - Einführungspresentation](https://rawgit.com/toschneck/presentation/sakuli-dev-day-presentation/index.html#/)
+In der Regel beschreibt der Begriff „End-2-End-Testing“ ein Testszenario, das Systeme in Form eines Black-Box-Tests von außen von einem Ende zum anderen Ende testet. Ziel des Vortrags ist es, dem Zuhörer einen Einblick zu geben wie durch geschickten Tool-Einsatz das Potenzial einer Container-Technologie wie z.B. Docker genutzt werden kann, um die Softwarequalität zu erhöhen und manuellen Testaufwand zu verringern.
 
-* Generelle Einführung in Sakuli, was ist die Idee dahinter
-* Was die Einsatzszenarien von Sakuli
-* Welche Vorteile ergeben sich in der Kombination aus HTML-DOM basierten und grafische Pattern (Screenshots) basierten UI-Tests 
-* Kurzer Einblick, wie ein typischer Test aufgebaut und geschrieben ist.
-* Demo
+Mithilfe des End-2-End-Testing-Framekworks „Sakuli“ ist es im Container möglich sowohl webbasierte Browsertests als auch GUI-Tests auf Rich-Clients durchzuführen. Typische Einsatzszenarien von „containerized End-2-End-Testing“ werden anhand einer Live-Demo betrachtet. Eine abschließende Bewertung der gesammelten Erfahrungen sowie ein Ausblick auf weitere Einsatzszenarien und Entwicklungsschritte runden den Vortrag ab.
 
 
-- -  -
+- - -
+
+- - -
 
 # reveal.js [![Build Status](https://travis-ci.org/hakimel/reveal.js.png?branch=master)](https://travis-ci.org/hakimel/reveal.js)
 
