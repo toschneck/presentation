@@ -69,6 +69,18 @@
             <!--</div>-->
         </section>
 
+        <section>
+            <h2>Agenda</h2>
+            <b>
+                <ol class="coloured">
+                    <li>Einordnung End-2-End-Testing</li>
+                    <li>Welche Vorteile bieten <br/>Container-Technologien?</li>
+                    <li>Der Sakuli End-2-End-Testing Container</li>
+                    <li>Integration in die CI-Umgebung</li>
+                    <li>Ausblick</li>
+                </ol>
+            </b>
+        </section>
 
         <section>
             <h2>Motivation</h2>
@@ -128,7 +140,7 @@
                     <li>User-Sessions mit Stati</li>
                     <li>Cleanup von Testdaten</li>
                 </ul>
-                <li class="coloured">Testumgebung muss möglichst nah an der <br/>End-User-Umgebung</li>
+                <li class="coloured">Testumgebung muss möglichst nah an der <br/>End-User-Umgebung sein</li>
                 <li class="coloured">manueller Testaufwand <b>></b> Aufwand für Automatisierung</li>
             </ul>
             <aside class="notes">
@@ -137,18 +149,17 @@
         </section>
 
         <section>
-            <h2>Vorteile der Container-Technologien</h2>
-            <h4>Hilfreich für End-End-Testing?</h4>
+            <h4>Welche Vorteile bieten die <span class="coloured">Container-Technologien</span>?</h4>
+            <h4>Sind diese hilfreich für <span class="coloured">End-End-Testing</span>?</h4>
             <ul class="fragment">
-                <li><b>Isolation</b> von Umgebungen</li>
-                <li><b>Nachvollziehbarer Aufbau</b> der Umgebung
-                    <br/>(z.B. durch Dockerfile)
-                </li>
-                <li>Container starten <b>on-the-fly</b></li>
-                <li>einfache <b>Parallelisierung</b></li>
+                <li><b class="coloured">Isolation</b> von Umgebungen</li>
+                <li>Container-<b class="coloured">Repository</b> für Versionierung und Verteilung</li>
+                <li><b class="coloured">Nachvollziehbarer Aufbau</b> der Umgebung (Dockerfile)</li>
+                <li>Container starten <b class="coloured">on-the-fly</b></li>
+                <li>einfache <b class="coloured">Parallelisierung</b></li>
                 <ul>
                     <li>Wenig Speicher-Overhead</li>
-                    <li>Teilen den selben Linux-Kernel</li>
+                    <li>Teilen sich den selben Linux-Kernel</li>
                 </ul>
             </ul>
         </section>
@@ -166,9 +177,45 @@
             </div>
         </section>
 
+        <section>
+            <h2>Container mit GUI?</h2>
+            <ul>
+                <li>Oberfläche (X-Window), Steuerung, Apps</li>
+            </ul>
+            <div class="fragment" style="padding-top: 0.4em;">
+                <img width="60%" style="box-shadow: none" src="pics/container_headless_gui.png">
+            </div>
+        </section>
+        <section>
+            <h2>Demo</h2>
+
+            <!-- @formatter:off-->
+            <pre><code data-trim contenteditable="true">
+# start the docker container
+docker run -it -p 5911:5901 -p 6911:6901 consol/centos-xfce-vnc
+docker run -it -p 5912:5901 -p 6912:6901 consol/ubuntu-xfce-vnc
+            </code></pre>
+            <pre><code data-trim contenteditable="true">
+# start the docker container via x-forwarding
+docker run -i -t --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:ro paulczar/torbrowser
+            </code></pre>
+            <!-- @formatter:on-->
+            <div style="padding-top: 0.4em;">
+                <a target="_blank"
+                   href="file:///home/tschneck/git-files/sakuli-example-testautomation-day/vnc_overview_local.html">
+                    <img width="35%" style="box-shadow: none;padding-right: 1em;" src="pics/centos_xfce_vnc.png">
+                </a>
+                <img width="35%" style="padding-left: 1em;box-shadow: none" src="pics/tor_browser.png">
+            </div>
+
+            <aside class="notes">
+                für local_VNC overview
+                docker run -it -p 5911:5901 -p 6911:6901 -e "VNC_PW=sakuli" consol/centos-xfce
+            </aside>
+        </section>
 
         <section>
-            <h2>Herausforderung</h2>
+            <h2>Herausforderung End-2-End-Testing</h2>
             <ul>
                 <li>Web-UI-Test-Tools haben nur Zugriff auf DOM-Elemente</li>
                 <li>Wie kann man Nicht-HTML-Inhalte testen bzw. damit umgehen? =>
@@ -196,7 +243,8 @@
             </aside>
 
             <h3 style="text-transform: none; margin-top: 0.2em" class="fragment">
-                Was macht Sakuli?
+                Was macht <img src="pics/sakuli-logo.png" style="height:1.3em; border: 0;box-shadow: none" alt="Sakuli">
+                ?
             </h3>
 
         </section>
@@ -258,101 +306,101 @@
             </table>
         </section>
 
-        <section>
-            <h2>Stärken der Vereinigung</h2>
-            <table>
-                <tbody>
-                <tr>
-                    <td width="12%" style="padding: 0;  text-align: center">
-                        <img class="image"
-                             src="pics/sahi_worker.png" style="height: 3em; border: 0;">
-                    </td>
-                    <td width="12%" style="padding: 0;  text-align: center">
-                        <img class="image"
-                             src="pics/sikuli_worker.png" style="height: 3em; border: 0;">
-                    </td>
-                    <td width="12%" style="padding: 0 0 0.3em 0; text-align: center">
-                        <img class="image"
-                             src="pics/3maennchen_mit_sakuli.png" style=" height: 3em; border: 0; ">
-                    </td>
-                    <td style="padding: 0; text-align: center; vertical-align: bottom; border-left: 1px">
-                        <h3>Kategorie</h3>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center"><img src="pics/bubble_red.png"
-                                                        style="max-height: 45px; margin-bottom: 0.2em; box-shadow: none">
-                    </td>
-                    <td style="text-align: center"><img src="pics/bubble_green.png"
-                                                        style="max-height: 45px; box-shadow: none"></td>
-                    <td style="text-align: center"><img src="pics/bubble_green.png"
-                                                        style="max-height: 45px; box-shadow: none"></td>
-                    <td style="margin:0; padding: 0 0 0 0.3em;  font-size: 0.8em;">
-                        Beschränkung auf den Browser
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center"><img src="pics/bubble_green.png"
-                                                        style="max-height: 45px; margin-bottom: 0.2em; box-shadow: none">
-                    </td>
-                    <td style="text-align: center"><img src="pics/bubble_red.png"
-                                                        style="max-height: 45px; box-shadow: none"></td>
-                    <td style="text-align: center"><img src="pics/bubble_green.png"
-                                                        style="max-height: 45px; box-shadow: none"></td>
-                    <td style="margin:0; padding: 0 0 0 0.3em;  font-size: 0.8em; ">
-                        Web Tests (DOM basiert)
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center"><img src="pics/bubble_green.png"
-                                                        style="max-height: 45px; margin-bottom: 0.2em; box-shadow: none">
-                    </td>
-                    <td style="text-align: center"><img src="pics/bubble_green.png"
-                                                        style="max-height: 45px; box-shadow: none"></td>
-                    <td style="text-align: center"><img src="pics/bubble_green.png"
-                                                        style="max-height: 45px; box-shadow: none"></td>
-                    <td style="margin:0; padding: 0 0 0 0.3em;  font-size: 0.8em; ">
-                        Open Source & Java API
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center"><img src="pics/bubble_gray.png"
-                                                        style="max-height: 45px; margin-bottom: 0.2em; box-shadow: none">
-                    </td>
-                    <td style="text-align: center"><img src="pics/bubble_red.png"
-                                                        style="max-height: 45px; box-shadow: none"></td>
-                    <td style="text-align: center"><img src="pics/bubble_green.png"
-                                                        style="max-height: 45px; box-shadow: none"></td>
-                    <td style="margin:0; padding: 0 0 0 0.3em;  font-size: 0.8em; vertical-align: top;">
-                        Automatisierbarkeit & Ergebnisauswertung <br/>über DB / Nagios / CI-Tools
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center"><img src="pics/bubble_green.png"
-                                                        style="max-height: 45px; margin-bottom: 0.2em; box-shadow: none">
-                    </td>
-                    <td style="text-align: center"><img src="pics/bubble_gray.png"
-                                                        style="max-height: 45px; box-shadow: none"></td>
-                    <td style="text-align: center"><img src="pics/bubble_gray.png"
-                                                        style="max-height: 45px; box-shadow: none"></td>
-                    <td style="margin:0; padding: 0 0 0 0.3em;  font-size: 0.8em; vertical-align: top;">
-                        Unterstützung bei Testerstellung <br/>(Recorder, Screenshot-Finder)
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </section>
+        <!--<section>-->
+        <!--<h2>Stärken der Vereinigung</h2>-->
+        <!--<table>-->
+        <!--<tbody>-->
+        <!--<tr>-->
+        <!--<td width="12%" style="padding: 0;  text-align: center">-->
+        <!--<img class="image"-->
+        <!--src="pics/sahi_worker.png" style="height: 3em; border: 0;">-->
+        <!--</td>-->
+        <!--<td width="12%" style="padding: 0;  text-align: center">-->
+        <!--<img class="image"-->
+        <!--src="pics/sikuli_worker.png" style="height: 3em; border: 0;">-->
+        <!--</td>-->
+        <!--<td width="12%" style="padding: 0 0 0.3em 0; text-align: center">-->
+        <!--<img class="image"-->
+        <!--src="pics/3maennchen_mit_sakuli.png" style=" height: 3em; border: 0; ">-->
+        <!--</td>-->
+        <!--<td style="padding: 0; text-align: center; vertical-align: bottom; border-left: 1px">-->
+        <!--<h3>Kategorie</h3>-->
+        <!--</td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+        <!--<td style="text-align: center"><img src="pics/bubble_red.png"-->
+        <!--style="max-height: 45px; margin-bottom: 0.2em; box-shadow: none">-->
+        <!--</td>-->
+        <!--<td style="text-align: center"><img src="pics/bubble_green.png"-->
+        <!--style="max-height: 45px; box-shadow: none"></td>-->
+        <!--<td style="text-align: center"><img src="pics/bubble_green.png"-->
+        <!--style="max-height: 45px; box-shadow: none"></td>-->
+        <!--<td style="margin:0; padding: 0 0 0 0.3em;  font-size: 0.8em;">-->
+        <!--Beschränkung auf den Browser-->
+        <!--</td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+        <!--<td style="text-align: center"><img src="pics/bubble_green.png"-->
+        <!--style="max-height: 45px; margin-bottom: 0.2em; box-shadow: none">-->
+        <!--</td>-->
+        <!--<td style="text-align: center"><img src="pics/bubble_red.png"-->
+        <!--style="max-height: 45px; box-shadow: none"></td>-->
+        <!--<td style="text-align: center"><img src="pics/bubble_green.png"-->
+        <!--style="max-height: 45px; box-shadow: none"></td>-->
+        <!--<td style="margin:0; padding: 0 0 0 0.3em;  font-size: 0.8em; ">-->
+        <!--Web Tests (DOM basiert)-->
+        <!--</td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+        <!--<td style="text-align: center"><img src="pics/bubble_green.png"-->
+        <!--style="max-height: 45px; margin-bottom: 0.2em; box-shadow: none">-->
+        <!--</td>-->
+        <!--<td style="text-align: center"><img src="pics/bubble_green.png"-->
+        <!--style="max-height: 45px; box-shadow: none"></td>-->
+        <!--<td style="text-align: center"><img src="pics/bubble_green.png"-->
+        <!--style="max-height: 45px; box-shadow: none"></td>-->
+        <!--<td style="margin:0; padding: 0 0 0 0.3em;  font-size: 0.8em; ">-->
+        <!--Open Source & Java API-->
+        <!--</td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+        <!--<td style="text-align: center"><img src="pics/bubble_gray.png"-->
+        <!--style="max-height: 45px; margin-bottom: 0.2em; box-shadow: none">-->
+        <!--</td>-->
+        <!--<td style="text-align: center"><img src="pics/bubble_red.png"-->
+        <!--style="max-height: 45px; box-shadow: none"></td>-->
+        <!--<td style="text-align: center"><img src="pics/bubble_green.png"-->
+        <!--style="max-height: 45px; box-shadow: none"></td>-->
+        <!--<td style="margin:0; padding: 0 0 0 0.3em;  font-size: 0.8em; vertical-align: top;">-->
+        <!--Automatisierbarkeit & Ergebnisauswertung <br/>über DB / Nagios / CI-Tools-->
+        <!--</td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+        <!--<td style="text-align: center"><img src="pics/bubble_green.png"-->
+        <!--style="max-height: 45px; margin-bottom: 0.2em; box-shadow: none">-->
+        <!--</td>-->
+        <!--<td style="text-align: center"><img src="pics/bubble_gray.png"-->
+        <!--style="max-height: 45px; box-shadow: none"></td>-->
+        <!--<td style="text-align: center"><img src="pics/bubble_gray.png"-->
+        <!--style="max-height: 45px; box-shadow: none"></td>-->
+        <!--<td style="margin:0; padding: 0 0 0 0.3em;  font-size: 0.8em; vertical-align: top;">-->
+        <!--Unterstützung bei Testerstellung <br/>(Recorder, Screenshot-Finder)-->
+        <!--</td>-->
+        <!--</tr>-->
+        <!--</tbody>-->
+        <!--</table>-->
+        <!--</section>-->
 
         <section>
-            <section>
-                <h2>DEMO</h2>
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/z3opwqqy3io" frameborder="0"
-                        allowfullscreen></iframe>
-                <p>
-                    <a href="video/m-net_order_processing.wmv" target="_blank">Video File </a>
-                </p>
-                <!--src="pics/video_preview.png"></a>-->
-            </section>
+            <!--<section>-->
+            <!--<h2>DEMO</h2>-->
+            <!--<iframe width="560" height="315" src="https://www.youtube.com/embed/z3opwqqy3io" frameborder="0"-->
+            <!--allowfullscreen></iframe>-->
+            <!--<p>-->
+            <!--<a href="video/m-net_order_processing.wmv" target="_blank">Video File </a>-->
+            <!--</p>-->
+            <!--&lt;!&ndash;src="pics/video_preview.png"></a>&ndash;&gt;-->
+            <!--</section>-->
             <section>
                 <h3>File Structure</h3>
                 <img width="40%" class="image" src="pics/test_suite_aufbau.png">
@@ -434,6 +482,28 @@
             </section>
 
             <section>
+                <h3 style="text-transform: inherit">Custom Functions</h3>
+        <pre><code class="java" data-trim contenteditable="true">
+            // tc.js
+            /**********
+            * TAB+ALT
+            *********/
+            function switchWindow() {
+            env.type(Key.TAB, Key.ALT);
+            }
+
+            /***************
+            * Go back to notepad
+            **************/
+            function backToNotepad() {
+            switchWindow();
+            env.type("Finish!\n\n");
+            }
+        </code></pre>
+
+            </section>
+
+            <section>
                 <h3 style="text-transform: inherit">Definition eines Ablaufs</h3>
         <pre><code class="java" data-trim contenteditable="true">
             // tc.js
@@ -481,33 +551,50 @@
             testCase.endOfStep("print_test_client", 10);
         </code></pre>
             </section>
-
-            <section>
-                <h3 style="text-transform: inherit">Custom Functions</h3>
-        <pre><code class="java" data-trim contenteditable="true">
-            // tc.js
-            /**********
-            * TAB+ALT
-            *********/
-            function switchWindow() {
-            env.type(Key.TAB, Key.ALT);
-            }
-
-            /***************
-            * Go back to notepad
-            **************/
-            function backToNotepad() {
-            switchWindow();
-            env.type("Finish!\n\n");
-            }
-        </code></pre>
-
-            </section>
         </section>
 
         <section>
-            <h2>Architektur</h2>
-            <img width="80%" style="background: whitesmoke; border: none" src="pics/sakuli_architectur.png">
+            <h2>Sakuli End-2-End Testing Container</h2>
+
+            <div style="padding-top: 0.4em;">
+                <img width="50%" style="box-shadow: none" src="pics/container_sakuli.png">
+            </div>
+        </section>
+
+        <section>
+            <h2>Demo Sakuli Example</h2>
+
+            <!-- @formatter:off-->
+            <pre><code data-trim contenteditable="true">
+# start the docker container
+docker run -it -p 5911:5901 -p 6911:6901 consol/sakuli-centos-xfce
+docker run -it -p 5912:5901 -p 6912:6901 consol/sakuli-ubuntu-xfce
+
+# start in parallel via docker-compose
+docker-compose -f docker-compose_example_xfce.yml up
+            </code></pre>
+            <!-- @formatter:on-->
+            <div style="padding-top: 0.4em;">
+                <a target="_blank"
+                   href="file:///home/tschneck/git-files/sakuli-example-testautomation-day/vnc_overview_local.html">
+                    <img width="40%" style="box-shadow: none;padding-right: 1em;" src="pics/docker_sakuli_example.png">
+                </a>
+            </div>
+
+            <aside class="notes">
+                für local_VNC overview
+                docker-compose -f docker-compose_example_xfce.yml rm -f && docker-compose -f
+                docker-compose_example_xfce.yml up
+            </aside>
+        </section>
+
+        <!--<section>-->
+        <!--<h2>Architektur</h2>-->
+        <!--<img width="80%" style="background: whitesmoke; border: none" src="pics/sakuli_architectur.png">-->
+        <!--</section>-->
+        <section>
+            <h2>Erweiterbare Architektur</h2>
+            <img width="80%" style=" border: none" src="pics/kombination_with_citrus.png">
         </section>
         <section>
             <h2>Nagios Integration</h2>
@@ -516,21 +603,45 @@
                 <img width="80%" style="border: 0" src="pics/nagios.png">
             </a>
         </section>
-        <section>
-            <h2>Erweiterbarkeit</h2>
-            <img width="80%" style="background: whitesmoke; border: none" src="pics/kombination_with_citrus.png">
-        </section>
+
+        <!--<section>-->
+        <!--<h2>Ausblick - Queue Architektur</h2>-->
+        <!--<ul style="font-size: 0.8em">-->
+        <!--<li>Skalierung durch Client-Worker-Prinzip</li>-->
+        <!--<li>Einfachere Wartung</li>-->
+        <!--<li>Zentraler Scheduler</li>-->
+        <!--</ul>-->
+        <!--<div style="height: 13em"><img style="background: whitesmoke" src="pics/queue_architecture.png">-->
+        <!--</div>-->
+        <!--</section>-->
 
         <section>
-            <h2>Ausblick - Queue Architektur</h2>
-            <ul style="font-size: 0.8em">
-                <li>Skalierung durch Client-Worker-Prinzip</li>
-                <li>Einfachere Wartung</li>
-                <li>Zentraler Scheduler</li>
-            </ul>
-            <div style="height: 13em"><img style="background: whitesmoke" src="pics/queue_architecture.png">
+            <h2>CI Demo Aufbau</h2>
+            <img width="100%" style=" border: none" src="pics/ci_umgebung.png">
+        </section>
+        <section>
+            <h2>CI Demo ConSol* CM6</h2>
+
+            <!-- @formatter:off-->
+            <pre><code data-trim contenteditable="true">
+ssh ssh cclusr@10.4.14.131
+
+# MANUAL start singel container via docker-compose on remote host:
+cd ~/sakuli-example-testautomation-day/docker_e2e
+docker-compose rm -f && docker-compose up sakuli-cm_check_links
+            </code></pre>
+            <!-- @formatter:on-->
+            <div style="padding-top: 1em;">
+                <a target="_blank"
+                   href="file:///home/tschneck/git-files/sakuli-example-testautomation-day/vnc_overview_remote.html">
+                    <img width="40%" style="box-shadow: none;padding-right: 0.5em;" src="pics/ci_cm_test.png">
+                </a>
+                <img width="45%" style="padding-left: 0.5em; vertical-align: top;box-shadow: none"
+                     src="pics/ci_jenkins_pipeline.png">
             </div>
         </section>
+
+
         <section>
             <h2>Ausblick & Ideen</h2>
             <ul style="font-size: 0.8em; padding-top: 1em">
@@ -542,9 +653,7 @@
         </section>
 
         <section>
-            <h1>Eure</h1>
-
-            <h2 style="text-transform: inherit"> Ideen / Fragen?</h2>
+            <h1 class="coloured" style="text-transform: inherit">Fragen?</h1>
         </section>
 
         <section>
