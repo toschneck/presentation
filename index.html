@@ -16,11 +16,12 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
     <link rel="stylesheet" href="css/reveal.css">
     <link rel="stylesheet" href="css/theme/sakuli_white.css" id="theme">
 
-    <!-- Code syntax highlighting -->
-    <link rel="stylesheet" href="lib/css/zenburn.css">
 
     <!-- Printing and PDF exports -->
     <script>
@@ -56,9 +57,10 @@
                 <img src="pics/docker-img.jpg" style="width:5em; border: 0;box-shadow: none" alt="Docker">
             </h2>
 
+            <!-- Referent: Tobias Schneck, ConSol Software GmbH-->
             <p style="padding-top: 4em; text-align: right">
-                <small>Created by <a href="mailto:tobias.schneck@consol.de">Tobias Schneck</a> @ <a
-                        href="http://www.consol.de">ConSol*</a>
+                <small>Referent: <a href="mailto:tobias.schneck@consol.de">Tobias Schneck</a>, <a
+                        href="http://www.consol.de">ConSol Software GmbH</a>
                 </small>
                 </br>
             </p>
@@ -83,42 +85,42 @@
         </section>
 
         <section>
-            <h2>Motivation</h2>
+            <h2>Motivation für End-2-End Testing</h2>
             <img class="image" width="40%" src="pics/chain.png" style="border: 0">
             <ul>
                 <li>Business-kritische Applikationen bestehen oft aus einer Vielzahl an Komponenten</li>
                 <li>Applikations-Qualität aus Anwendersicht ist nur am Ende der Funktionskette messbar</li>
-                <li>UI-Interfaces sind schwer kontinuierlich zu testen</li>
+                <li>GUI ist die Schnittstelle zum End-User</li>
             </ul>
         </section>
 
         <section>
             <h2>Testpyramide</h2>
-            <img class="image" width="40%" src="pics/test_pyramide.png"
-                 style="padding-top: 0.5rem; border: 0; box-shadow: none">
+            <img class="image" width="45%" src="pics/test_pyramide.png"
+                 style="padding-top: 0.8em; border: 0; box-shadow: none">
         </section>
 
         <section>
             <h2>Anforderung an Testumgebungen</h2>
             <ul>
-                <li class="coloured"><b>robust</b></li>
+                <li class="coloured"><b>Robust</b></li>
                 <ul>
-                    <li>keine "zufälligen" Fehler</li>
+                    <li>Keine "zufälligen" Fehler</li>
                     <li>Fehler sind reproduzierbar</li>
                 </ul>
-                <li class="coloured"><b>unabhängig</b></li>
+                <li class="coloured"><b>Unabhängig</b></li>
                 <ul>
-                    <li>möglichst wenig Abhängikeiten zu externen Systemen</li>
+                    <li>Möglichst wenig Abhängigkeiten zu externen Systemen</li>
                     <li>Umgebung sollte exklusiv zur Verfügung stehen</li>
                 </ul>
-                <li class="coloured"><b>isoliert</b></li>
+                <li class="coloured"><b>Isoliert</b></li>
                 <ul>
-                    <li>Tests habe keine Abhängikeit untereinander</li>
+                    <li>Tests haben keine Abhängigkeit untereinander</li>
                     <li>Tests sollten parallelisierbar sein</li>
                 </ul>
-                <li class="coloured"><b>schnell</b></li>
+                <li class="coloured"><b>Schnell</b></li>
                 <ul>
-                    <li>kurze Laufzeiten mit aussagekräfitgen Feedback</li>
+                    <li>Kurze Laufzeiten mit aussagekräftigem Feedback</li>
                 </ul>
             </ul>
             <aside class="notes">
@@ -129,34 +131,30 @@
         <section>
             <h2>Besonderheiten bei End-2-End Tests</h2>
             <ul>
-                <li class="coloured">unterschiedliche Testarten:</li>
+                <li class="coloured">Unterschiedliche Testarten</li>
                 <ul>
                     <li>Regressionstests</li>
-                    <li>funktionale Abnahmetests</li>
+                    <li>Funktionale Abnahmetests</li>
                 </ul>
                 <li class="coloured">Parallele Tests in GUIs sind schwieriger</li>
                 <ul>
-                    <li>geteilte Testdaten oder Login-User</li>
+                    <li>Geteilte Testdaten oder Login-User</li>
                     <li>User-Sessions mit Stati</li>
                     <li>Cleanup von Testdaten</li>
                 </ul>
                 <li class="coloured">Testumgebung muss möglichst nah an der <br/>End-User-Umgebung sein</li>
-                <li class="coloured">manueller Testaufwand <b>></b> Aufwand für Automatisierung</li>
+                <li class="coloured">Manueller Testaufwand <b>></b> Aufwand für Automatisierung</li>
             </ul>
-            <aside class="notes">
-                Quelle: Roland Huss
-            </aside>
         </section>
 
         <section>
-            <h4>Welche Vorteile bieten die <span class="coloured">Container-Technologien</span>?</h4>
-            <h4>Sind diese hilfreich für <span class="coloured">End-End-Testing</span>?</h4>
-            <ul class="fragment">
+            <h2>Bietet die Container-Technologie Vorteile für das End-End-Testing?</h2>
+            <ul class="fragment" style="margin-top: 0.8em">
                 <li><b class="coloured">Isolation</b> von Umgebungen</li>
                 <li>Container-<b class="coloured">Repository</b> für Versionierung und Verteilung</li>
                 <li><b class="coloured">Nachvollziehbarer Aufbau</b> der Umgebung (Dockerfile)</li>
-                <li>Container starten <b class="coloured">on-the-fly</b></li>
-                <li>einfache <b class="coloured">Parallelisierung</b></li>
+                <li>Start von Containern <b class="coloured">on-the-fly</b></li>
+                <li>Einfache <b class="coloured">Parallelisierung</b></li>
                 <ul>
                     <li>Wenig Speicher-Overhead</li>
                     <li>Teilen sich den selben Linux-Kernel</li>
@@ -178,34 +176,24 @@
         </section>
 
         <section>
-            <h2>Container mit GUI?</h2>
-            <ul>
-                <li>Oberfläche (X-Window), Steuerung, Apps</li>
-            </ul>
-            <div class="fragment" style="padding-top: 0.4em;">
-                <img width="60%" style="box-shadow: none" src="pics/container_headless_gui.png">
-            </div>
-        </section>
-        <section>
-            <h2>Demo</h2>
+            <h2>Demo - Containerized GUIs </h2>
 
             <!-- @formatter:off-->
-            <pre><code data-trim contenteditable="true">
-# start the docker container
+            <pre><code class="hljs-shebang" data-trim contenteditable="false">
+# start the docker container with VNC interface
 docker run -it -p 5911:5901 -p 6911:6901 consol/centos-xfce-vnc
 docker run -it -p 5912:5901 -p 6912:6901 consol/ubuntu-xfce-vnc
-            </code></pre>
-            <pre><code data-trim contenteditable="true">
+
 # start the docker container via x-forwarding
-docker run -i -t --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:ro paulczar/torbrowser
+docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:rw rasch/inkscape
             </code></pre>
             <!-- @formatter:on-->
             <div style="padding-top: 0.4em;">
                 <a target="_blank"
                    href="file:///home/tschneck/git-files/sakuli-example-testautomation-day/vnc_overview_local.html">
-                    <img width="35%" style="box-shadow: none;padding-right: 1em;" src="pics/centos_xfce_vnc.png">
+                    <img width="35%" style="vertical-align: middle; margin-right: 1em;" src="pics/centos_xfce_vnc.png">
                 </a>
-                <img width="35%" style="padding-left: 1em;box-shadow: none" src="pics/tor_browser.png">
+                <img width="35%" style="vertical-align:middle; margin-left: 1em" src="pics/inkscape.png">
             </div>
 
             <aside class="notes">
@@ -215,9 +203,19 @@ docker run -i -t --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:ro pa
         </section>
 
         <section>
+            <h2>Container mit GUI?</h2>
+            <ul>
+                <li>Oberfläche (X-Window), Steuerung, Apps</li>
+            </ul>
+            <div class="fragment" style="padding-top: 0.4em;">
+                <img width="60%" style="box-shadow: none" src="pics/container_headless_gui.png">
+            </div>
+        </section>
+
+        <section>
             <h2>Herausforderung End-2-End-Testing</h2>
             <ul>
-                <li>Web-UI-Test-Tools haben nur Zugriff auf DOM-Elemente</li>
+                <li>Web-Test-Tools haben nur Zugriff auf DOM-Elemente</li>
                 <li>Wie kann man Nicht-HTML-Inhalte testen bzw. damit umgehen? =>
                     <b>Flash, PKI-Abfragen, Java Applets, Plugins</b>
 
@@ -225,8 +223,8 @@ docker run -i -t --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:ro pa
                                                            style="height: 4.7em; padding-top: 0.1em;"></div>
                 </li>
                 <li>Grafisch basierte Tests sind ressourcenintensiv</li>
-                <li>OS unabhängiges Framework</li>
-                <li>UI-Rendering testbar?</li>
+                <li>OS-unabhängiges Framework</li>
+                <li>GUI-Rendering testbar?</li>
             </ul>
             <aside class="notes">
                 <ul>
@@ -274,10 +272,10 @@ docker run -i -t --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:ro pa
                 <tr style="font-size: 0.9em;">
                     <td width="47%" style="padding: 0; vertical-align: top; font-size: 0.7em">
                         <ul>
-                            <li>Aktionsbereich: Browser-Inhalt <br/>(z.b. kein Scrollen notwendig)</li>
+                            <li>Aktionsbereich: Browser-Inhalt <br/>(z.B. kein Scrollen notwendig)</li>
                             <li>Objekt-Adressierung von DOM-Elementen</li>
                             <li>Java-API</li>
-                            <li>Erkennt wenn Seiten/AJAX-Requests fertig geladen sind</li>
+                            <li>Erkennt, wenn Seiten/AJAX-Requests fertig geladen sind</li>
                             <li>Guter Umgang mit AJAX & Web-Frameworks</li>
                             <li>Recorder-Funktionalität</li>
                             <li>Assert Funktionalität</li>
@@ -289,7 +287,7 @@ docker run -i -t --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:ro pa
                     <td style="padding: 10px"></td>
                     <td width="47%" style="padding: 0; vertical-align: top; font-size: 0.7em">
                         <ul>
-                            <li>Aktionsbereich:Bildschirm-Inhalt <br/>(Scrollen u.U. notwendig)</li>
+                            <li>Aktionsbereich: Bildschirm-Inhalt <br/>(Scrollen u.U. notwendig)</li>
                             <li>Objekt-Adressierung über Grafik-Patterns</li>
                             <li>Java-API</li>
                             <li>Keine Beschränkung auf den Browser</li>
@@ -304,6 +302,37 @@ docker run -i -t --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:ro pa
                 </tr>
                 </tbody>
             </table>
+        </section>
+
+        <section>
+            <h2>
+                <div style=" height: 1.5em; margin-bottom: 1.1em">Kurzprofil <img
+                        style="margin-left: 0.2em; box-shadow: none" src="pics/sakuli-logo.png"/></div>
+            </h2>
+            <ul>
+                <li>Automatisierung von GUI-Tests</li>
+                <li>End-to-End-Monitoring für Applikationen</li>
+                <li>Erweiterbare "Forwarder"-Module</li>
+                <li>Open-Source (Apache License 2.0)</li>
+                <div>
+                    <img src="pics/github.png" style="box-shadow: none; border: none; height: 2em">
+
+                    <div style="float: right; font-size: xx-large; margin-top: 0.5em; margin-left: 0.3em">
+                        <b>
+                            <a class="coloured" href="https://github.com/ConSol/sakuli"
+                               target="_blank">
+                                https://github.com/ConSol/sakuli
+                            </a>
+                        </b>
+                    </div>
+                </div>
+                <ul style="font-size: xx-large">
+                    <li>Entwicklung seit Mitte 2013</li>
+                    <li>787 commits, 6 contributors</li>
+                    <li>Aktuelle Version: 0.9.1</li>
+                </ul>
+                TODO: Kunden - Gibt es Freigabe???
+            </ul>
         </section>
 
         <!--<section>-->
@@ -407,7 +436,8 @@ docker run -i -t --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:ro pa
             </section>
             <section>
                 <h3 style="text-transform: inherit">Test Case Aufbau</h3>
-        <pre><code class="java" data-trim contenteditable="true">
+                <!-- @formatter:off -->
+        <pre><code class="javascript" data-trim contenteditable="false">
             // tc.js
             /*************************************
             * Initialization of the JAVA backend
@@ -424,26 +454,29 @@ docker run -i -t --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:ro pa
             ******************************/
             try {
 
-            //...
+                //...
 
             /************************************************
             * Exception handling and shutdown of test case
             **********************************************/
             } catch (e) {
-            testCase.handleException(e);
+                testCase.handleException(e);
             } finally {
-            testCase.saveResult();
+                testCase.saveResult();
             }
         </code></pre>
+            <!-- @formatter:on -->
             </section>
 
             <section>
                 <h3 style="text-transform: inherit">Aufruf von Sahi-Funktionen</h3>
-        <pre><code class="java" data-trim contenteditable="true">
+                <!-- @formatter:off -->
+        <pre><code class="javascript" data-trim contenteditable="false">
             // tc.js
             /************************
             * Call Sahi Functions
             ***********************/
+
             _navigateTo("http://labs.consol.de/lang/en");
             _highlight(_link("Projects"));
             _click(_link("Projects"));
@@ -453,59 +486,64 @@ docker run -i -t --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:ro pa
             _click(_link("check_oracle_health"));
             _setValue(_textbox("s"), "nagios");
             _click(_link("Home[1]"));
+
             testCase.endOfStep("project", 20);
         </code></pre>
+          <!-- @formatter:on -->
             </section>
 
             <section>
                 <h3 style="text-transform: inherit">Fluent API</h3>
-        <pre><code class="java" data-trim contenteditable="true">
+                <!-- @formatter:off -->
+        <pre><code class="javascript" data-trim contenteditable="false">
             /*** calculator app ***/
             var calculatorApp = new Application("galculator")
-            .setSleepTime(1);
-            .open();
+                .setSleepTime(1);
+                .open();
             testCase.endOfStep("Open Calculator", 3);
 
-            /**********
-            * calculate 525 + 100
-            *********/
+            /*** calculate 525 + 100 ***/
             var calculatorRegion = calculatorApp.getRegion();
             calculatorRegion.type("525");
             env.sleep(2);
             calculatorRegion.find("plus.png")
-            .click()
-            .type("100")
-            .find("calculate")
-            .click();
+                .click()
+                .type("100")
+                .find("calculate")
+                .click();
+
             testCase.endOfStep("calculate 525 +100", 20);
         </code></pre>
+            <!-- @formatter:on -->
             </section>
 
             <section>
                 <h3 style="text-transform: inherit">Custom Functions</h3>
-        <pre><code class="java" data-trim contenteditable="true">
+                <!-- @formatter:off -->
+        <pre><code class="javascript" data-trim contenteditable="false">
             // tc.js
             /**********
             * TAB+ALT
             *********/
             function switchWindow() {
-            env.type(Key.TAB, Key.ALT);
+                env.type(Key.TAB, Key.ALT);
             }
 
             /***************
             * Go back to notepad
             **************/
             function backToNotepad() {
-            switchWindow();
-            env.type("Finish!\n\n");
+                switchWindow();
+                env.type("Finish!\n\n");
             }
         </code></pre>
-
+          <!-- @formatter:on -->
             </section>
 
             <section>
                 <h3 style="text-transform: inherit">Definition eines Ablaufs</h3>
-        <pre><code class="java" data-trim contenteditable="true">
+                <!-- @formatter:off -->
+        <pre><code class="javascript" data-trim contenteditable="false">
             // tc.js
             /************************
             * Some Variables
@@ -520,8 +558,8 @@ docker run -i -t --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:ro pa
             ***********************/
             appNotepad.open();
             env.type("Welcome to Sakuli!\n")
-            .type("I will help you to test your projects, like webapplications...\n")
-            .sleep(2);
+                .type("I will help you to test your projects, like webapplications...\n")
+                .sleep(2);
             testCase.endOfStep("notepad", 20);
 
             /************************
@@ -531,8 +569,8 @@ docker run -i -t --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:ro pa
             _navigateTo($cl_home);
             _highlight(_link($cl_projekte));
             _click(_link($cl_projekte));
-            env.sleep(5)
-            .takeScreenshot("C:\\sakuli\\testscreenshot.png");
+
+            env.sleep(5).takeScreenshot("C:\\sakuli\\testscreenshot_after_5sec.png");
             _highlight(_link($cl_c_mysql_h));
             _click(_link($cl_c_mysql_h));
             _highlight(_link($cl_c_oracle_h));
@@ -541,23 +579,23 @@ docker run -i -t --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:ro pa
             _click(_link("Home[1]"));
             testCase.endOfStep("project", 20);
 
-
             /*****************
             * print test client
             *****************/
             backToNotepad();
             env.type("I can also test client applications, like gedit...\n")
-            .sleep(2);
+                .sleep(2);
             testCase.endOfStep("print_test_client", 10);
         </code></pre>
+            <!-- @formatter:on -->
             </section>
         </section>
 
         <section>
             <h2>Sakuli End-2-End Testing Container</h2>
 
-            <div style="padding-top: 0.4em;">
-                <img width="50%" style="box-shadow: none" src="pics/container_sakuli.png">
+            <div >
+                <img width="48%" style="box-shadow: none" src="pics/container_sakuli.png">
             </div>
         </section>
 
@@ -686,16 +724,29 @@ docker-compose rm -f && docker-compose up sakuli-cm_check_links
         progress: true,
         history: true,
         center: true,
+        touch: true,
+        hideAddressBar: true,
 
         transition: 'slide', // none/fade/slide/convex/concave/zoom
 
+        // Slide number formatting can be configured using these variables:
+        //  h: current slide's horizontal index
+        //  v: current slide's vertical index
+        //  c: current slide index (flattened)
+        //  t: total number of slides (flattened)
+//        slideNumber: 'c / t',
+        slideNumber: 'c',
+
         // Optional reveal.js plugins
         dependencies: [
+            // Cross-browser shim that fully implements classList - https://github.com/eligrey/classList.js/
             {
                 src: 'lib/js/classList.js', condition: function () {
                 return !document.body.classList;
             }
             },
+
+            // Interpret Markdown in <section> elements
             {
                 src: 'plugin/markdown/marked.js', condition: function () {
                 return !!document.querySelector('[data-markdown]');
@@ -706,15 +757,25 @@ docker-compose rm -f && docker-compose up sakuli-cm_check_links
                 return !!document.querySelector('[data-markdown]');
             }
             },
+
+            // Syntax highlight for <code> elements
             {
-                src: 'plugin/highlight/highlight.js', async: true, condition: function () {
-                return !!document.querySelector('pre code');
-            }, callback: function () {
+                src: 'plugin/highlight/highlight.js', async: true, callback: function () {
                 hljs.initHighlightingOnLoad();
             }
             },
+
+            // Zoom in and out with Alt+click
             {src: 'plugin/zoom-js/zoom.js', async: true},
-            {src: 'plugin/notes/notes.js', async: true}
+
+            // Speaker notes
+            {src: 'plugin/notes/notes.js', async: true},
+
+            // Remote control your reveal.js presentation using a touch device
+//            { src: 'plugin/remotes/remotes.js', async: true },
+
+            // MathJax
+//            { src: 'plugin/math/math.js', async: true }
         ]
     });
 </script>

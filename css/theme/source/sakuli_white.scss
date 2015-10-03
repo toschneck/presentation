@@ -24,6 +24,7 @@ $headingLetterSpacing: normal;
 $headingTextTransform: none;
 $headingFontWeight: 600;
 $linkColor: #2a76dd;
+$linkColorLightBlue: #327daf;
 $linkColorHover: lighten($linkColor, 15%);
 $selectionBackgroundColor: lighten($linkColor, 25%);
 
@@ -43,21 +44,31 @@ section.has-dark-background {
 // ---------------------------------------------
 
 .reveal .slide-background {
-  background:url("pics/background.png");
-  background-position:bottom;
+  background: url("pics/background.png");
+  background-position: bottom;
   background-size: 100%;
   background-repeat: no-repeat;
+}
+
+.reveal .slide-number {
+  color: $linkColorLightBlue;
+  right: 50%;
+  opacity: 1;
+  font-size: 0.8em;
 }
 
 .reveal .controls {
   right: auto;
 }
-.reveal h1{
+
+.reveal h1 {
   text-transform: uppercase;
 }
-.reveal h2{
+
+.reveal h2 {
   text-transform: none;
 }
+
 .reveal table td {
   padding: 0;
   border-bottom: 0;
@@ -72,12 +83,28 @@ section.has-dark-background {
   vertical-align: middle;
 }
 
-.reveal pre code{
+.reveal pre code {
   max-height: 40em;
   font-size: 0.7em;
   line-height: normal;
+  background: #e1e1e1;
+  color: black;
+}
+
+.reveal, .nginx {
+  .hljs-title, .hljs-keyword, .hljs-variable {
+    color: saddlebrown;
+  }
+
+  .hljs-number {
+    color: $linkColorLightBlue;
+  }
+
+  .hljs-string {
+    color: darkgreen;
+  }
 }
 
 .reveal .coloured {
-  color: #327daf;
+  color: $linkColorLightBlue;
 }
