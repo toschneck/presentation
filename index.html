@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="utf-8">
@@ -85,7 +85,7 @@
         </section>
 
         <section>
-            <h2>Motivation für End-2-End Testing</h2>
+            <h2>Motivation für End-2-End-Testing</h2>
             <img class="image" width="40%" src="pics/chain.png" style="border: 0">
             <ul>
                 <li>Business-kritische Applikationen bestehen oft aus einer Vielzahl an Komponenten</li>
@@ -104,25 +104,29 @@
             <h2>Anforderung an Testumgebungen</h2>
             <ul>
                 <li class="coloured"><b>Robust</b></li>
-                <ul>
+                <ul style="font-size: 0.8em">
                     <li>Keine "zufälligen" Fehler</li>
                     <li>Fehler sind reproduzierbar</li>
                 </ul>
                 <li class="coloured"><b>Unabhängig</b></li>
-                <ul>
+                <ul style="font-size: 0.8em">
                     <li>Möglichst wenig Abhängigkeiten zu externen Systemen</li>
                     <li>Umgebung sollte exklusiv zur Verfügung stehen</li>
                 </ul>
                 <li class="coloured"><b>Isoliert</b></li>
-                <ul>
+                <ul style="font-size: 0.8em">
                     <li>Tests haben keine Abhängigkeit untereinander</li>
                     <li>Tests sollten parallelisierbar sein</li>
                 </ul>
                 <li class="coloured"><b>Schnell</b></li>
-                <ul>
+                <ul style="font-size: 0.8em">
                     <li>Kurze Laufzeiten mit aussagekräftigem Feedback</li>
                 </ul>
+                <div style="font-size: 0.5em; text-align: right; margin-top: 1em">
+                    (vgl. Roland Huß - Integration Testing mit Docker)
+                </div>
             </ul>
+
             <aside class="notes">
                 Quelle: Roland Huss
             </aside>
@@ -213,7 +217,7 @@ docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:rw rasch/ink
         </section>
 
         <section>
-            <h2>Herausforderung End-2-End-Testing</h2>
+            <h2>Anforderung End-2-End-Testing Tool</h2>
             <ul>
                 <li>Web-Test-Tools haben nur Zugriff auf DOM-Elemente</li>
                 <li>Wie kann man Nicht-HTML-Inhalte testen bzw. damit umgehen? =>
@@ -310,28 +314,40 @@ docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:rw rasch/ink
                         style="margin-left: 0.2em; box-shadow: none" src="pics/sakuli-logo.png"/></div>
             </h2>
             <ul>
-                <li>Automatisierung von GUI-Tests</li>
-                <li>End-to-End-Monitoring für Applikationen</li>
-                <li>Erweiterbare "Forwarder"-Module</li>
-                <li>Open-Source (Apache License 2.0)</li>
-                <div>
-                    <img src="pics/github.png" style="box-shadow: none; border: none; height: 2em">
-
-                    <div style="float: right; font-size: xx-large; margin-top: 0.5em; margin-left: 0.3em">
-                        <b>
-                            <a class="coloured" href="https://github.com/ConSol/sakuli"
-                               target="_blank">
-                                https://github.com/ConSol/sakuli
-                            </a>
-                        </b>
-                    </div>
-                </div>
+                <li><b>Automatisierung von End-2-End-Tests</b></li>
+                <li><b>End-to-End-Monitoring für Applikationen</b></li>
+                <li><b>Erweiterbare "Forwarder"-Module</b>
+                    <ul style="font-size: xx-large">
+                        <li>SQL-Datenbank, Nagios oder andre Fremdsysteme</li>
+                    </ul>
+                </li>
+                <li><b>Open-Source</b> (Apache License 2.0)</li>
                 <ul style="font-size: xx-large">
+                    <li>
+                        <div class="coloured" style="font-size: xx-large;">
+                            <a href="https://github.com/ConSol/sakuli" target="_blank">
+                                <img src="pics/github_logo.png" style="box-shadow: none; height: 1em">
+                                <b style="margin-left: 0.4em">
+                                    https://github.com/ConSol/sakuli
+                                </b>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="coloured" style=" font-size: xx-large;">
+                            <a href="https://twitter.com/sakuli_e2e">
+                                <img src="pics/twitter_handle.png" style="box-shadow: none; height: 1em">
+                                <b style="margin-left: 0.2em">
+                                    https://twitter.com/sakuli_e2e
+                                </b>
+                            </a>
+                        </div>
+                    </li>
                     <li>Entwicklung seit Mitte 2013</li>
                     <li>787 commits, 6 contributors</li>
                     <li>Aktuelle Version: 0.9.1</li>
                 </ul>
-                TODO: Kunden - Gibt es Freigabe???
+                <div style="color: red">TODO: Kunden - Gibt es Freigabe???</div>
             </ul>
         </section>
 
@@ -592,9 +608,9 @@ docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:rw rasch/ink
         </section>
 
         <section>
-            <h2>Sakuli End-2-End Testing Container</h2>
+            <h2>Sakuli End-2-End-Testing Container</h2>
 
-            <div >
+            <div>
                 <img width="48%" style="box-shadow: none" src="pics/container_sakuli.png">
             </div>
         </section>
@@ -695,16 +711,105 @@ docker-compose rm -f && docker-compose up sakuli-cm_check_links
         </section>
 
         <section>
-            <h1>Vielen Dank!</h1>
+            <h2>Links</h2>
 
-            <div style="text-align: center; padding: 1em">
-                <img src="pics/github.png" style="box-shadow: none; border: none; height: 8em">
+            <table style="font-size: 0.8em">
+                <tr>
+                    <td>
+                        <img src="pics/github.png" style="box-shadow: none; height: 7em; width: 100%">
+                    </td>
+                    <td style="vertical-align: middle">
+                        <a href="https://github.com/ConSol/sakuli" target="_blank">
+                            <b>
+                                https://github.com/ConSol/sakuli
+                            </b>
+                        </a>
+                        <br/>
+
+                        <div style="padding-top: 0.5em"/>
+                        <a href="https://github.com/ConSol/sakuli-example-testautomation-day" target="_blank">
+                            <b>
+                                https://github.com/ConSol/sakuli-example-testautomation-day
+                            </b>
+                        </a>
+                    </td>
+                </tr>
+                <tr><td><div style="padding-top: 2em"/></td></tr>
+                <tr>
+                    <td style="text-align: center">
+                        <a href="https://twitter.com/sakuli_e2e">
+                            <img src="pics/twitter_handle.png" style="box-shadow: none; height: 1em">
+                        </a>
+                    </td>
+                    <td><a href="https://twitter.com/sakuli_e2e">
+                        <b>https://twitter.com/sakuli_e2e</b>
+                    </a>
+                    </td>
+                <tr>
+                    <td style="text-align: center">
+                        <a href="https://twitter.com/consol_de">
+                            <img src="pics/twitter_consol_de.png" style="box-shadow: none; height: 0.95em">
+                        </a>
+                    </td>
+                    <td><a href="https://twitter.com/consol_de">
+                        <b>https://twitter.com/consol_de</b>
+                    </a>
+                    </td>
+                </tr>
+            </table>
+        </section>
+        <section>
+            <h1 class="coloured" style="text-transform: inherit">Vielen Dank!</h1>
+
+            <div style="margin-top: 8%; float:left; height: 2.3em; padding-top: 0.2em; padding-left: 10%"><img
+                    style="box-shadow: none"
+                    src="pics/consol_logo.png">
             </div>
-            <h4 style="text-transform: inherit">Support us on GitHub</h4>
-            <a style="font-size: 1.5em; font-weight: bold; color: #268bd2" href="https://github.com/ConSol/sakuli"
-               target="_blank">
-                github.com/ConSol/sakuli
-            </a>
+            <div style="padding-right: 10%; float: right; margin-top: 8%; font-size: x-large">
+                <table>
+                    <tr>
+                        <td><b>ConSol Software GmbH</b></td>
+                    </tr>
+                    <tr>
+                        <td>Franziskanerstraße 38</td>
+                    </tr>
+                    <tr>
+                        <td>D-81669 München</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="height: 0.5em"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Tel: +49-89-45841-100</td>
+                        <td><a href="mailto:info@consol.de">info@consol.de</a></td>
+                    </tr>
+                    <tr>
+                        <td>Fax: +49-89-45841-111</td>
+                        <td><a href="http://www.consol.de">www.consol.de</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="height: 1.5em"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>Tobias Schneck</b></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a style="padding-right: 1em; " href="mailto:tobias.schneck@consol.de">tobias.schneck@consol.de</a>
+                        </td>
+                        <td>
+                            <a href="https://twitter.com/toschneck">
+                                <img src="pics/twitter_toschneck.png"
+                                     style="vertical-align: top; box-shadow: none; height: 1.1em">
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </section>
 
     </div>
