@@ -135,25 +135,25 @@
         <section>
             <h2>Besonderheiten bei End-2-End Tests</h2>
             <ul>
-                <li class="coloured">Unterschiedliche Testarten</li>
+                <li class="coloured"><b>Unterschiedliche Testarten</b></li>
                 <ul>
                     <li>Regressionstests</li>
                     <li>Funktionale Abnahmetests</li>
                 </ul>
-                <li class="coloured">Parallele Tests in GUIs sind schwieriger</li>
+                <li class="coloured"><b>Parallele Tests in GUIs sind schwieriger</b></li>
                 <ul>
                     <li>Geteilte Testdaten oder Login-User</li>
                     <li>User-Sessions mit Stati</li>
                     <li>Cleanup von Testdaten</li>
                 </ul>
                 <!--<li class="coloured">Testumgebung muss möglichst nah an der <br/>End-User-Umgebung sein</li>-->
-                <li class="coloured">Manueller Testaufwand <b>></b> Aufwand für Automatisierung</li>
+                <li class="coloured"><b>Manueller Testaufwand <b>></b> Aufwand für Automatisierung</b></li>
             </ul>
         </section>
 
         <section>
             <h2>Bietet die Container-Technologie Vorteile für das End-End-Testing?</h2>
-            <ul class="fragment" >
+            <ul class="fragment">
                 <li><b class="coloured">Isolation</b> von Umgebungen</li>
                 <li>Container-<b class="coloured">Repository</b> für Versionierung und Verteilung</li>
                 <li><b class="coloured">Nachvollziehbarer Aufbau</b> der Umgebung (Dockerfile)</li>
@@ -167,16 +167,16 @@
         </section>
 
         <section>
-            <h2>Virtuelle Maschinen vs. Container
-                <p style="font-size: x-large">(am Beispiel Docker)</p></h2>
+            <h2 style="margin: 0">Virtuelle Maschinen vs. Container
+                <br/><span style="font-size: x-large;">(am Beispiel Docker)</span></h2>
             <img width="95%" src="pics/vm_vs_docker.png">
         </section>
         <!--<section>-->
-            <!--<h2>Immutable Filesystem Layers-->
-                <!--<p style="font-size: x-large">(am Beispiel Docker)</p></h2>-->
-            <!--<div style="padding-top: 0.5em;">-->
-                <!--<img width="60%" src="pics/docker-layers.png">-->
-            <!--</div>-->
+        <!--<h2>Immutable Filesystem Layers-->
+        <!--<p style="font-size: x-large">(am Beispiel Docker)</p></h2>-->
+        <!--<div style="padding-top: 0.5em;">-->
+        <!--<img width="60%" src="pics/docker-layers.png">-->
+        <!--</div>-->
         <!--</section>-->
 
         <section>
@@ -397,12 +397,12 @@ docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:rw rasch/ink
 
         <section>
             <h2>
-                <div style=" height: 1.5em; margin-bottom: 1.1em">Kurzprofil <img
+                <div style=" height: 1.5em;">Kurzprofil <img
                         style="margin-left: 0.2em; box-shadow: none" src="pics/sakuli-logo.png"/></div>
             </h2>
             <ul>
                 <li><b>Automatisierung von End-2-End-Tests</b></li>
-                <li><b>End-to-End-Monitoring für Applikationen</b></li>
+                <li><b>End-2-End-Monitoring für Applikationen</b></li>
                 <li><b>Erweiterbare "Forwarder"-Module</b>
                     <ul style="font-size: xx-large">
                         <li>SQL-Datenbank, Nagios oder andre Fremdsysteme</li>
@@ -411,30 +411,40 @@ docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:rw rasch/ink
                 <li><b>Open-Source</b> (Apache License 2.0)</li>
                 <ul style="font-size: xx-large">
                     <li>
-                        <div class="coloured" style="font-size: xx-large;">
+                        <div style="font-size: xx-large;">
                             <a href="https://github.com/ConSol/sakuli" target="_blank">
-                                <img src="pics/github_logo.png" style="box-shadow: none; height: 1em">
-                                <b style="margin-left: 0.4em">
-                                    https://github.com/ConSol/sakuli
-                                </b>
+                                <img src="pics/github_logo.png"
+                                     style="box-shadow: none; vertical-align: baseline; margin-bottom: -3px; height: 1.1em">
+                                <!--<b style="margin-left: 0.4em">-->
+                                <!--https://github.com/ConSol/sakuli-->
+                                <!--</b>-->
                             </a>
+                            804 commits, 6 contributors
                         </div>
                     </li>
-                    <li>
-                        <div class="coloured" style=" font-size: xx-large;">
-                            <a href="https://twitter.com/sakuli_e2e">
-                                <img src="pics/twitter_handle.png" style="box-shadow: none; height: 1em">
-                                <b style="margin-left: 0.2em">
-                                    https://twitter.com/sakuli_e2e
-                                </b>
-                            </a>
-                        </div>
-                    </li>
+                    <!--<li>-->
+                    <!--<div class="coloured" style=" font-size: xx-large;">-->
+                    <!--<a href="https://twitter.com/sakuli_e2e">-->
+                    <!--<img src="pics/twitter_handle.png" style="box-shadow: none; height: 1em">-->
+                    <!--<b style="margin-left: 0.2em">-->
+                    <!--https://twitter.com/sakuli_e2e-->
+                    <!--</b>-->
+                    <!--</a>-->
+                    <!--</div>-->
+                    <!--</li>-->
                     <li>Entwicklung seit Mitte 2013</li>
-                    <li>787 commits, 6 contributors</li>
-                    <li>Aktuelle Version: 0.9.1</li>
+                    <!--<li>804 commits, 6 contributors</li>-->
                 </ul>
-                <div style="color: red">TODO: Kunden - Gibt es Freigabe???</div>
+                <li><b>Im Einsatz bei verschiedenen Branchen</b>
+                    <ul style="font-size: xx-large">
+                        <li> IT & Telekommunikation
+                        <li>Banken & Versicherungen</li>
+                        <li>Bau & Innenausbau</li>
+                        <!--<li>...</li>-->
+
+                    </ul>
+
+                </li>
             </ul>
         </section>
 
@@ -677,7 +687,7 @@ docker-compose -f docker-compose_example_xfce.yml up
             <img width="100%" style=" border: none" src="pics/ci_umgebung.png">
         </section>
         <section>
-            <h2>CI Demo ConSol* CM6</h2>
+            <h2>CI Demo ConSol CM6</h2>
 
             <!-- @formatter:off-->
             <pre><code data-trim contenteditable="false">
@@ -794,12 +804,33 @@ docker-compose rm -f sakuli-cm_check_links && docker-compose up sakuli-cm_check_
         <section>
             <h1 class="coloured" style="text-transform: inherit">Vielen Dank!</h1>
 
-            <div style="margin-top: 8%; float:left; height: 2.3em; padding-top: 0.2em; padding-left: 10%"><img
-                    style="box-shadow: none"
-                    src="pics/consol_logo.png">
+            <div style="float:left;  padding-top: 1.2em; padding-left: 10%">
+                <img
+                    style="box-shadow: none; height: 7em;"
+                    src="pics/profile_pic_tschneck_sw.jpg">
+
             </div>
-            <div style="padding-right: 10%; float: right; margin-top: 8%; font-size: x-large">
+            <div style="padding-right: 10%;padding-top: 2.5em; float: right; font-size: x-large">
                 <table>
+                    <tr>
+                        <td><b>Tobias Schneck</b></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a style="padding-right: 1em; " href="mailto:tobias.schneck@consol.de">tobias.schneck@consol.de</a>
+                        </td>
+                        <td>
+                            <a href="https://twitter.com/toschneck">
+                                <img src="pics/twitter_toschneck.png"
+                                     style="vertical-align: top; box-shadow: none; height: 1.1em">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="height: 1.5em"></div>
+                        </td>
+                    </tr>
                     <tr>
                         <td><b>ConSol Software GmbH</b></td>
                     </tr>
@@ -821,25 +852,6 @@ docker-compose rm -f sakuli-cm_check_links && docker-compose up sakuli-cm_check_
                     <tr>
                         <td>Fax: +49-89-45841-111</td>
                         <td><a href="http://www.consol.de">www.consol.de</a></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div style="height: 1.5em"></div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><b>Tobias Schneck</b></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a style="padding-right: 1em; " href="mailto:tobias.schneck@consol.de">tobias.schneck@consol.de</a>
-                        </td>
-                        <td>
-                            <a href="https://twitter.com/toschneck">
-                                <img src="pics/twitter_toschneck.png"
-                                     style="vertical-align: top; box-shadow: none; height: 1.1em">
-                            </a>
-                        </td>
                     </tr>
                 </table>
             </div>
