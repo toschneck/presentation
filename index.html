@@ -91,7 +91,10 @@
                 <li><b> Business</b>-kritische Applikationen bestehen oft aus einer Vielzahl an Komponenten
                 </li>
                 <li>Applikations-<b>Qualität</b> aus Anwendersicht ist nur am Ende der Funktionskette messbar
-                    <p style="margin: 0; margin-top: 0.5em"><img class="image" src="pics/gear.png" style="border: 0; box-shadow: none; padding-left: 3%" width="33%" ></p>
+                    <p style="margin: 0; margin-top: 0.5em">
+                        <img class="image" src="pics/gear.png" style="border: 0; box-shadow: none; padding-left: 3%"
+                             width="33%">
+                    </p>
                 </li>
                 <li>GUI ist die Schnittstelle zum <b>End-User</b></li>
             </ul>
@@ -155,7 +158,7 @@
         </section>
 
         <section>
-            <h2>Bietet die Container-Technologie Vorteile für das End-End-Testing?</h2>
+            <h2>Bietet die Container-Technologie Vorteile für das End-2-End-Testing?</h2>
             <ul class="fragment">
                 <li><b class="coloured">Isolation</b> von Umgebungen</li>
                 <li>Container-<b class="coloured">Repository</b> für Versionierung und Verteilung</li>
@@ -183,24 +186,28 @@
         <!--</section>-->
 
         <section>
-            <h2>Demo - Containerized GUIs </h2>
-
+            <a target="_blank" href="video/containerized_gui.mp4">
+                <h2>Demo - Containerized GUIs </h2>
+            </a>
             <!-- @formatter:off-->
             <pre><code class="hljs-shebang" data-trim contenteditable="false">
-# start the docker container with VNC interface
-docker run -it -p 5911:5901 -p 6911:6901 consol/centos-xfce-vnc
-docker run -it -p 5912:5901 -p 6912:6901 consol/ubuntu-xfce-vnc
-
-# start the docker container via x-forwarding
+### start the docker container via x-forwarding
 docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:rw rasch/inkscape
             </code></pre>
+
+            <pre><code class="hljs-shebang" data-trim contenteditable="false">
+### start the docker container with VNC interface
+# connect via URL: http://localhost:6911/vnc_auto.html?password=vncpassword
+docker run -it -p 5911:5901 -p 6911:6901 consol/centos-xfce-vnc
+docker run -it -p 5912:5901 -p 6912:6901 consol/ubuntu-xfce-vnc
+            </code></pre>
             <!-- @formatter:on-->
-            <div style="padding-top: 1em;">
+            <div style="padding-top: 0.7em;">
+                <img width="42%" style="vertical-align:top; margin-right: 0.5em" src="pics/inkscape.png">
                 <a target="_blank"
                    href="file:///home/tschneck/git-files/sakuli-example-testautomation-day/vnc_overview_local.html">
-                    <img width="42%" style="vertical-align: top; margin-right: 0.5em;" src="pics/centos_xfce_vnc.png">
+                    <img width="42%" style="vertical-align: top; margin-left: 0.5em;" src="pics/centos_xfce_vnc.png">
                 </a>
-                <img width="42%" style="vertical-align:top; margin-left: 0.5em" src="pics/inkscape.png">
             </div>
 
             <aside class="notes">
@@ -253,13 +260,14 @@ docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:rw rasch/ink
         <section>
             <section>
                 <h2>
-                    <div style=" height: 1.5em;">Was macht <img
-                            style="margin-left: 0.2em; box-shadow: none" src="pics/sakuli-logo.png"/> ?</div>
+                    <div style=" height: 1.5em;">Was bietet <img
+                            style="margin-left: 0.2em; box-shadow: none" src="pics/sakuli-logo.png"/> ?
+                    </div>
                 </h2>
                 <table class="fragment">
                     <tbody>
                     <tr>
-                        <td width="12%" style="padding: 0;  text-align: center">
+                        <td width="12%" style="padding: 0; text-align: center">
                             <img class="image"
                                  src="pics/sahi_worker.png" style="height: 3em; border: 0;">
                         </td>
@@ -462,7 +470,7 @@ docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:rw rasch/ink
             <!--&lt;!&ndash;src="pics/video_preview.png"></a>&ndash;&gt;-->
             <!--</section>-->
             <section>
-                <h3>File Structure</h3>
+                <h2>Aufbau der Testdefinition</h2>
                 <img width="40%" class="image" src="pics/test_suite_aufbau.png">
             </section>
             <section>
@@ -527,6 +535,7 @@ docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:rw rasch/ink
                 <h3 style="text-transform: inherit">Fluent API</h3>
                 <!-- @formatter:off -->
         <pre><code class="javascript" data-trim contenteditable="false">
+            // tc.js
             /*** calculator app ***/
             var calculatorApp = new Application("galculator")
                 .setSleepTime(1);
@@ -631,7 +640,9 @@ docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:rw rasch/ink
         </section>
 
         <section>
-            <h2>Demo - Sakuli-Containers</h2>
+            <a target="_blank" href="video/sakuli_containers.mp4">
+                <h2>Demo - Sakuli-Containers</h2>
+            </a>
 
             <!-- @formatter:off-->
             <pre><code data-trim contenteditable="false">
@@ -662,15 +673,15 @@ docker-compose -f docker-compose_example_xfce.yml up
         <!--<img width="80%" style="background: whitesmoke; border: none" src="pics/sakuli_architectur.png">-->
         <!--</section>-->
         <section>
-            <h2>Erweiterbare Architektur</h2>
-            <img width="80%" style=" border: none" src="pics/kombination_with_citrus.png">
-        </section>
-        <section>
             <h2>Nagios Integration</h2>
             <a target="_blank"
                href="http://10.26.0.68/sakuli/thruk/#cgi-bin/extinfo.cgi?type=2&host=sahi.host.example&service=0004_calc&backend=4b2aa#pnp_th2/1406062443/1406152443">
-                <img width="80%" style="border: 0" src="pics/nagios.png">
+                <img width="75%" style="border: 0" src="pics/nagios.png">
             </a>
+        </section>
+        <section>
+            <h2>Erweiterbare Architektur</h2>
+            <img width="80%" style="box-shadow: none" src="pics/kombination_with_citrus.png">
         </section>
 
         <!--<section>-->
@@ -689,9 +700,12 @@ docker-compose -f docker-compose_example_xfce.yml up
             <img width="100%" style=" border: none" src="pics/ci_umgebung.png">
         </section>
         <section>
-            <h2>CI Demo ConSol CM6</h2>
+            <a target="_blank" href="video/sakuli_ci_cm6_demo.mp4">
+                <h2>CI Demo ConSol CM6</h2>
+            </a>
 
             <!-- @formatter:off-->
+
             <pre><code data-trim contenteditable="false">
 ssh cclusr@10.4.14.131
 
@@ -738,7 +752,7 @@ docker-compose rm -f sakuli-cm_check_links && docker-compose up sakuli-cm_check_
         <section>
             <h2>Ausblick & Ideen</h2>
             <ul style="font-size: 0.8em; padding-top: 1em">
-                <li>Headless Execution - <b>Linux:</b> xvfb & Docker, <b>Windows:</b> ?</li>
+                <li>Headless Execution - <b>Linux:</b> VNC & Docker, <b>Windows:</b> ?</li>
                 <li><b>Video</b>-Aufzeichnung der Testabläufe zur Fehlerdokumentation</li>
                 <li>Asynchrone <b>wait</b> Funktionen / Callbacks</li>
                 <li>Grafische Auswertung der Testergebnisse in <b>CI-Umgebungen</b></li>
