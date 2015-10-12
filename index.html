@@ -192,12 +192,12 @@ docker run -it -p 5912:5901 -p 6912:6901 consol/ubuntu-xfce-vnc
 docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:rw rasch/inkscape
             </code></pre>
             <!-- @formatter:on-->
-            <div style="padding-top: 0.4em;">
+            <div style="padding-top: 1em;">
                 <a target="_blank"
                    href="file:///home/tschneck/git-files/sakuli-example-testautomation-day/vnc_overview_local.html">
-                    <img width="35%" style="vertical-align: middle; margin-right: 1em;" src="pics/centos_xfce_vnc.png">
+                    <img width="42%" style="vertical-align: top; margin-right: 0.5em;" src="pics/centos_xfce_vnc.png">
                 </a>
-                <img width="35%" style="vertical-align:middle; margin-left: 1em" src="pics/inkscape.png">
+                <img width="42%" style="vertical-align:top; margin-left: 0.5em" src="pics/inkscape.png">
             </div>
 
             <aside class="notes">
@@ -220,16 +220,17 @@ docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:rw rasch/ink
             <h2>Anforderung End-2-End-Testing Tool</h2>
             <ul>
                 <li>Web-Test-Tools haben nur Zugriff auf DOM-Elemente</li>
-                <li>Wie kann man Nicht-HTML-Inhalte testen bzw. damit umgehen? =>
-                    <b>Flash, PKI-Abfragen, Java Applets, Plugins</b>
-
-                    <div style="text-align: center; "><img class="image" src="pics/java_applet.png"
-                                                           style="height: 4.7em; margin-top: 0.1em;"></div>
-                </li>
                 <li>Grafisch basierte Tests sind ressourcenintensiv</li>
                 <li>OS-unabhängiges Framework</li>
-                <li>GUI-Rendering testbar?</li>
+                <li>Rendering testbar?</li>
+                <li>Wie kann man Nicht-HTML-Inhalte testen bzw. damit umgehen?
+                    <br/>
+                    <b style="font-size: xx-large;" class="coloured">=> Flash, PKI-Abfragen, Java Applets, Plugins</b>
+                </li>
             </ul>
+
+            <div style="padding-top: 0.5em">
+                <img src="pics/java_applet.png" style="height: 4.5em;"></div>
             <aside class="notes">
                 <ul>
                     <li>Sahi, Selenium, Casperjs, Webinject...</li>
@@ -244,17 +245,15 @@ docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:rw rasch/ink
                 </ul>
             </aside>
 
-            <h3 style="text-transform: none; margin-top: 0.2em" class="fragment">
-                Was macht <img src="pics/sakuli-logo.png" style="height:1.3em; border: 0;box-shadow: none" alt="Sakuli">
-                ?
-            </h3>
-
         </section>
 
         <section>
             <section>
-                <h2>Stärken der Vereinigung</h2>
-                <table>
+                <h2>
+                    <div style=" height: 1.5em;">Was macht <img
+                            style="margin-left: 0.2em; box-shadow: none" src="pics/sakuli-logo.png"/> ?</div>
+                </h2>
+                <table class="fragment">
                     <tbody>
                     <tr>
                         <td width="12%" style="padding: 0;  text-align: center">
@@ -269,8 +268,8 @@ docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:rw rasch/ink
                             <img class="image"
                                  src="pics/3maennchen_mit_sakuli.png" style=" height: 3em; border: 0; ">
                         </td>
-                        <td style="padding: 0; text-align: center; vertical-align: bottom; border-left: 1px">
-                            <h3>Kategorie</h3>
+                        <td style="padding: 0; text-align: left; vertical-align: bottom; border-left: 1px">
+                            <h3 style="padding-left: 0.83em;">Kategorie</h3>
                         </td>
                     </tr>
                     <tr>
@@ -281,7 +280,7 @@ docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:rw rasch/ink
                                                             style="max-height: 45px; box-shadow: none"></td>
                         <td style="text-align: center"><img src="pics/bubble_green.png"
                                                             style="max-height: 45px; box-shadow: none"></td>
-                        <td style="margin:0; padding: 0 0 0 0.3em;  font-size: 0.8em;">
+                        <td style="margin:0; padding: 0 0 0 1.2em;  font-size: 0.8em;">
                             Beschränkung auf den Browser
                         </td>
                     </tr>
@@ -293,7 +292,7 @@ docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:rw rasch/ink
                                                             style="max-height: 45px; box-shadow: none"></td>
                         <td style="text-align: center"><img src="pics/bubble_green.png"
                                                             style="max-height: 45px; box-shadow: none"></td>
-                        <td style="margin:0; padding: 0 0 0 0.3em;  font-size: 0.8em; ">
+                        <td style="margin:0; padding: 0 0 0 1.2em;  font-size: 0.8em; ">
                             Web Tests (DOM basiert)
                         </td>
                     </tr>
@@ -305,7 +304,7 @@ docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:rw rasch/ink
                                                             style="max-height: 45px; box-shadow: none"></td>
                         <td style="text-align: center"><img src="pics/bubble_green.png"
                                                             style="max-height: 45px; box-shadow: none"></td>
-                        <td style="margin:0; padding: 0 0 0 0.3em;  font-size: 0.8em; ">
+                        <td style="margin:0; padding: 0 0 0 1.2em;  font-size: 0.8em; ">
                             Open Source & Java API
                         </td>
                     </tr>
@@ -317,7 +316,7 @@ docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:rw rasch/ink
                                                             style="max-height: 45px; box-shadow: none"></td>
                         <td style="text-align: center"><img src="pics/bubble_green.png"
                                                             style="max-height: 45px; box-shadow: none"></td>
-                        <td style="margin:0; padding: 0 0 0 0.3em;  font-size: 0.8em; vertical-align: top;">
+                        <td style="margin:0; padding: 0 0 0 1.2em;  font-size: 0.8em; vertical-align: top;">
                             Automatisierbarkeit & Ergebnisauswertung <br/>über DB / Nagios / CI-Tools
                         </td>
                     </tr>
@@ -329,7 +328,7 @@ docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:rw rasch/ink
                                                             style="max-height: 45px; box-shadow: none"></td>
                         <td style="text-align: center"><img src="pics/bubble_gray.png"
                                                             style="max-height: 45px; box-shadow: none"></td>
-                        <td style="margin:0; padding: 0 0 0 0.3em;  font-size: 0.8em; vertical-align: top;">
+                        <td style="margin:0; padding: 0 0 0 1.2em;  font-size: 0.8em; vertical-align: top;">
                             Unterstützung bei Testerstellung <br/>(Recorder, Screenshot-Finder)
                         </td>
                     </tr>
@@ -804,57 +803,60 @@ docker-compose rm -f sakuli-cm_check_links && docker-compose up sakuli-cm_check_
         <section>
             <h1 class="coloured" style="text-transform: inherit">Vielen Dank!</h1>
 
-            <div style="float:left;  padding-top: 1.2em; padding-left: 10%">
-                <img
-                    style="box-shadow: none; height: 7em;"
-                    src="pics/profile_pic_tschneck_sw.jpg">
-
-            </div>
-            <div style="padding-right: 10%;padding-top: 2.5em; float: right; font-size: x-large">
-                <table>
-                    <tr>
-                        <td><b>Tobias Schneck</b></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a style="padding-right: 1em; " href="mailto:tobias.schneck@consol.de">tobias.schneck@consol.de</a>
-                        </td>
-                        <td>
-                            <a href="https://twitter.com/toschneck">
-                                <img src="pics/twitter_toschneck.png"
-                                     style="vertical-align: top; box-shadow: none; height: 1.1em">
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div style="height: 1.5em"></div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><b>ConSol Software GmbH</b></td>
-                    </tr>
-                    <tr>
-                        <td>Franziskanerstraße 38</td>
-                    </tr>
-                    <tr>
-                        <td>D-81669 München</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div style="height: 0.5em"></div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Tel: +49-89-45841-100</td>
-                        <td><a href="mailto:info@consol.de">info@consol.de</a></td>
-                    </tr>
-                    <tr>
-                        <td>Fax: +49-89-45841-111</td>
-                        <td><a href="http://www.consol.de">www.consol.de</a></td>
-                    </tr>
-                </table>
-            </div>
+            <table style="margin-top: 3em;font-size: x-large">
+                <tr>
+                    <td>
+                        <img style="box-shadow: none;height: 10.6em; padding-top: 0.2em;"
+                             src="pics/profile_pic_tschneck_sw.jpg">
+                    </td>
+                    <td style="vertical-align: top; width: 60%">
+                        <table>
+                            <tr>
+                                <td><b>Tobias Schneck</b></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a style=" padding-right: 1em;
+                    " href="mailto:tobias.schneck@consol.de">tobias.schneck@consol.de</a>
+                                </td>
+                                <td>
+                                    <a href="https://twitter.com/toschneck">
+                                        <img src="pics/twitter_toschneck.png"
+                                             style="vertical-align: top; box-shadow: none; height: 1.1em">
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div style="height: 1.5em"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><b>ConSol Software GmbH</b></td>
+                            </tr>
+                            <tr>
+                                <td>Franziskanerstraße 38</td>
+                            </tr>
+                            <tr>
+                                <td>D-81669 München</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div style="height: 0.5em"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Tel: +49-89-45841-100</td>
+                                <td><a href="mailto:info@consol.de">info@consol.de</a></td>
+                            </tr>
+                            <tr>
+                                <td>Fax: +49-89-45841-111</td>
+                                <td><a href="http://www.consol.de">www.consol.de</a></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
         </section>
 
     </div>
