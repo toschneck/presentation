@@ -97,7 +97,7 @@
         <section>
             <h2>Testpyramide</h2>
             <img class="image" width="45%" src="pics/test_pyramide.png"
-                 style="padding-top: 0.8em; border: 0; box-shadow: none">
+                 style="border: 0; box-shadow: none">
         </section>
 
         <section>
@@ -146,14 +146,14 @@
                     <li>User-Sessions mit Stati</li>
                     <li>Cleanup von Testdaten</li>
                 </ul>
-                <li class="coloured">Testumgebung muss möglichst nah an der <br/>End-User-Umgebung sein</li>
+                <!--<li class="coloured">Testumgebung muss möglichst nah an der <br/>End-User-Umgebung sein</li>-->
                 <li class="coloured">Manueller Testaufwand <b>></b> Aufwand für Automatisierung</li>
             </ul>
         </section>
 
         <section>
             <h2>Bietet die Container-Technologie Vorteile für das End-End-Testing?</h2>
-            <ul class="fragment" style="margin-top: 0.8em">
+            <ul class="fragment" >
                 <li><b class="coloured">Isolation</b> von Umgebungen</li>
                 <li>Container-<b class="coloured">Repository</b> für Versionierung und Verteilung</li>
                 <li><b class="coloured">Nachvollziehbarer Aufbau</b> der Umgebung (Dockerfile)</li>
@@ -171,13 +171,13 @@
                 <p style="font-size: x-large">(am Beispiel Docker)</p></h2>
             <img width="95%" src="pics/vm_vs_docker.png">
         </section>
-        <section>
-            <h2>Immutable Filesystem Layers
-                <p style="font-size: x-large">(am Beispiel Docker)</p></h2>
-            <div style="padding-top: 0.5em;">
-                <img width="60%" src="pics/docker-layers.png">
-            </div>
-        </section>
+        <!--<section>-->
+            <!--<h2>Immutable Filesystem Layers-->
+                <!--<p style="font-size: x-large">(am Beispiel Docker)</p></h2>-->
+            <!--<div style="padding-top: 0.5em;">-->
+                <!--<img width="60%" src="pics/docker-layers.png">-->
+            <!--</div>-->
+        <!--</section>-->
 
         <section>
             <h2>Demo - Containerized GUIs </h2>
@@ -224,7 +224,7 @@ docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:rw rasch/ink
                     <b>Flash, PKI-Abfragen, Java Applets, Plugins</b>
 
                     <div style="text-align: center; "><img class="image" src="pics/java_applet.png"
-                                                           style="height: 4.7em; padding-top: 0.1em;"></div>
+                                                           style="height: 4.7em; margin-top: 0.1em;"></div>
                 </li>
                 <li>Grafisch basierte Tests sind ressourcenintensiv</li>
                 <li>OS-unabhängiges Framework</li>
@@ -252,60 +252,147 @@ docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:rw rasch/ink
         </section>
 
         <section>
-            <table style="margin-bottom: 0.5em;">
-                <tbody>
-                <tr style="padding-bottom: 0.2em">
-                    <td width="40%"
-                        style="text-align: center; padding:0; background: url(pics/dom.png) no-repeat bottom; background-size: 80%">
-                        <img style="border: 0; padding: 0; margin: 0; height: 2em; box-shadow: none"
-                             src="pics/sahi.png">
-                    </td>
-                    <td style="text-align: center"><img
-                            style="height: 6em; border: 0; padding: 0; margin: 0; box-shadow: none"
-                            src="pics/3maennchen_mit_sakuli.png"></td>
-                    <td width="40%"
-                        style="text-align: center;padding: 0; background: url(pics/screen_shots.png) no-repeat bottom; background-size: 77%">
-                        <img style="border: 0; padding: 0; margin: 0;height: 2em; box-shadow: none"
-                             src="pics/sikuli.png">
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-            <table>
-                <tbody>
-                <tr style="font-size: 0.9em;">
-                    <td width="47%" style="padding: 0; vertical-align: top; font-size: 0.7em">
-                        <ul>
-                            <li>Aktionsbereich: Browser-Inhalt <br/>(z.B. kein Scrollen notwendig)</li>
-                            <li>Objekt-Adressierung von DOM-Elementen</li>
-                            <li>Java-API</li>
-                            <li>Erkennt, wenn Seiten/AJAX-Requests fertig geladen sind</li>
-                            <li>Guter Umgang mit AJAX & Web-Frameworks</li>
-                            <li>Recorder-Funktionalität</li>
-                            <li>Assert Funktionalität</li>
-                        </ul>
-                        <!--<div class="backgrounds">-->
-                        <!--<img src="pics/dom.png" style="opacity: 0.7; border: 0;">-->
-                        <!--</div>-->
-                    </td>
-                    <td style="padding: 10px"></td>
-                    <td width="47%" style="padding: 0; vertical-align: top; font-size: 0.7em">
-                        <ul>
-                            <li>Aktionsbereich: Bildschirm-Inhalt <br/>(Scrollen u.U. notwendig)</li>
-                            <li>Objekt-Adressierung über Grafik-Patterns</li>
-                            <li>Java-API</li>
-                            <li>Keine Beschränkung auf den Browser</li>
-                            <li>Sieht und steuert das, was der User sieht</li>
-                            <li>Flexible Region-Pattern</li>
-                            <li>OCR-Features
-                                <small style="vertical-align: baseline">(experimental)</small>
-                            </li>
-                            <li>Setzt auf <b>java.awt.Robot</b> und <b>openCV</b> auf</li>
-                        </ul>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+            <section>
+                <h2>Stärken der Vereinigung</h2>
+                <table>
+                    <tbody>
+                    <tr>
+                        <td width="12%" style="padding: 0;  text-align: center">
+                            <img class="image"
+                                 src="pics/sahi_worker.png" style="height: 3em; border: 0;">
+                        </td>
+                        <td width="12%" style="padding: 0;  text-align: center">
+                            <img class="image"
+                                 src="pics/sikuli_worker.png" style="height: 3em; border: 0;">
+                        </td>
+                        <td width="12%" style="padding: 0 0 0.3em 0; text-align: center">
+                            <img class="image"
+                                 src="pics/3maennchen_mit_sakuli.png" style=" height: 3em; border: 0; ">
+                        </td>
+                        <td style="padding: 0; text-align: center; vertical-align: bottom; border-left: 1px">
+                            <h3>Kategorie</h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center"><img src="pics/bubble_red.png"
+                                                            style="max-height: 45px; margin-bottom: 0.2em; box-shadow: none">
+                        </td>
+                        <td style="text-align: center"><img src="pics/bubble_green.png"
+                                                            style="max-height: 45px; box-shadow: none"></td>
+                        <td style="text-align: center"><img src="pics/bubble_green.png"
+                                                            style="max-height: 45px; box-shadow: none"></td>
+                        <td style="margin:0; padding: 0 0 0 0.3em;  font-size: 0.8em;">
+                            Beschränkung auf den Browser
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center"><img src="pics/bubble_green.png"
+                                                            style="max-height: 45px; margin-bottom: 0.2em; box-shadow: none">
+                        </td>
+                        <td style="text-align: center"><img src="pics/bubble_red.png"
+                                                            style="max-height: 45px; box-shadow: none"></td>
+                        <td style="text-align: center"><img src="pics/bubble_green.png"
+                                                            style="max-height: 45px; box-shadow: none"></td>
+                        <td style="margin:0; padding: 0 0 0 0.3em;  font-size: 0.8em; ">
+                            Web Tests (DOM basiert)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center"><img src="pics/bubble_green.png"
+                                                            style="max-height: 45px; margin-bottom: 0.2em; box-shadow: none">
+                        </td>
+                        <td style="text-align: center"><img src="pics/bubble_green.png"
+                                                            style="max-height: 45px; box-shadow: none"></td>
+                        <td style="text-align: center"><img src="pics/bubble_green.png"
+                                                            style="max-height: 45px; box-shadow: none"></td>
+                        <td style="margin:0; padding: 0 0 0 0.3em;  font-size: 0.8em; ">
+                            Open Source & Java API
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center"><img src="pics/bubble_gray.png"
+                                                            style="max-height: 45px; margin-bottom: 0.2em; box-shadow: none">
+                        </td>
+                        <td style="text-align: center"><img src="pics/bubble_red.png"
+                                                            style="max-height: 45px; box-shadow: none"></td>
+                        <td style="text-align: center"><img src="pics/bubble_green.png"
+                                                            style="max-height: 45px; box-shadow: none"></td>
+                        <td style="margin:0; padding: 0 0 0 0.3em;  font-size: 0.8em; vertical-align: top;">
+                            Automatisierbarkeit & Ergebnisauswertung <br/>über DB / Nagios / CI-Tools
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center"><img src="pics/bubble_green.png"
+                                                            style="max-height: 45px; margin-bottom: 0.2em; box-shadow: none">
+                        </td>
+                        <td style="text-align: center"><img src="pics/bubble_gray.png"
+                                                            style="max-height: 45px; box-shadow: none"></td>
+                        <td style="text-align: center"><img src="pics/bubble_gray.png"
+                                                            style="max-height: 45px; box-shadow: none"></td>
+                        <td style="margin:0; padding: 0 0 0 0.3em;  font-size: 0.8em; vertical-align: top;">
+                            Unterstützung bei Testerstellung <br/>(Recorder, Screenshot-Finder)
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section>
+                <table style="margin-bottom: 0.5em;">
+                    <tbody>
+                    <tr style="padding-bottom: 0.2em">
+                        <td width="40%"
+                            style="text-align: center; padding:0; background: url(pics/dom.png) no-repeat bottom; background-size: 80%">
+                            <img style="border: 0; padding: 0; margin: 0; height: 2em; box-shadow: none"
+                                 src="pics/sahi.png">
+                        </td>
+                        <td style="text-align: center"><img
+                                style="height: 6em; border: 0; padding: 0; margin: 0; box-shadow: none"
+                                src="pics/3maennchen_mit_sakuli.png"></td>
+                        <td width="40%"
+                            style="text-align: center;padding: 0; background: url(pics/screen_shots.png) no-repeat bottom; background-size: 77%">
+                            <img style="border: 0; padding: 0; margin: 0;height: 2em; box-shadow: none"
+                                 src="pics/sikuli.png">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                    <tr style="font-size: 0.9em;">
+                        <td width="47%" style="padding: 0; vertical-align: top; font-size: 0.7em">
+                            <ul>
+                                <li>Aktionsbereich: Browser-Inhalt <br/>(z.B. kein Scrollen notwendig)</li>
+                                <li>Objekt-Adressierung von DOM-Elementen</li>
+                                <li>Java-API</li>
+                                <li>Erkennt, wenn Seiten/AJAX-Requests fertig geladen sind</li>
+                                <li>Guter Umgang mit AJAX & Web-Frameworks</li>
+                                <li>Recorder-Funktionalität</li>
+                                <li>Assert Funktionalität</li>
+                            </ul>
+                            <!--<div class="backgrounds">-->
+                            <!--<img src="pics/dom.png" style="opacity: 0.7; border: 0;">-->
+                            <!--</div>-->
+                        </td>
+                        <td style="padding: 10px"></td>
+                        <td width="47%" style="padding: 0; vertical-align: top; font-size: 0.7em">
+                            <ul>
+                                <li>Aktionsbereich: Bildschirm-Inhalt <br/>(Scrollen u.U. notwendig)</li>
+                                <li>Objekt-Adressierung über Grafik-Patterns</li>
+                                <li>Java-API</li>
+                                <li>Keine Beschränkung auf den Browser</li>
+                                <li>Sieht und steuert das, was der User sieht</li>
+                                <li>Flexible Region-Pattern</li>
+                                <li>OCR-Features
+                                    <small style="vertical-align: baseline">(experimental)</small>
+                                </li>
+                                <li>Setzt auf <b>java.awt.Robot</b> und <b>openCV</b> auf</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </section>
         </section>
 
         <section>
@@ -351,90 +438,6 @@ docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:rw rasch/ink
             </ul>
         </section>
 
-        <!--<section>-->
-        <!--<h2>Stärken der Vereinigung</h2>-->
-        <!--<table>-->
-        <!--<tbody>-->
-        <!--<tr>-->
-        <!--<td width="12%" style="padding: 0;  text-align: center">-->
-        <!--<img class="image"-->
-        <!--src="pics/sahi_worker.png" style="height: 3em; border: 0;">-->
-        <!--</td>-->
-        <!--<td width="12%" style="padding: 0;  text-align: center">-->
-        <!--<img class="image"-->
-        <!--src="pics/sikuli_worker.png" style="height: 3em; border: 0;">-->
-        <!--</td>-->
-        <!--<td width="12%" style="padding: 0 0 0.3em 0; text-align: center">-->
-        <!--<img class="image"-->
-        <!--src="pics/3maennchen_mit_sakuli.png" style=" height: 3em; border: 0; ">-->
-        <!--</td>-->
-        <!--<td style="padding: 0; text-align: center; vertical-align: bottom; border-left: 1px">-->
-        <!--<h3>Kategorie</h3>-->
-        <!--</td>-->
-        <!--</tr>-->
-        <!--<tr>-->
-        <!--<td style="text-align: center"><img src="pics/bubble_red.png"-->
-        <!--style="max-height: 45px; margin-bottom: 0.2em; box-shadow: none">-->
-        <!--</td>-->
-        <!--<td style="text-align: center"><img src="pics/bubble_green.png"-->
-        <!--style="max-height: 45px; box-shadow: none"></td>-->
-        <!--<td style="text-align: center"><img src="pics/bubble_green.png"-->
-        <!--style="max-height: 45px; box-shadow: none"></td>-->
-        <!--<td style="margin:0; padding: 0 0 0 0.3em;  font-size: 0.8em;">-->
-        <!--Beschränkung auf den Browser-->
-        <!--</td>-->
-        <!--</tr>-->
-        <!--<tr>-->
-        <!--<td style="text-align: center"><img src="pics/bubble_green.png"-->
-        <!--style="max-height: 45px; margin-bottom: 0.2em; box-shadow: none">-->
-        <!--</td>-->
-        <!--<td style="text-align: center"><img src="pics/bubble_red.png"-->
-        <!--style="max-height: 45px; box-shadow: none"></td>-->
-        <!--<td style="text-align: center"><img src="pics/bubble_green.png"-->
-        <!--style="max-height: 45px; box-shadow: none"></td>-->
-        <!--<td style="margin:0; padding: 0 0 0 0.3em;  font-size: 0.8em; ">-->
-        <!--Web Tests (DOM basiert)-->
-        <!--</td>-->
-        <!--</tr>-->
-        <!--<tr>-->
-        <!--<td style="text-align: center"><img src="pics/bubble_green.png"-->
-        <!--style="max-height: 45px; margin-bottom: 0.2em; box-shadow: none">-->
-        <!--</td>-->
-        <!--<td style="text-align: center"><img src="pics/bubble_green.png"-->
-        <!--style="max-height: 45px; box-shadow: none"></td>-->
-        <!--<td style="text-align: center"><img src="pics/bubble_green.png"-->
-        <!--style="max-height: 45px; box-shadow: none"></td>-->
-        <!--<td style="margin:0; padding: 0 0 0 0.3em;  font-size: 0.8em; ">-->
-        <!--Open Source & Java API-->
-        <!--</td>-->
-        <!--</tr>-->
-        <!--<tr>-->
-        <!--<td style="text-align: center"><img src="pics/bubble_gray.png"-->
-        <!--style="max-height: 45px; margin-bottom: 0.2em; box-shadow: none">-->
-        <!--</td>-->
-        <!--<td style="text-align: center"><img src="pics/bubble_red.png"-->
-        <!--style="max-height: 45px; box-shadow: none"></td>-->
-        <!--<td style="text-align: center"><img src="pics/bubble_green.png"-->
-        <!--style="max-height: 45px; box-shadow: none"></td>-->
-        <!--<td style="margin:0; padding: 0 0 0 0.3em;  font-size: 0.8em; vertical-align: top;">-->
-        <!--Automatisierbarkeit & Ergebnisauswertung <br/>über DB / Nagios / CI-Tools-->
-        <!--</td>-->
-        <!--</tr>-->
-        <!--<tr>-->
-        <!--<td style="text-align: center"><img src="pics/bubble_green.png"-->
-        <!--style="max-height: 45px; margin-bottom: 0.2em; box-shadow: none">-->
-        <!--</td>-->
-        <!--<td style="text-align: center"><img src="pics/bubble_gray.png"-->
-        <!--style="max-height: 45px; box-shadow: none"></td>-->
-        <!--<td style="text-align: center"><img src="pics/bubble_gray.png"-->
-        <!--style="max-height: 45px; box-shadow: none"></td>-->
-        <!--<td style="margin:0; padding: 0 0 0 0.3em;  font-size: 0.8em; vertical-align: top;">-->
-        <!--Unterstützung bei Testerstellung <br/>(Recorder, Screenshot-Finder)-->
-        <!--</td>-->
-        <!--</tr>-->
-        <!--</tbody>-->
-        <!--</table>-->
-        <!--</section>-->
 
         <section>
             <!--<section>-->
@@ -616,10 +619,10 @@ docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:rw rasch/ink
         </section>
 
         <section>
-            <h2>Demo Sakuli Example</h2>
+            <h2>Demo - Sakuli-Containers</h2>
 
             <!-- @formatter:off-->
-            <pre><code data-trim contenteditable="true">
+            <pre><code data-trim contenteditable="false">
 # start the docker container
 docker run -it -p 5911:5901 -p 6911:6901 consol/sakuli-centos-xfce
 docker run -it -p 5912:5901 -p 6912:6901 consol/sakuli-ubuntu-xfce
@@ -677,22 +680,46 @@ docker-compose -f docker-compose_example_xfce.yml up
             <h2>CI Demo ConSol* CM6</h2>
 
             <!-- @formatter:off-->
-            <pre><code data-trim contenteditable="true">
-ssh ssh cclusr@10.4.14.131
+            <pre><code data-trim contenteditable="false">
+ssh cclusr@10.4.14.131
 
-# MANUAL start singel container via docker-compose on remote host:
+# start single container via docker-compose on remote host
 cd ~/sakuli-example-testautomation-day/docker_e2e
-docker-compose rm -f && docker-compose up sakuli-cm_check_links
+docker-compose rm -f sakuli-cm_check_links && docker-compose up sakuli-cm_check_links
             </code></pre>
             <!-- @formatter:on-->
-            <div style="padding-top: 1em;">
-                <a target="_blank"
-                   href="file:///home/tschneck/git-files/sakuli-example-testautomation-day/vnc_overview_remote.html">
-                    <img width="40%" style="box-shadow: none;padding-right: 0.5em;" src="pics/ci_cm_test.png">
-                </a>
-                <img width="45%" style="padding-left: 0.5em; vertical-align: top;box-shadow: none"
-                     src="pics/ci_jenkins_pipeline.png">
-            </div>
+            <div style="padding-top: 1em"></div>
+            <table width="90%">
+                <tr>
+                    <td width="50%">
+                        <a target="_blank"
+                           href="file:///home/tschneck/git-files/sakuli-example-testautomation-day/vnc_overview_remote.html">
+                            <img style="box-shadow: none;padding-right: 0.5em;" src="pics/ci_cm_test.png">
+                        </a>
+                    </td>
+                    <td style="vertical-align: top; text-align: right" width="50%">
+                        <table>
+                            <tr>
+                                <td style="text-align: right">
+                                    <a target="=_blank" href="http://10.4.14.129/">
+                                        <img style="box-shadow: none;"
+                                             src="pics/ci_jenkins_pipeline.png">
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center; vertical-align: bottom">
+                                    <a target="=_blank" href="https://cc01.osp.consol.de/dashboard/project/">
+                                        <img style="height: 2em; padding-top: 1em; box-shadow: none"
+                                             src="pics/redhat_openstack.png">
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </td>
+                </tr>
+            </table>
         </section>
 
 
@@ -706,9 +733,6 @@ docker-compose rm -f && docker-compose up sakuli-cm_check_links
             </ul>
         </section>
 
-        <section>
-            <h1 class="coloured" style="text-transform: inherit">Fragen?</h1>
-        </section>
 
         <section>
             <h2>Links</h2>
@@ -726,7 +750,7 @@ docker-compose rm -f && docker-compose up sakuli-cm_check_links
                         </a>
                         <br/>
 
-                        <div style="padding-top: 0.5em"/>
+                        <div style="padding-top: 0.5em"></div>
                         <a href="https://github.com/ConSol/sakuli-example-testautomation-day" target="_blank">
                             <b>
                                 https://github.com/ConSol/sakuli-example-testautomation-day
@@ -734,7 +758,11 @@ docker-compose rm -f && docker-compose up sakuli-cm_check_links
                         </a>
                     </td>
                 </tr>
-                <tr><td><div style="padding-top: 2em"/></td></tr>
+                <tr>
+                    <td>
+                        <div style="padding-top: 1.5em"></div>
+                    </td>
+                </tr>
                 <tr>
                     <td style="text-align: center">
                         <a href="https://twitter.com/sakuli_e2e">
@@ -758,6 +786,11 @@ docker-compose rm -f && docker-compose up sakuli-cm_check_links
                 </tr>
             </table>
         </section>
+
+        <section>
+            <h1 class="coloured" style="text-transform: inherit">Fragen?</h1>
+        </section>
+
         <section>
             <h1 class="coloured" style="text-transform: inherit">Vielen Dank!</h1>
 

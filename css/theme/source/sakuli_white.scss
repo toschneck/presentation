@@ -17,8 +17,8 @@ $mainColor: #595959;
 $headingColor: #626262;
 
 $mainFontSize: 38px;
-$mainFont: 'Source Sans Pro', Arial, sans-serif;
-$headingFont: 'Source Sans Pro', Arial, sans-serif;
+$mainFont: Arial, sans-serif;
+$headingFont: Arial, sans-serif;
 $headingTextShadow: none;
 $headingLetterSpacing: normal;
 $headingTextTransform: none;
@@ -29,7 +29,7 @@ $linkColorHover: lighten($linkColor, 15%);
 $selectionBackgroundColor: lighten($linkColor, 25%);
 
 $heading1Size: 2.5em;
-$heading2Size: 1.6em;
+$heading2Size: 1.4em;
 $heading3Size: 1.1em;
 $heading4Size: 1em;
 
@@ -67,11 +67,20 @@ section.has-dark-background {
 
 .reveal h2 {
   text-transform: none;
+  padding-bottom: 0.6em;
 }
 
 .reveal table td {
   padding: 0;
   border-bottom: 0;
+}
+
+.reveal li {
+  padding: 0.1em;
+}
+
+.reveal ul ul li{
+  padding: 0;
 }
 
 .reveal section img {

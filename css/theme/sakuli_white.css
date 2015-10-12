@@ -15,7 +15,7 @@ body {
   background-color: #fff; }
 
 .reveal {
-  font-family: 'Source Sans Pro', Arial, sans-serif;
+  font-family: Arial, sans-serif;
   font-size: 38px;
   font-weight: normal;
   color: #595959; }
@@ -35,7 +35,7 @@ body {
 .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
   margin: 0 0 20px 0;
   color: #626262;
-  font-family: 'Source Sans Pro', Arial, sans-serif;
+  font-family: Arial, sans-serif;
   font-weight: 600;
   line-height: 1.2;
   letter-spacing: normal;
@@ -47,7 +47,7 @@ body {
   font-size: 2.5em; }
 
 .reveal h2 {
-  font-size: 1.6em; }
+  font-size: 1.4em; }
 
 .reveal h3 {
   font-size: 1.1em; }
@@ -285,11 +285,18 @@ body {
   text-transform: uppercase; }
 
 .reveal h2 {
-  text-transform: none; }
+  text-transform: none;
+  padding-bottom: 0.6em; }
 
 .reveal table td {
   padding: 0;
   border-bottom: 0; }
+
+.reveal li {
+  padding: 0.1em; }
+
+.reveal ul ul li {
+  padding: 0; }
 
 .reveal section img {
   margin: 0;
