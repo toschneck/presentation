@@ -1,6 +1,6 @@
 # Containerized End-2-End-Testing
 
-__Zur Präsentation:__ [Containerized End-2-End-Testing](https://rawgit.com/toschneck/presentation/sakuli-testautomation-day/index.html#/)
+__Zur Präsentation:__ [Containerized End-2-End-Testing](https://rawgit.com/toschneck/presentation/gtd2016-containerized-e2e-testing/index.html#/)
 
 In der Regel beschreibt der Begriff „End-2-End-Testing“ ein Testszenario, das Systeme in Form eines Black-Box-Tests von außen von einem Ende zum anderen Ende testet. Ziel des Vortrags ist es, dem Zuhörer einen Einblick zu geben wie durch geschickten Tool-Einsatz das Potenzial einer Container-Technologie wie z.B. Docker genutzt werden kann, um die Softwarequalität zu erhöhen und manuellen Testaufwand zu verringern.
 
