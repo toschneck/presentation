@@ -267,16 +267,20 @@ body {
   color: #2a76dd; }
 
 .reveal .slide-background {
-  background: url("pics/background.png");
-  background-position: bottom;
-  background-size: 100%;
+  background: url("pics/bg_bottom_banner.png");
+  background-position: bottom right;
+  background-size: 25%;
   background-repeat: no-repeat; }
+
+.reveal .slide-background.present .firstslide {
+  opacity: 1; }
 
 .reveal .slide-number {
   color: #327daf;
   right: 50%;
   opacity: 1;
-  font-size: 0.8em; }
+  font-size: 0.8em;
+  visibility: hidden; }
 
 .reveal .controls {
   right: auto; }
