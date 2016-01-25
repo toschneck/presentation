@@ -272,9 +272,6 @@ body {
   background-size: 25%;
   background-repeat: no-repeat; }
 
-.reveal .slide-background.present .firstslide {
-  opacity: 1; }
-
 .reveal .slide-number {
   color: #327daf;
   right: 50%;
