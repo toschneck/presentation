@@ -428,7 +428,7 @@ docker run -it -p 5912:5901 -p 6912:6901 consol/ubuntu-xfce-vnc
                                 <!--https://github.com/ConSol/sakuli-->
                                 <!--</b>-->
                             </a>
-                            804 commits, 6 contributors
+                            998 commits, 8 contributors
                         </div>
                     </li>
                     <!--<li>-->
@@ -537,15 +537,13 @@ docker run -it -p 5912:5901 -p 6912:6901 consol/ubuntu-xfce-vnc
             // tc.js
             /*** calculator app ***/
             var calculatorApp = new Application("galculator")
-                .setSleepTime(1);
                 .open();
             testCase.endOfStep("Open Calculator", 3);
 
             /*** calculate 525 + 100 ***/
             var calculatorRegion = calculatorApp.getRegion();
-            calculatorRegion.type("525");
-            env.sleep(2);
-            calculatorRegion.find("plus.png")
+            calculatorRegion.type("525")
+                .find("plus.png")
                 .click()
                 .type("100")
                 .find("calculate")
