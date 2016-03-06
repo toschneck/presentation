@@ -46,7 +46,7 @@ section.has-dark-background {
 .reveal .slide-background {
   background: url("pics/bg_bottom_banner.png");
   background-position: bottom right;
-  background-size: 25%;
+  background-size: 20%;
   background-repeat: no-repeat;
 }
 
@@ -80,8 +80,13 @@ section.has-dark-background {
   padding: 0.1em;
 }
 
-.reveal ul ul li{
+.reveal ul ul li {
+  font-size: xx-large;
   padding: 0;
+}
+
+.reveal .blue_hook {
+  list-style-image: url('pics/blue_hook_list.png');
 }
 
 .reveal section img {
@@ -117,4 +122,16 @@ section.has-dark-background {
 
 .reveal .coloured {
   color: $linkColorLightBlue;
+}
+
+.reveal .bubbels {
+  max-height: 42px;
+  margin-bottom: 0.2em;
+  box-shadow: none
+}
+
+.reveal .bubbels-text {
+  margin: 0;
+  padding: 0 0 0.2em 1em;
+  font-size: 0.7em;
 }
