@@ -738,54 +738,48 @@ docker-compose up
                                                                                                       style=" border: none"
                                                                                                       src="pics/ci_umgebung_2.png"/></a>
         </section>
-        <!--<section>-->
-        <!--<a target="_blank" href="video/sakuli_ci_cm6_demo.mp4">-->
-        <!--<h2>CI Demo ConSol CM6</h2>-->
-        <!--</a>-->
+        <section>
+            <a target="_blank" href="video/sakuli_ci_cm6_demo.mp4">
+                <h2>CI Demo</h2>
+            </a>
 
-        <!--&lt;!&ndash; @formatter:off&ndash;&gt;-->
+            <!-- @formatter:off-->
 
-            <!--<pre><code data-trim contenteditable="false">-->
-<!--ssh cclusr@10.4.14.131-->
+            <pre><code data-trim contenteditable="false">
+git clone https://github.com/toschneck/sakuli-example-bakery-testing.git
 
-<!--# start single container via docker-compose on remote host-->
-<!--cd ~/sakuli-example-testautomation-day/docker_e2e-->
-<!--docker-compose rm -f sakuli-cm_check_links && docker-compose up sakuli-cm_check_links-->
-            <!--</code></pre>-->
-            <!--&lt;!&ndash; @formatter:on&ndash;&gt;-->
-        <!--<div style="padding-top: 1em"></div>-->
-        <!--<table width="90%">-->
-        <!--<tr>-->
-        <!--<td width="50%">-->
-        <!--<a target="_blank"-->
-        <!--href="file:///home/tschneck/git-files/sakuli-example-testautomation-day/vnc_overview_remote.html">-->
-        <!--<img style="box-shadow: none;padding-right: 0.5em; width: 100%" src="pics/ci_cm_test.png">-->
-        <!--</a>-->
-        <!--</td>-->
-        <!--<td style="vertical-align: top; text-align: right" width="50%">-->
-        <!--<table>-->
-        <!--<tr>-->
-        <!--<td style="text-align: right">-->
-        <!--<a target="=_blank" href="http://10.4.14.129/">-->
-        <!--<img style="box-shadow: none; width: 100%"-->
-        <!--src="pics/ci_jenkins_pipeline.png">-->
-        <!--</a>-->
-        <!--</td>-->
-        <!--</tr>-->
-        <!--<tr>-->
-        <!--<td style="text-align: center; vertical-align: bottom">-->
-        <!--<a target="=_blank" href="https://cc01.osp.consol.de/dashboard/project/">-->
-        <!--<img style="height: 2em; padding-top: 1em; box-shadow: none"-->
-        <!--src="pics/redhat_openstack.png">-->
-        <!--</a>-->
-        <!--</td>-->
-        <!--</tr>-->
-        <!--</table>-->
+### build the local images
+mvn clean package
 
-        <!--</td>-->
-        <!--</tr>-->
-        <!--</table>-->
-        <!--</section>-->
+### start the application and the UI test via maven
+mvn -f sakuli-tests-maven/pom.xml clean verify
+
+### build and start the app via docker-compose
+cd app-deployment-docker-compose
+docker-compose kill && docker-compose rm -f && docker-compose build && docker-compose up -d
+
+### start the 4 sakuli-tests in parallel
+cd ../sakuli-tests
+docker-compose kill && docker-compose rm -f && docker-compose build && docker-compose up
+            </code></pre>
+            <!-- @formatter:on-->
+            <div style="padding-top: 0.5em"></div>
+            <table width="90%">
+                <tr>
+                    <td width="50%">
+                        <a target="_blank" href="vnc_overview_local.html">
+                            <img style="box-shadow: none;padding-right: 0.5em; width: 100%" src="pics/ci_bakery_test.png">
+                        </a>
+                    </td>
+                    <td style="vertical-align: top; text-align: right;padding-top: 0.4em;" width="50%">
+                        <a target="=_blank" href="http://localhost:8080/">
+                            <img style="box-shadow: none; width: 100%"
+                                 src="pics/ci_jenkins_pipeline.png">
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </section>
 
 
         <section>
@@ -794,7 +788,7 @@ docker-compose up
                 <li>Headless Execution - <b>Linux:</b> VNC & Docker, <b>Windows:</b> ?</li>
                 <li><b>Video</b>-Aufzeichnung der Testabläufe zur Fehlerdokumentation</li>
                 <li><b>Web-UI</b> für die Test-Suite-Verwaltung</li>
-                <li>Anbindung an <b>extern Test-Management-Lösungen</b> (z.B. HP QC)</li>
+                <li>Anbindung an <b>externe Test-Management-Lösungen</b> (z.B. HP QC)</li>
                 <li>Grafische Auswertung der Testergebnisse in <b>CI-Umgebungen</b></li>
             </ul>
         </section>
@@ -854,7 +848,7 @@ docker-compose up
         </section>
 
         <!--<section>-->
-            <!--<h1 class="coloured" style="text-transform: inherit">Fragen?</h1>-->
+        <!--<h1 class="coloured" style="text-transform: inherit">Fragen?</h1>-->
         <!--</section>-->
 
         <section>
