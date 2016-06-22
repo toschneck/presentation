@@ -23,8 +23,12 @@ $headingTextShadow: none;
 $headingLetterSpacing: normal;
 $headingTextTransform: none;
 $headingFontWeight: 600;
-$linkColor: #2a76dd;
-$linkColorLightBlue: #327daf;
+//$linkColor: #2a76dd;
+//$linkColorLightBlue: #327daf;
+$linkColor: #00aada;
+$linkColorLightBlue: #008BB8;
+//$linkColor: #55d400;
+//$linkColorLightBlue: #55d400;
 $linkColorHover: lighten($linkColor, 15%);
 $selectionBackgroundColor: lighten($linkColor, 25%);
 
@@ -63,7 +67,9 @@ section.has-dark-background {
 }
 
 .reveal h1 {
-  text-transform: uppercase;
+  //text-transform: uppercase;
+  text-transform: capitalize;
+  font-size: 2em;
 }
 
 .reveal h2 {
@@ -87,6 +93,11 @@ section.has-dark-background {
 
 .reveal .blue_hook {
   list-style-image: url('pics/blue_hook_list.png');
+}
+
+.reveal .custom_hook {
+  //list-style-image: url('pics/blue_hook_list.png');
+  list-style-image: url('pics/green_hook_list.png');
 }
 
 .reveal section img {

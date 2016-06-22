@@ -1,12 +1,10 @@
 ![](pics/contarinerized-salkuli-docker.png)
 
-### Zur Präsentation: [Containerized End-2-End-Testing](https://rawgit.com/toschneck/presentation/javaland-containerized-e2e-testing/index.html#/)
-![](pics/logo_javaland.png)
+### Presentation: [Containerized End-2-End Testing](https://rawgit.com/toschneck/presentation/docker-meetup-container-days/index.html#/)
+<iframe width="854" height="480" src="./index.html" frameborder="0"></iframe>
 
-### Zum Example: [Sakuli Example Bakery Testing] (https://github.com/toschneck/sakuli-example-bakery-testing)
+### Example: [Sakuli Example Bakery Testing] (https://github.com/toschneck/sakuli-example-bakery-testing)
 
-In der Regel beschreibt der Begriff „End-2-End-Testing“ ein Testszenario, das Systeme in Form eines Black-Box-Tests von außen von einem Ende zum anderen Ende testet. Ziel des Vortrags ist es, dem Zuhörer einen Einblick zu geben wie durch geschickten Tool-Einsatz das Potenzial einer Container-Technologie wie z.B. Docker genutzt werden kann, um die Softwarequalität zu erhöhen und manuellen Testaufwand zu verringern.
+Setting up unit- and integration tests are tasks which developers have learned to deal. But  testing UIs from the perspective of an end user is mostly still a challenge. The key question usually to answer is: How it is possible to make these end-2-end tests stable, scalable and reproducible? The upcoming container technologies bring the hope of managing and automating your UI tests as easily as your container deployment. After a short introduction to the concepts, a live demo will show how it is possible to test a web- or a rich-client application in a containerized Linux UI. The example will be demonstrated by the open source tools __Docker__ and __Sakuli__. The execution and reporting of the tests will be managed by the continuous integration platform __Jenkins__, which brings the ability to integrate everything into your build pipeline.
 
-Mithilfe des End-2-End-Testing-Framekworks „Sakuli“ ist es im Container möglich sowohl webbasierte Browsertests als auch GUI-Tests auf Rich-Clients durchzuführen. Typische Einsatzszenarien von „containerized End-2-End-Testing“ werden anhand einer Live-Demo betrachtet. Eine abschließende Bewertung der gesammelten Erfahrungen sowie ein Ausblick auf weitere Einsatzszenarien und Entwicklungsschritte runden den Vortrag ab.
-
-Weitere Info's sind unter __[ConSol/sakuli](https://github.com/ConSol/sakuli)__ zu finden.
+For more information see __[ConSol/sakuli](https://github.com/ConSol/sakuli)__.

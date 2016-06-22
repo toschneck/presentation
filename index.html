@@ -4,10 +4,10 @@
 <head>
     <meta charset="utf-8">
 
-    <title>Containerized End-2-End-Testing</title>
+    <title>Containerized End-2-End Testing</title>
 
     <meta name="description"
-          content="Containerized End-2-End-Testing, more information under https://github.com/ConSol/sakuli ">
+          content="Containerized End-2-End Testing, more information under https://github.com/ConSol/sakuli ">
     <meta name="author" content="Tobias Schneck">
 
     <meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -47,8 +47,9 @@
             <!--style="vertical-align:top; width:11em; border: 0;box-shadow: none"/>-->
             <!--</div>-->
 
-            <h2 style="padding-top: 2em; margin-bottom: 0;text-transform: none">Containerized
-                End-2-End-Testing</h2>
+            <h2 style="padding-top: 2em; margin-bottom: 0;text-transform: none">
+                Containerized End-2-End Testing
+            </h2>
 
             <h2 style="padding-top: 0.2em;">
                 <img src="pics/sakuli-logo.png" style="width:5em; border: 0;box-shadow: none" alt="Sakuli">
@@ -57,9 +58,9 @@
             </h2>
 
             <!-- Referent: Tobias Schneck, ConSol Software GmbH-->
-            <p style="padding-top: 4em; text-align: right">
-                <small>Referent: <a href="mailto:tobias.schneck@consol.de">Tobias Schneck</a>, <a
-                        href="http://www.consol.de">ConSol* Software GmbH</a>
+            <p style="padding-top: 6.5em; text-align: right">
+                <small><a href="mailto:tobias.schneck@consol.de">Tobias Schneck</a>, <a
+                        href="http://www.consol.de">ConSol Software GmbH</a>
                 </small>
                 </br>
             </p>
@@ -100,7 +101,7 @@
         <!--</section>-->
 
         <section>
-            <h2>Testpyramide</h2>
+            <h2>Test Pyramid</h2>
             <table>
                 <tr>
                     <td><img class="image" src="pics/test_pyramide.png"
@@ -109,9 +110,9 @@
                     <td width="37%" style="vertical-align: middle;" class="blue_hook">
                         <ul>
                             <li><b>Robust</b></li>
-                            <li><b>Unabhängig</b></li>
-                            <li><b>Isoliert</b></li>
-                            <li><b>Schnell</b></li>
+                            <li><b>Independent</b></li>
+                            <li><b>Isolated</b></li>
+                            <li><b>Fast</b></li>
                         </ul>
                     </td>
                 </tr>
@@ -151,41 +152,41 @@
         <!--</section>-->
 
         <section>
-            <h2 style="padding-bottom: 0.2em">Besonderheiten bei End-2-End Tests</h2>
+            <h2 style="padding-bottom: 0.2em">Characteristics of End-2-End Testing</h2>
             <img class="image" src="pics/gear.png"
                  style="height: 5em; border: 0; box-shadow: none; margin: 0em; padding-bottom: 0.2em">
             <ul>
-                <li style="padding-top: 0" class="coloured">Unterschiedliche Testarten</li>
+                <li style="padding-top: 0" class="coloured">Different types of testing:</li>
                 <ul style="font-size: large">
-                    <li>Regressionstests</li>
-                    <li>Funktionale Abnahmetests</li>
+                    <li>Regression tests</li>
+                    <li>Functional approval tests</li>
                 </ul>
-                <li style="padding-top: 0" class="coloured">Parallele Tests mit GUIs sind schwierig</li>
+                <li style="padding-top: 0" class="coloured">Parallel tests with GUIs are complex</li>
                 <ul style="font-size: large">
-                    <li>Geteilte Testdaten: Login-User, User-Sessions mit Stati</li>
-                    <li>Cleanup von Testdaten</li>
+                    <li>Stateful tests: user logins, sessions, history</li>
+                    <li>Setup and cleanup of test data</li>
                 </ul>
                 <!--<li class="coloured">Testumgebung muss möglichst nah an der <br/>End-User-Umgebung sein</li>-->
-                <li style="padding-top: 0" class="coloured">Manueller Aufwand <b>></b> Aufwand für Automatisierung</li>
+                <li style="padding-top: 0" class="coloured">Manual effort<b> > </b>effort for test automation</li>
             </ul>
         </section>
 
         <section>
-            <h2 style="padding-bottom: 0.2em">Vorteile der Container-Technologie</h2>
+            <h2 style="padding-bottom: 0.2em">Advantages of Container Technology</h2>
             <img class="image" src="pics/container-technology.jpg"
                  style="height: 4em; border: 0; box-shadow: none; margin: 0em; padding-bottom: 0.2em">
             <ul class=" blue_hook">
-                <li><b class="coloured">Isolation</b> von Umgebungen</li>
-                <li><b class="coloured">Repository</b> für Versionierung und Verteilung</li>
-                <li><b class="coloured">Nachvollziehbarer Aufbau</b> der Umgebung</li>
+                <li><b class="coloured">Isolation</b> of environments</li>
+                <li><b class="coloured">Repository</b> for versioning and distribution</li>
+                <li><b class="coloured">Reproducible</b> application environment</li>
                 <ul style="list-style: disc">
                     <li>Dockerfile, docker-compose.yml</li>
                 </ul>
-                <li>Start von Containern <b class="coloured">on-the-fly</b></li>
-                <li>Einfache <b class="coloured">Parallelisierung</b></li>
+                <li>Starting containers <b class="coloured">on-the-fly</b></li>
+                <li>Optimized for <b class="coloured">parallelization</b></li>
                 <ul style="list-style: disc">
-                    <li>Wenig Speicher-Overhead</li>
-                    <li>Teilen sich den selben Linux-Kernel</li>
+                    <li>Less memory overhead</li>
+                    <li>Shared Linux kernel</li>
                 </ul>
             </ul>
         </section>
@@ -278,7 +279,7 @@ docker run -it -p 5912:5901 -p 6912:6901 consol/ubuntu-xfce-vnc
         <!--<section>-->
         <section>
             <h2>
-                <div style=" height: 1.5em;">Was bietet <img
+                <div style=" height: 1.5em;">What's provided by <img
                         style="margin-left: 0.2em; box-shadow: none" src="pics/sakuli-logo.png"/> ?
                 </div>
             </h2>
@@ -298,21 +299,10 @@ docker run -it -p 5912:5901 -p 6912:6901 consol/ubuntu-xfce-vnc
                              src="pics/3maennchen_mit_sakuli.png" style=" height: 3em; border: 0; ">
                     </td>
                     <td style="padding: 0; text-align: left; vertical-align: bottom; border-left: 1px">
-                        <h3 style="padding-left: 0.7em;">Kategorie</h3>
+                        <h3 style="padding-left: 0.7em;">Category</h3>
                     </td>
                 </tr>
-                <tr>
-                    <td style="text-align: center"><img src="pics/bubble_red.png"
-                                                        class="bubbels">
-                    </td>
-                    <td style="text-align: center"><img src="pics/bubble_green.png"
-                                                        class="bubbels"></td>
-                    <td style="text-align: center"><img src="pics/bubble_green.png"
-                                                        class="bubbels"></td>
-                    <td class="bubbels-text">
-                        Beschränkung auf den Browser
-                    </td>
-                </tr>
+
                 <tr>
                     <td style="text-align: center"><img src="pics/bubble_green.png"
                                                         class="bubbels">
@@ -322,7 +312,20 @@ docker run -it -p 5912:5901 -p 6912:6901 consol/ubuntu-xfce-vnc
                     <td style="text-align: center"><img src="pics/bubble_green.png"
                                                         class="bubbels"></td>
                     <td class="bubbels-text">
-                        Web Tests via HTML-Selectors
+                        Web tests through HTML selectors
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="text-align: center"><img src="pics/bubble_red.png"
+                                                        class="bubbels">
+                    </td>
+                    <td style="text-align: center"><img src="pics/bubble_green.png"
+                                                        class="bubbels"></td>
+                    <td style="text-align: center"><img src="pics/bubble_green.png"
+                                                        class="bubbels"></td>
+                    <td class="bubbels-text">
+                        Restricted to browser content
                     </td>
                 </tr>
                 <tr>
@@ -346,8 +349,8 @@ docker run -it -p 5912:5901 -p 6912:6901 consol/ubuntu-xfce-vnc
                     <td style="text-align: center"><img src="pics/bubble_green.png"
                                                         class="bubbels"></td>
                     <td class="bubbels-text">
-                        Automatisierbarkeit & Ergebnis-Forwarder
-                        <div style="font-size: large">(CI, DB, Monitoring)</div>
+                        Automatable / Test result interpretation
+                        <div style="font-size: large">(CI, DB, monitoring environment)</div>
                     </td>
                 </tr>
                 <tr>
@@ -359,8 +362,8 @@ docker run -it -p 5912:5901 -p 6912:6901 consol/ubuntu-xfce-vnc
                     <td style="text-align: center"><img src="pics/bubble_gray.png"
                                                         class="bubbels"></td>
                     <td class="bubbels-text">
-                        Unterstützung bei Testerstellung
-                        <div style="font-size: large">(Recorder, Screenshot-Finder)</div>
+                        Test writing assistance
+                        <div style="font-size: large">(recorder, screenshot finder)</div>
                     </td>
                 </tr>
                 <tr>
@@ -371,18 +374,24 @@ docker run -it -p 5912:5901 -p 6912:6901 consol/ubuntu-xfce-vnc
                                                         class="bubbels"></td>
                     <td style="text-align: center"><img src="pics/bubble_green.png"
                                                         class="bubbels"></td>
-                    <td class="bubbels-text">Headless-Execution</span>                         </td>
+                    <td class="bubbels-text">Headless execution</span>                         </td>
                 </tr>
                 </tbody>
             </table>
         </section>
 
         <section>
-            <h2 style="margin-bottom: 0.2em"><img style="height: 1.5em;box-shadow: none" src="pics/sakuli-logo.png"/>
-                Nagios & Incinga Integration</h2>
-            <a target="_blank"
-               href="https://github.com/ConSol/sakuli/blob/master/docs/index.md">
-                <img width="88%" style="border: 0" src="pics/nagios.png">
+            <h2 style="margin-bottom: 0.5em; padding-bottom: 0.3em"><img style="height: 1.5em;box-shadow: none"
+                                                                       src="pics/sakuli-logo.png"/>
+                Monitoring Integration</h2>
+            <img style="margin-left: 2em;box-shadow: none" src="css/theme/pics/green_hook_list.png">
+            Nagios
+            <img style="margin-left: 2em;box-shadow: none" src="css/theme/pics/green_hook_list.png">
+            OMD
+            <img style="margin-left: 2em;box-shadow: none" src="css/theme/pics/green_hook_list.png">
+            Incinga
+            <a target="_blank" href="https://github.com/ConSol/sakuli/blob/master/docs/index.md">
+                <img width="88%" style="border: 0; margin-top: 1em" src="pics/nagios.png">
             </a>
         </section>
 
@@ -668,7 +677,7 @@ docker run -it -p 5912:5901 -p 6912:6901 consol/ubuntu-xfce-vnc
         <!--</section>-->
 
         <section>
-            <h2>Sakuli End-2-End-Testing Container</h2>
+            <h2>Sakuli End-2-End Testing Container</h2>
 
             <div style="margin-top: 2em">
                 <img width="100%" style="box-shadow: none" src="pics/container_sakuli.png">
@@ -677,7 +686,7 @@ docker run -it -p 5912:5901 -p 6912:6901 consol/ubuntu-xfce-vnc
 
         <section>
             <a target="_blank" href="video/sakuli_containers.mp4">
-                <h2>Demo - Sakuli-Containers</h2>
+                <h2>Demo - Sakuli Container</h2>
             </a>
 
             <!-- @formatter:off-->
@@ -727,13 +736,14 @@ docker-compose up
         <!--</section>-->
 
         <section>
-            <h2 style="padding-bottom: 0">CI Demo Aufbau</h2>
+            <h2 style="padding-bottom: 0">CI Demo Setup</h2>
             <a href="https://github.com/toschneck/sakuli-example-bakery-testing" target="_blank"><img width="90%"
                                                                                                       style=" border: none"
                                                                                                       src="pics/ci_umgebung.png"/></a>
         </section>
         <section>
-            <h2 style="padding-bottom: 0">CI Demo Aufbau</h2>
+            <h2 style="padding-bottom: 0">CI Demo Setup</h2>
+            <h3 style="color: red">TODO add OMD </h3>
             <a href="https://github.com/toschneck/sakuli-example-bakery-testing" target="_blank"><img width="90%"
                                                                                                       style=" border: none"
                                                                                                       src="pics/ci_umgebung_2.png"/></a>
@@ -748,17 +758,17 @@ docker-compose up
             <pre><code data-trim contenteditable="false">
 git clone https://github.com/toschneck/sakuli-example-bakery-testing.git
 
-### build the local images
+# start the build of the application images
 mvn clean package
 
-### start the application and the UI test via maven
+### MAVEN (option 1)
 mvn -f sakuli-tests-maven/pom.xml clean verify
 
-### build and start the app via docker-compose
+### DOCKER-COMPOSE (option 2)
+# start the app
 cd app-deployment-docker-compose
-docker-compose kill && docker-compose rm -f && docker-compose build && docker-compose up -d
-
-### start the 4 sakuli-tests in parallel
+docker-compose kill && docker-compose rm -f && docker-compose up -d
+# build and start the 4 sakuli-tests in parallel
 cd ../sakuli-tests
 docker-compose kill && docker-compose rm -f && docker-compose build && docker-compose up
             </code></pre>
@@ -768,7 +778,8 @@ docker-compose kill && docker-compose rm -f && docker-compose build && docker-co
                 <tr>
                     <td width="50%">
                         <a target="_blank" href="vnc_overview_local.html">
-                            <img style="box-shadow: none;padding-right: 0.5em; width: 100%" src="pics/ci_bakery_test.png">
+                            <img style="box-shadow: none;padding-right: 0.5em; width: 100%"
+                                 src="pics/ci_bakery_test.png">
                         </a>
                     </td>
                     <td style="vertical-align: top; text-align: right;padding-top: 0.4em;" width="50%">
@@ -783,14 +794,19 @@ docker-compose kill && docker-compose rm -f && docker-compose build && docker-co
 
 
         <section>
-            <h2>Ausblick & Ideen</h2>
+            <h2>What's next?</h2>
             <ul style="font-size: 0.8em; padding-top: 1em">
-                <li>Headless Execution - <b>Linux:</b> VNC & Docker, <b>Windows:</b> ?</li>
-                <li><b>Video</b>-Aufzeichnung der Testabläufe zur Fehlerdokumentation</li>
-                <li><b>Web-UI</b> für die Test-Suite-Verwaltung</li>
-                <li>Anbindung an <b>externe Test-Management-Lösungen</b> (z.B. HP QC)</li>
-                <li>Grafische Auswertung der Testergebnisse in <b>CI-Umgebungen</b></li>
-                <li>Einbindung von <b>Selenium</b> als Sahi-Alternative</li>
+                <li>Headless execution -
+                    <b>Linux:</b>
+                    VNC & Docker
+                    <img style="box-shadow: none" src="css/theme/pics/green_hook_list.png"/>
+                    <b>Windows:</b> <b style="color: red; font-size: 1.3em">?</b>
+                </li>
+                <li><b>Video</b> recording of the test execution (error documentation)</li>
+                <li><b>Web UI</b> to handle Sakuli test suites</li>
+                <li>Connect 3rd-party <b>test management tools</b> (HP QC, TestRail, ...)</li>
+                <li>Improve test <b>result presentation</b> in CI tools</li>
+                <li><b>Selenium</b> as alternative for Sahi</li>
             </ul>
         </section>
 
@@ -851,58 +867,49 @@ docker-compose kill && docker-compose rm -f && docker-compose build && docker-co
         <!--<section>-->
         <!--<h1 class="coloured" style="text-transform: inherit">Fragen?</h1>-->
         <!--</section>-->
-
         <section>
-            <h1 class="coloured" style="text-transform: inherit">Vielen Dank!</h1>
+            <h1 class="coloured" style="text-transform: inherit">Thank you Hamburg!</h1>
 
-            <table style="margin-top: 3em;font-size: x-large">
+            <table style="font-size: x-large;margin-top: 4em" width="70%">
                 <tr>
-                    <td>
-                        <img style="box-shadow: none;height: 10.6em; padding-top: 0.2em;"
-                             src="pics/profile_pic_tschneck_sw.jpg">
+                    <td style=" width: 30%;padding-right: 20px;  padding-top: 0.2em;">
+                        <img style="margin-right: 15px; float: left"
+                             src="pics/profil_pic_sakuli.jpg">
                     </td>
-                    <td style="vertical-align: top; width: 60%">
-                        <table>
-                            <tr>
-                                <td><b>Tobias Schneck</b></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a style=" padding-right: 1em;
+                    <td style="vertical-align: middle; line-height: 1.5em">
+                        <b>Tobias Schneck</b>
+                        <br/>
+                        <a style=" padding-right: 1em;
                     " href="mailto:tobias.schneck@consol.de">tobias.schneck@consol.de</a>
-                                </td>
-                                <td>
-                                    <a href="https://twitter.com/toschneck">
-                                        <img src="pics/twitter_toschneck.png"
-                                             style="vertical-align: top; box-shadow: none; height: 1.1em">
-                                    </a>
-                                </td>
+                        <br/>
+                        <a href="https://twitter.com/toschneck">
+                            <img src="pics/twitter_toschneck.png"
+                                 style="vertical-align: top; box-shadow: none; height: 1.1em; margin-top: 0.25em">
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;vertical-align: top">
+                        <img src="pics/consol_c.png"
+                             style="padding-top: 3em; height: 5em; box-shadow: none;float: none">
+                    </td>
+                    <td style="padding-top: 3em">
+                        <table style="">
+                            <tr>
+                                <td colspan="2"><b>ConSol Software GmbH</b></td>
                             </tr>
                             <tr>
-                                <td>
-                                    <div style="height: 1.5em"></div>
-                                </td>
+                                <td colspan="2">Franziskanerstraße 38</td>
                             </tr>
                             <tr>
-                                <td><b>ConSol Software GmbH</b></td>
-                            </tr>
-                            <tr>
-                                <td>Franziskanerstraße 38</td>
-                            </tr>
-                            <tr>
-                                <td>D-81669 München</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div style="height: 0.5em"></div>
-                                </td>
+                                <td colspan="2">D-81669 München</td>
                             </tr>
                             <tr>
                                 <td>Tel: +49-89-45841-100</td>
                                 <td><a href="mailto:info@consol.de">info@consol.de</a></td>
                             </tr>
                             <tr>
-                                <td>Fax: +49-89-45841-111</td>
+                                <td style="padding-right: 20px">Fax: +49-89-45841-111</td>
                                 <td><a href="http://www.consol.de">www.consol.de</a></td>
                             </tr>
                         </table>
