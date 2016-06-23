@@ -183,7 +183,7 @@
                     <li>Dockerfile, docker-compose.yml</li>
                 </ul>
                 <li>Starting containers <b class="coloured">on-the-fly</b></li>
-                <li>Optimized for <b class="coloured">parallelization</b></li>
+                <li>Optimized for <b class="coloured">parallel execution</b></li>
                 <ul style="list-style: disc">
                     <li>Less memory overhead</li>
                     <li>Shared Linux kernel</li>
@@ -349,7 +349,7 @@ docker run -it -p 5912:5901 -p 6912:6901 consol/ubuntu-xfce-vnc
                     <td style="text-align: center"><img src="pics/bubble_green.png"
                                                         class="bubbels"></td>
                     <td class="bubbels-text">
-                        Automatable / Test result interpretation
+                        Automatable / Test result reporting
                         <div style="font-size: large">(CI, DB, monitoring environment)</div>
                     </td>
                 </tr>
@@ -381,7 +381,7 @@ docker run -it -p 5912:5901 -p 6912:6901 consol/ubuntu-xfce-vnc
         </section>
 
         <section>
-            <h2 style="margin-bottom: 0.5em; padding-bottom: 0.3em"><img style="height: 1.5em;box-shadow: none"
+            <h2 style="margin-bottom: 0.2em; padding-bottom: 0.3em"><img style="height: 1.5em;box-shadow: none"
                                                                        src="pics/sakuli-logo.png"/>
                 Monitoring Integration</h2>
             <img style="margin-left: 2em;box-shadow: none" src="css/theme/pics/green_hook_list.png">
@@ -391,7 +391,7 @@ docker run -it -p 5912:5901 -p 6912:6901 consol/ubuntu-xfce-vnc
             <img style="margin-left: 2em;box-shadow: none" src="css/theme/pics/green_hook_list.png">
             Incinga
             <a target="_blank" href="https://github.com/ConSol/sakuli/blob/master/docs/index.md">
-                <img width="88%" style="border: 0; margin-top: 1em" src="pics/nagios.png">
+                <img width="85%" style="border: 0; margin-top: 0.7em" src="pics/nagios.png">
             </a>
         </section>
 
@@ -703,7 +703,7 @@ docker-compose up
             <div style="padding-top: 0.4em;">
                 <a target="_blank"
                    href="vnc_overview_local.html">
-                    <img width="40%" style="box-shadow: none;padding-right: 1em;" src="pics/docker_sakuli_example.png">
+                    <img width="47%" style="box-shadow: none;" src="pics/docker_sakuli_example.png">
                 </a>
             </div>
 
@@ -754,7 +754,7 @@ docker-compose up
             </a>
 
             <!-- @formatter:off-->
-
+           <h3 style="color: red">TODO verify commands</h3>
             <pre><code data-trim contenteditable="false">
 git clone https://github.com/toschneck/sakuli-example-bakery-testing.git
 
@@ -806,7 +806,7 @@ docker-compose kill && docker-compose rm -f && docker-compose build && docker-co
                 <li><b>Web UI</b> to handle Sakuli test suites</li>
                 <li>Connect 3rd-party <b>test management tools</b> (HP QC, TestRail, ...)</li>
                 <li>Improve test <b>result presentation</b> in CI tools</li>
-                <li><b>Selenium</b> as alternative for Sahi</li>
+                <li><b>Selenium</b> as an alternative to Sahi</li>
             </ul>
         </section>
 
