@@ -736,41 +736,38 @@ docker-compose up
         <!--</section>-->
 
         <section>
-            <h2 style="padding-bottom: 0">CI Demo Setup</h2>
+            <h2 style="padding-bottom: 0">Bakery Demo Setup</h2>
             <a href="https://github.com/toschneck/sakuli-example-bakery-testing" target="_blank"><img width="90%"
                                                                                                       style=" border: none"
                                                                                                       src="pics/ci_umgebung.png"/></a>
         </section>
         <section>
-            <h2 style="padding-bottom: 0">CI Demo Setup</h2>
-            <h3 style="color: red">TODO add OMD </h3>
+            <h2 style="padding-bottom: 0">Bakery Demo Setup</h2>
             <a href="https://github.com/toschneck/sakuli-example-bakery-testing" target="_blank"><img width="90%"
                                                                                                       style=" border: none"
                                                                                                       src="pics/ci_umgebung_2.png"/></a>
         </section>
         <section>
             <a target="_blank" href="video/sakuli_ci_cm6_demo.mp4">
-                <h2>CI Demo</h2>
+                <h2>Bakery Demo</h2>
             </a>
 
             <!-- @formatter:off-->
-           <h3 style="color: red">TODO verify commands</h3>
             <pre><code data-trim contenteditable="false">
 git clone https://github.com/toschneck/sakuli-example-bakery-testing.git
 
+# start jenkins
+jenkins/deploy_jenkins.sh
+# start OMD montioring
+omd-nagios/deploy_omd.sh
+
 # start the build of the application images
-mvn clean package
+bakery-app/app-deployment-docker-compose/deploy_app.sh
 
-### MAVEN (option 1)
-mvn -f sakuli-tests-maven/pom.xml clean verify
-
-### DOCKER-COMPOSE (option 2)
-# start the app
-cd app-deployment-docker-compose
-docker-compose kill && docker-compose rm -f && docker-compose up -d
-# build and start the 4 sakuli-tests in parallel
-cd ../sakuli-tests
-docker-compose kill && docker-compose rm -f && docker-compose build && docker-compose up
+#start tests
+sakuli-tests/execute_all.sh
+#start tests for monitoring
+sakuli-tests/execute_all_4_monitoring.sh
             </code></pre>
             <!-- @formatter:on-->
             <div style="padding-top: 0.5em"></div>
