@@ -217,14 +217,14 @@ docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:rw rasch/ink
             <pre><code class="hljs-shebang" data-trim contenteditable="false">
 ### start the docker container with VNC interface
 # connect via URL: http://localhost:6911/vnc_auto.html?password=vncpassword
-docker run -it -p 5911:5901 -p 6911:6901 consol/centos-xfce-vnc
-docker run -it -p 5912:5901 -p 6912:6901 consol/ubuntu-xfce-vnc
+docker run -it -p 5911:5901 -p 6911:6901 consol/ubuntu-xfce-vnc
+docker run -it -p 5912:5901 -p 6912:6901 consol/centos-xfce-vnc
             </code></pre>
             <!-- @formatter:on-->
             <div style="padding-top: 0.7em;">
                 <img width="42%" style="vertical-align:top; margin-right: 0.5em" src="pics/inkscape.png">
                 <a target="_blank"
-                   href="vnc_overview_local.html">
+                   href="http://localhost:6911/vnc_auto.html?password=vncpassword">
                     <img width="42%" style="vertical-align: top; margin-left: 0.5em;" src="pics/centos_xfce_vnc.png">
                 </a>
             </div>
@@ -866,7 +866,7 @@ sakuli-tests/execute_all_4_monitoring.sh
         <!--<h1 class="coloured" style="text-transform: inherit">Fragen?</h1>-->
         <!--</section>-->
         <section>
-            <h1 class="coloured" style="text-transform: inherit">Thank you Hamburg!</h1>
+            <h1 class="coloured" style="text-transform: inherit">Thank's JUGM</h1>
 
             <table style="font-size: x-large;margin-top: 4em" width="70%">
                 <tr>
@@ -877,12 +877,12 @@ sakuli-tests/execute_all_4_monitoring.sh
                     <td style="vertical-align: middle; line-height: 1.5em">
                         <b>Tobias Schneck</b>
                         <br/>
-                        <a style=" padding-right: 1em;
-                    " href="mailto:tobias.schneck@consol.de">tobias.schneck@consol.de</a>
-                        <br/>
-                        <a href="https://twitter.com/toschneck">
+                        <a style="float: left; padding-right: 1em;
+                        " href="mailto:tobias.schneck@consol.de">tobias.schneck@consol.de</a>
+                        <!--<br/>-->
+                        <a style="float: left; padding-left: 15px" href="https://twitter.com/toschneck">
                             <img src="pics/twitter_toschneck.png"
-                                 style="vertical-align: top; box-shadow: none; height: 1.1em; margin-top: 0.25em">
+                            style="vertical-align: top; box-shadow: none; height: 1.1em; margin-top: 0.25em">
                         </a>
                     </td>
                 </tr>
