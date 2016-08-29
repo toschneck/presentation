@@ -154,8 +154,8 @@
         <section>
             <h2 style="padding-bottom: 0.2em">Characteristics of End-2-End Testing</h2>
             <div><img class="image" src="pics/gear.png"
-                 style="height: 4em; border: 0; box-shadow: none; margin: 0em; padding-bottom: 0.2em">
-                </div>
+                      style="height: 4em; border: 0; box-shadow: none; margin: 0em; padding-bottom: 0.2em">
+            </div>
             <ul>
                 <li style="padding-top: 0" class="coloured">Different types of testing:</li>
                 <ul style="font-size: large">
@@ -170,6 +170,19 @@
                 <!--<li class="coloured">Testumgebung muss möglichst nah an der <br/>End-User-Umgebung sein</li>-->
                 <li style="padding-top: 0" class="coloured">Manual effort<b> > </b>effort for test automation</li>
             </ul>
+        </section>
+
+        <section>
+            <h2 style="margin: 0">Virtual Machines vs. Container
+                <br/><span style="font-size: x-large;">(explained on the example of Docker)</span></h2>
+            <img width="95%" src="pics/vm_vs_docker.png">
+        </section>
+        <section>
+            <h2>Immutable Filesystem Layers
+                <p style="font-size: x-large">(explained on the example of Docker)</p></h2>
+            <div style="padding-top: 0em;">
+                <img width="60%" src="pics/docker-layers.png">
+            </div>
         </section>
 
         <section>
@@ -192,18 +205,6 @@
             </ul>
         </section>
 
-        <!--<section>-->
-        <!--<h2 style="margin: 0">Virtuelle Maschinen vs. Container-->
-        <!--<br/><span style="font-size: x-large;">(am Beispiel Docker)</span></h2>-->
-        <!--<img width="95%" src="pics/vm_vs_docker.png">-->
-        <!--</section>-->
-        <!--<section>-->
-        <!--<h2>Immutable Filesystem Layers-->
-        <!--<p style="font-size: x-large">(am Beispiel Docker)</p></h2>-->
-        <!--<div style="padding-top: 0.5em;">-->
-        <!--<img width="60%" src="pics/docker-layers.png">-->
-        <!--</div>-->
-        <!--</section>-->
 
         <section>
             <a target="_blank" href="video/containerized_gui.mp4">
@@ -326,7 +327,8 @@ docker run -it -p 5912:5901 -p 6912:6901 consol/centos-xfce-vnc
                     <td style="text-align: center"><img src="pics/bubble_green.png"
                                                         class="bubbels"></td>
                     <td class="bubbels-text">
-                        Restricted to browser content
+                        Testing native UI content
+                        <div style="font-size: large">(beside of browser content, like PDF's or plugins)</div>
                     </td>
                 </tr>
                 <tr>
@@ -380,10 +382,64 @@ docker run -it -p 5912:5901 -p 6912:6901 consol/centos-xfce-vnc
                 </tbody>
             </table>
         </section>
-
+        <section>
+            <table style="margin-bottom: 0.5em;">
+                <tbody>
+                <tr style="padding-bottom: 0.2em">
+                    <td width="40%"
+                        style="text-align: center; padding:0; background: url(pics/dom.png) no-repeat bottom; background-size: 80%">
+                        <img style="border: 0; padding: 0; margin: 0; height: 2em; box-shadow: none"
+                             src="pics/sahi.png">
+                    </td>
+                    <td style="text-align: center"><img
+                            style="height: 6em; border: 0; padding: 0; margin: 0; box-shadow: none"
+                            src="pics/3maennchen_mit_sakuli.png"></td>
+                    <td width="40%"
+                        style="text-align: center;padding: 0; background: url(pics/screen_shots.png) no-repeat bottom; background-size: 77%">
+                        <img style="border: 0; padding: 0; margin: 0;height: 2em; box-shadow: none"
+                             src="pics/sikuli.png">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <table>
+                <tbody>
+                <tr style="font-size: 0.9em;">
+                    <td width="47%" style="padding: 0; vertical-align: top; font-size: 0.7em">
+                        <ul>
+                            <li>Area: <b>Browser</b> content <br/>(e.g. HTML pages, single page apps)</li>
+                            <li>Object identification by DOM elements</li>
+                            <li>Detects when Page/AJAX-Requests are loaded (no waits needed)</li>
+                            <li>Can handle with modern web frameworks</li>
+                            <li>Recorder functionality</li>
+                            <li>Assert functionality</li>
+                            <li>Java-API</li>
+                        </ul>
+                        <!--<div class="backgrounds">-->
+                        <!--<img src="pics/dom.png" style="opacity: 0.7; border: 0;">-->
+                        <!--</div>-->
+                    </td>
+                    <td style="padding: 10px"></td>
+                    <td width="47%" style="padding: 0; vertical-align: top; font-size: 0.7em">
+                        <ul>
+                            <li>Area: <b>Screen</b> content <br/>(e.g. rich clients, browser plugins)</li>
+                            <li>Object identification by image patterns (screenshot snippets)</li>
+                            <li>Not restricted to a browser, validates and controls what users would see</li>
+                            <li>Flexible region patterns for the screen navigation</li>
+                            <li>OCR features
+                                <small style="vertical-align: baseline">(experimental)</small>
+                            </li>
+                            <li>Implemented on top of <b>java.awt.Robot</b> and <b>openCV</b></li>
+                            <li>Java API</li>
+                        </ul>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
         <section>
             <h2 style="margin-bottom: 0.2em; padding-bottom: 0.3em"><img style="height: 1.5em;box-shadow: none"
-                                                                       src="pics/sakuli-logo.png"/>
+                                                                         src="pics/sakuli-logo.png"/>
                 Monitoring Integration</h2>
             <img style="margin-left: 2em;box-shadow: none" src="css/theme/pics/green_hook_list.png">
             Nagios
@@ -396,62 +452,7 @@ docker run -it -p 5912:5901 -p 6912:6901 consol/centos-xfce-vnc
             </a>
         </section>
 
-        <!--<section>-->
-        <!--<table style="margin-bottom: 0.5em;">-->
-        <!--<tbody>-->
-        <!--<tr style="padding-bottom: 0.2em">-->
-        <!--<td width="40%"-->
-        <!--style="text-align: center; padding:0; background: url(pics/dom.png) no-repeat bottom; background-size: 80%">-->
-        <!--<img style="border: 0; padding: 0; margin: 0; height: 2em; box-shadow: none"-->
-        <!--src="pics/sahi.png">-->
-        <!--</td>-->
-        <!--<td style="text-align: center"><img-->
-        <!--style="height: 6em; border: 0; padding: 0; margin: 0; box-shadow: none"-->
-        <!--src="pics/3maennchen_mit_sakuli.png"></td>-->
-        <!--<td width="40%"-->
-        <!--style="text-align: center;padding: 0; background: url(pics/screen_shots.png) no-repeat bottom; background-size: 77%">-->
-        <!--<img style="border: 0; padding: 0; margin: 0;height: 2em; box-shadow: none"-->
-        <!--src="pics/sikuli.png">-->
-        <!--</td>-->
-        <!--</tr>-->
-        <!--</tbody>-->
-        <!--</table>-->
-        <!--<table>-->
-        <!--<tbody>-->
-        <!--<tr style="font-size: 0.9em;">-->
-        <!--<td width="47%" style="padding: 0; vertical-align: top; font-size: 0.7em">-->
-        <!--<ul>-->
-        <!--<li>Aktionsbereich: Browser-Inhalt <br/>(z.B. kein Scrollen notwendig)</li>-->
-        <!--<li>Objekt-Adressierung von DOM-Elementen</li>-->
-        <!--<li>Java-API</li>-->
-        <!--<li>Erkennt, wenn Seiten/AJAX-Requests fertig geladen sind</li>-->
-        <!--<li>Guter Umgang mit AJAX & Web-Frameworks</li>-->
-        <!--<li>Recorder-Funktionalität</li>-->
-        <!--<li>Assert Funktionalität</li>-->
-        <!--</ul>-->
-        <!--&lt;!&ndash;<div class="backgrounds">&ndash;&gt;-->
-        <!--&lt;!&ndash;<img src="pics/dom.png" style="opacity: 0.7; border: 0;">&ndash;&gt;-->
-        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-        <!--</td>-->
-        <!--<td style="padding: 10px"></td>-->
-        <!--<td width="47%" style="padding: 0; vertical-align: top; font-size: 0.7em">-->
-        <!--<ul>-->
-        <!--<li>Aktionsbereich: Bildschirm-Inhalt <br/>(Scrollen u.U. notwendig)</li>-->
-        <!--<li>Objekt-Adressierung über Grafik-Patterns</li>-->
-        <!--<li>Java-API</li>-->
-        <!--<li>Keine Beschränkung auf den Browser</li>-->
-        <!--<li>Sieht und steuert das, was der User sieht</li>-->
-        <!--<li>Flexible Region-Pattern</li>-->
-        <!--<li>OCR-Features-->
-        <!--<small style="vertical-align: baseline">(experimental)</small>-->
-        <!--</li>-->
-        <!--<li>Setzt auf <b>java.awt.Robot</b> und <b>openCV</b> auf</li>-->
-        <!--</ul>-->
-        <!--</td>-->
-        <!--</tr>-->
-        <!--</tbody>-->
-        <!--</table>-->
-        <!--</section>-->
+
         <!--</section>-->
         <!--<section>-->
         <!--<h2>-->
@@ -517,165 +518,168 @@ docker run -it -p 5912:5901 -p 6912:6901 consol/centos-xfce-vnc
         <!--&lt;!&ndash;</p>&ndash;&gt;-->
         <!--&lt;!&ndash;&lt;!&ndash;src="pics/video_preview.png"></a>&ndash;&gt;&ndash;&gt;-->
         <!--&lt;!&ndash;</section>&ndash;&gt;-->
-        <!--<section>-->
-        <!--<h2>Aufbau der Testdefinition</h2>-->
-        <!--<img width="40%" class="image" src="pics/test_suite_aufbau.png">-->
-        <!--</section>-->
-        <!--<section>-->
-        <!--<h3 style="text-transform: inherit">Test Case Aufbau</h3>-->
-        <!--&lt;!&ndash; @formatter:off &ndash;&gt;-->
+        <section>
+
+            <section>
+                <h2>Test definition (Java Script)</h2>
+                <img width="50%" class="image" src="pics/test_suite_aufbau.png">
+            </section>
+            <section>
+                <h3 style="text-transform: inherit">Test Case Structure</h3>
+                <!-- @formatter:off -->
+        <pre><code class="javascript" data-trim contenteditable="false">
+// testcase.js
+
+/*************************************
+* Initialization
+*************************************/
+_dynamicInclude($includeFolder);
+var testCase = new TestCase(60, 70);
+var env = new Environment();
+var appNotepad = new Application("gedit");
+var region = new Region();
+
+/******************************
+* Description of the test case
+******************************/
+try {
+
+    //...
+
+/************************************************
+* Exception handling and shutdown of test case
+**********************************************/
+} catch (e) {
+    testCase.handleException(e);
+} finally {
+    testCase.saveResult();
+}
+        </code></pre>
+            <!-- @formatter:on -->
+            </section>
+
+            <section>
+                <h3 style="text-transform: inherit">Call all Sahi functions</h3>
+                <!-- @formatter:off -->
+        <pre><code class="javascript" data-trim contenteditable="false">
+// testacase.js
+/************************
+* Call Sahi Functions
+***********************/
+
+_navigateTo("http://sahi.example.com/_s_/dyn/Driver_initialized");
+_highlight(_link("SSL Manager"));
+_isVisible(_link("SSL Manager"));
+_highlight(_link("Logs"))
+_click(_link("Logs"))
+
+testCase.endOfStep("Test Sahi landing page", 5);
+        </code></pre>
+          <!-- @formatter:on -->
+            </section>
+
+            <section>
+                <h3 style="text-transform: inherit">Fluent API for UI testing</h3>
+                <!-- @formatter:off -->
+        <pre><code class="javascript" data-trim contenteditable="false">
+// testacase.js
+
+/*** open calculator app ***/
+var calculatorApp = new Application("galculator")
+    .open();
+testCase.endOfStep("Open Calculator", 3);
+
+/*** calculate 525 + 100 ***/
+var calculatorRegion = calculatorApp.getRegion();
+calculatorRegion.type("525")
+    .find("plus.png")
+    .click()
+    .type("100")
+    .find("calculate")
+    .click();
+
+testCase.endOfStep("calculate 525 +100", 20);
+        </code></pre>
+            <!-- @formatter:on -->
+            </section>
+
+            <section>
+                <h3 style="text-transform: inherit">Custom Functions</h3>
+                <!-- @formatter:off -->
+        <pre><code class="javascript" data-trim contenteditable="false">
+// e.g. excluded into a separate common.js
+
+/**********
+* Combine click and highlight
+*********/
+function clickHighlight($selector) {
+    _highlight($selector);
+    _click($selector);
+}
+
+/***************
+* Open PDF in native viewer
+**************/
+var PDF_EDITOR_NAME = "masterpdfeditor3";
+
+function openPdfFile(pdfFileLocation) {
+    return new Application(PDF_EDITOR_NAME + ' "' + pdfFileLocation + '"').open();
+}
+
+        </code></pre>
+          <!-- @formatter:on -->
+            </section>
+
+            <!--<section>-->
+            <!--<h3 style="text-transform: inherit">Definition eines Ablaufs</h3>-->
+            <!--&lt;!&ndash; @formatter:off &ndash;&gt;-->
         <!--<pre><code class="javascript" data-trim contenteditable="false">-->
-            <!--// tc.js-->
-            <!--/*************************************-->
-            <!--* Initialization of the JAVA backend-->
-            <!--* and set warning and critical time-->
-            <!--*************************************/-->
-            <!--_dynamicInclude($includeFolder);-->
-            <!--var testCase = new TestCase(60, 70);-->
-            <!--var env = new Environment();-->
-            <!--var appNotepad = new Application("gedit");-->
-            <!--var region = new Region();-->
-
-            <!--/******************************-->
-            <!--* Description of the test case-->
-            <!--******************************/-->
-            <!--try {-->
-
-                <!--//...-->
-
-            <!--/************************************************-->
-            <!--* Exception handling and shutdown of test case-->
-            <!--**********************************************/-->
-            <!--} catch (e) {-->
-                <!--testCase.handleException(e);-->
-            <!--} finally {-->
-                <!--testCase.saveResult();-->
-            <!--}-->
-        <!--</code></pre>-->
-            <!--&lt;!&ndash; @formatter:on &ndash;&gt;-->
-        <!--</section>-->
-
-        <!--<section>-->
-        <!--<h3 style="text-transform: inherit">Aufruf von Sahi-Funktionen</h3>-->
-        <!--&lt;!&ndash; @formatter:off &ndash;&gt;-->
-        <!--<pre><code class="javascript" data-trim contenteditable="false">-->
-            <!--// tc.js-->
+            <!--// testacase.js-->
             <!--/************************-->
-            <!--* Call Sahi Functions-->
+            <!--* Some Variables-->
             <!--***********************/-->
+            <!--var $cl_home = "http://labs.consol.de/lang/en";-->
+            <!--var $cl_projekte = "Projects";-->
+            <!--var $cl_c_mysql_h = "check_mysql_health";-->
+            <!--var $cl_c_oracle_h = "check_oracle_health";-->
 
-            <!--_navigateTo("http://labs.consol.de/lang/en");-->
-            <!--_highlight(_link("Projects"));-->
-            <!--_click(_link("Projects"));-->
-            <!--_highlight(_link("check_mysql_health"));-->
-            <!--_click(_link("check_mysql_health"));-->
-            <!--_highlight(_link("check_oracle_health"));-->
-            <!--_click(_link("check_oracle_health"));-->
+            <!--/************************-->
+            <!--* Step for Notepad-->
+            <!--***********************/-->
+            <!--appNotepad.open();-->
+            <!--env.type("Welcome to Sakuli!\n")-->
+                <!--.type("I will help you to test your projects, like webapplications...\n")-->
+                <!--.sleep(2);-->
+            <!--testCase.endOfStep("notepad", 20);-->
+
+            <!--/************************-->
+            <!--* Step for labs.consol-->
+            <!--***********************/-->
+            <!--switchWindow();-->
+            <!--_navigateTo($cl_home);-->
+            <!--_highlight(_link($cl_projekte));-->
+            <!--_click(_link($cl_projekte));-->
+
+            <!--env.sleep(5).takeScreenshot("C:\\sakuli\\testscreenshot_after_5sec.png");-->
+            <!--_highlight(_link($cl_c_mysql_h));-->
+            <!--_click(_link($cl_c_mysql_h));-->
+            <!--_highlight(_link($cl_c_oracle_h));-->
+            <!--_click(_link($cl_c_oracle_h));-->
             <!--_setValue(_textbox("s"), "nagios");-->
             <!--_click(_link("Home[1]"));-->
-
             <!--testCase.endOfStep("project", 20);-->
-        <!--</code></pre>-->
-          <!--&lt;!&ndash; @formatter:on &ndash;&gt;-->
-        <!--</section>-->
 
-        <!--<section>-->
-        <!--<h3 style="text-transform: inherit">Fluent API</h3>-->
-        <!--&lt;!&ndash; @formatter:off &ndash;&gt;-->
-        <!--<pre><code class="javascript" data-trim contenteditable="false">-->
-            <!--// tc.js-->
-            <!--/*** calculator app ***/-->
-            <!--var calculatorApp = new Application("galculator")-->
-                <!--.open();-->
-            <!--testCase.endOfStep("Open Calculator", 3);-->
-
-            <!--/*** calculate 525 + 100 ***/-->
-            <!--var calculatorRegion = calculatorApp.getRegion();-->
-            <!--calculatorRegion.type("525")-->
-                <!--.find("plus.png")-->
-                <!--.click()-->
-                <!--.type("100")-->
-                <!--.find("calculate")-->
-                <!--.click();-->
-
-            <!--testCase.endOfStep("calculate 525 +100", 20);-->
+            <!--/*****************-->
+            <!--* print test client-->
+            <!--*****************/-->
+            <!--backToNotepad();-->
+            <!--env.type("I can also test client applications, like gedit...\n")-->
+                <!--.sleep(2);-->
+            <!--testCase.endOfStep("print_test_client", 10);-->
         <!--</code></pre>-->
             <!--&lt;!&ndash; @formatter:on &ndash;&gt;-->
-        <!--</section>-->
-
-        <!--<section>-->
-        <!--<h3 style="text-transform: inherit">Custom Functions</h3>-->
-        <!--&lt;!&ndash; @formatter:off &ndash;&gt;-->
-        <!--<pre><code class="javascript" data-trim contenteditable="false">-->
-            <!--// tc.js-->
-            <!--/**********-->
-            <!--* TAB+ALT-->
-            <!--*********/-->
-            <!--function switchWindow() {-->
-                <!--env.type(Key.TAB, Key.ALT);-->
-            <!--}-->
-
-            <!--/***************-->
-            <!--* Go back to notepad-->
-            <!--**************/-->
-            <!--function backToNotepad() {-->
-                <!--switchWindow();-->
-                <!--env.type("Finish!\n\n");-->
-            <!--}-->
-        <!--</code></pre>-->
-          <!--&lt;!&ndash; @formatter:on &ndash;&gt;-->
-        <!--</section>-->
-
-        <!--&lt;!&ndash;<section>&ndash;&gt;-->
-        <!--&lt;!&ndash;<h3 style="text-transform: inherit">Definition eines Ablaufs</h3>&ndash;&gt;-->
-        <!--&lt;!&ndash;&lt;!&ndash; @formatter:off &ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;<pre><code class="javascript" data-trim contenteditable="false">&ndash;&gt;-->
-            <!--&lt;!&ndash;// tc.js&ndash;&gt;-->
-            <!--&lt;!&ndash;/************************&ndash;&gt;-->
-            <!--&lt;!&ndash;* Some Variables&ndash;&gt;-->
-            <!--&lt;!&ndash;***********************/&ndash;&gt;-->
-            <!--&lt;!&ndash;var $cl_home = "http://labs.consol.de/lang/en";&ndash;&gt;-->
-            <!--&lt;!&ndash;var $cl_projekte = "Projects";&ndash;&gt;-->
-            <!--&lt;!&ndash;var $cl_c_mysql_h = "check_mysql_health";&ndash;&gt;-->
-            <!--&lt;!&ndash;var $cl_c_oracle_h = "check_oracle_health";&ndash;&gt;-->
-
-            <!--&lt;!&ndash;/************************&ndash;&gt;-->
-            <!--&lt;!&ndash;* Step for Notepad&ndash;&gt;-->
-            <!--&lt;!&ndash;***********************/&ndash;&gt;-->
-            <!--&lt;!&ndash;appNotepad.open();&ndash;&gt;-->
-            <!--&lt;!&ndash;env.type("Welcome to Sakuli!\n")&ndash;&gt;-->
-                <!--&lt;!&ndash;.type("I will help you to test your projects, like webapplications...\n")&ndash;&gt;-->
-                <!--&lt;!&ndash;.sleep(2);&ndash;&gt;-->
-            <!--&lt;!&ndash;testCase.endOfStep("notepad", 20);&ndash;&gt;-->
-
-            <!--&lt;!&ndash;/************************&ndash;&gt;-->
-            <!--&lt;!&ndash;* Step for labs.consol&ndash;&gt;-->
-            <!--&lt;!&ndash;***********************/&ndash;&gt;-->
-            <!--&lt;!&ndash;switchWindow();&ndash;&gt;-->
-            <!--&lt;!&ndash;_navigateTo($cl_home);&ndash;&gt;-->
-            <!--&lt;!&ndash;_highlight(_link($cl_projekte));&ndash;&gt;-->
-            <!--&lt;!&ndash;_click(_link($cl_projekte));&ndash;&gt;-->
-
-            <!--&lt;!&ndash;env.sleep(5).takeScreenshot("C:\\sakuli\\testscreenshot_after_5sec.png");&ndash;&gt;-->
-            <!--&lt;!&ndash;_highlight(_link($cl_c_mysql_h));&ndash;&gt;-->
-            <!--&lt;!&ndash;_click(_link($cl_c_mysql_h));&ndash;&gt;-->
-            <!--&lt;!&ndash;_highlight(_link($cl_c_oracle_h));&ndash;&gt;-->
-            <!--&lt;!&ndash;_click(_link($cl_c_oracle_h));&ndash;&gt;-->
-            <!--&lt;!&ndash;_setValue(_textbox("s"), "nagios");&ndash;&gt;-->
-            <!--&lt;!&ndash;_click(_link("Home[1]"));&ndash;&gt;-->
-            <!--&lt;!&ndash;testCase.endOfStep("project", 20);&ndash;&gt;-->
-
-            <!--&lt;!&ndash;/*****************&ndash;&gt;-->
-            <!--&lt;!&ndash;* print test client&ndash;&gt;-->
-            <!--&lt;!&ndash;*****************/&ndash;&gt;-->
-            <!--&lt;!&ndash;backToNotepad();&ndash;&gt;-->
-            <!--&lt;!&ndash;env.type("I can also test client applications, like gedit...\n")&ndash;&gt;-->
-                <!--&lt;!&ndash;.sleep(2);&ndash;&gt;-->
-            <!--&lt;!&ndash;testCase.endOfStep("print_test_client", 10);&ndash;&gt;-->
-        <!--&lt;!&ndash;</code></pre>&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash; @formatter:on &ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;</section>&ndash;&gt;-->
-        <!--</section>-->
+            <!--</section>-->
+        </section>
 
         <section>
             <h2>Sakuli End-2-End Testing Container</h2>
@@ -883,7 +887,7 @@ sakuli-tests/execute_all_4_monitoring.sh
                         <!--<br/>-->
                         <a style="float: left; padding-left: 15px" href="https://twitter.com/toschneck">
                             <img src="pics/twitter_toschneck.png"
-                            style="vertical-align: top; box-shadow: none; height: 1.1em; margin-top: 0.25em">
+                                 style="vertical-align: top; box-shadow: none; height: 1.1em; margin-top: 0.25em">
                         </a>
                     </td>
                 </tr>
