@@ -292,6 +292,11 @@ body {
   background-size: 20%;
   background-repeat: no-repeat; }
 
+.reveal .fully {
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat; }
+
 .reveal .slide-number {
   color: #008BB8;
   right: 50%;

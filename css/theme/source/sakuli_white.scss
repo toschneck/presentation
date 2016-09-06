@@ -54,6 +54,12 @@ section.has-dark-background {
   background-repeat: no-repeat;
 }
 
+.reveal .fully {
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
 .reveal .slide-number {
   color: $linkColorLightBlue;
   right: 50%;
