@@ -298,7 +298,7 @@ body {
   background-repeat: no-repeat; }
 
 .reveal .slide-number {
-  color: #008BB8;
+  color: #0072af;
   right: 50%;
   opacity: 1;
   font-size: 0.8em;
@@ -350,13 +350,13 @@ body {
   color: saddlebrown; }
 
 .reveal .hljs-number, .nginx .hljs-number {
-  color: #008BB8; }
+  color: #0072af; }
 
 .reveal .hljs-string, .nginx .hljs-string {
   color: darkgreen; }
 
 .reveal .coloured {
-  color: #008BB8; }
+  color: #0072af; }
 
 .reveal .bubbels {
   max-height: 42px;

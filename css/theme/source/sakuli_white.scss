@@ -10,6 +10,8 @@
 // Include theme-specific fonts
 @import url(../../lib/font/source-sans-pro/source-sans-pro.css);
 
+$colorSoftwareQsTag: #0072af;
+
 // Override theme settings (see ../template/settings.scss)
 $backgroundColor: #fff;
 
@@ -26,7 +28,7 @@ $headingFontWeight: 600;
 //$linkColor: #2a76dd;
 //$linkColorLightBlue: #327daf;
 $linkColor: #00aada;
-$linkColorLightBlue: #008BB8;
+$linkColorLightBlue: $colorSoftwareQsTag;
 //$linkColor: #55d400;
 //$linkColorLightBlue: #55d400;
 $linkColorHover: lighten($linkColor, 15%);

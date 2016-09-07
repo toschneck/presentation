@@ -32,7 +32,7 @@
 <div class="reveal">
     <div class="slides">
         <section class="fully" data-background-image="pics/titelfolie_qs_tag_full.png">
-            <div style="width: 100%; height: 10em;"> </div>
+            <div style="width: 100%; height: 10em;"></div>
             <!--<script>Reveal.configure({ controls: false });</script>-->
             <!--<h2 style="padding-top: 2em; margin-bottom: 0;text-transform: none">-->
             <!--Containerized End-2-End Testing-->
@@ -58,18 +58,18 @@
             <!--</div>-->
         </section>
 
-        <!-- <section>
+        <section>
             <h2>Agenda</h2>
             <b>
                 <ol class="coloured">
-                    <li>Einordnung End-2-End-Testing</li>
-                    <li>Welche Vorteile bieten <br/>Container-Technologien?</li>
-                    <li>Der Sakuli End-2-End-Testing Container</li>
-                    <li>Integration in die CI-Umgebung</li>
+                    <li>Einordnung End-2-End Tests</li>
+                    <li>Nutzen Container-Technologie</li>
+                    <li>Überblick Sakuli Framework</li>
+                    <li>DEMO</li>
                     <li>Ausblick</li>
                 </ol>
             </b>
-        </section> -->
+        </section>
 
         <!--<section>-->
         <!--<h2>Motivation für End-2-End-Testing</h2>-->
@@ -88,7 +88,7 @@
         <!--</section>-->
 
         <section>
-            <h2>Test Pyramid</h2>
+            <h2>Testpyramide</h2>
             <table>
                 <tr>
                     <td><img class="image" src="pics/test_pyramide.png"
@@ -97,9 +97,9 @@
                     <td width="37%" style="vertical-align: middle;" class="blue_hook">
                         <ul>
                             <li><b>Robust</b></li>
-                            <li><b>Independent</b></li>
-                            <li><b>Isolated</b></li>
-                            <li><b>Fast</b></li>
+                            <li><b>Unabhängig</b></li>
+                            <li><b>Isoliert</b></li>
+                            <li><b>Schnell</b></li>
                         </ul>
                     </td>
                 </tr>
@@ -139,57 +139,65 @@
         <!--</section>-->
 
         <section>
-            <h2 style="padding-bottom: 0.2em">Characteristics of End-2-End Testing</h2>
+            <h2 style="padding-bottom: 0.2em">Besonderheiten bei End-2-End Tests</h2>
             <div><img class="image" src="pics/gear.png"
-                      style="height: 4em; border: 0; box-shadow: none; margin: 0em; padding-bottom: 0.2em">
+                      style="height: 4.5em; border: 0; box-shadow: none; margin: 0em; padding-bottom: 0.2em">
             </div>
             <ul>
-                <li style="padding-top: 0" class="coloured">Different types of testing:</li>
+                <li style="padding-top: 0" class="coloured">Unterschiedliche Testarten:</li>
                 <ul style="font-size: large">
-                    <li>Regression tests</li>
-                    <li>Functional approval tests</li>
+                    <li>Regressionstests</li>
+                    <li>Funktionale Abnahmetests</li>
                 </ul>
-                <li style="padding-top: 0" class="coloured">Parallel tests with GUIs are complex</li>
+                <li style="padding-top: 0" class="coloured">Parallele Tests mit GUIs sind komplex!</li>
                 <ul style="font-size: large">
-                    <li>Stateful tests: user logins, sessions, history</li>
-                    <li>Setup and cleanup of test data</li>
+                    <li>Stateful Tests: User-Logins, Sessions, verlaufsbasierte Daten</li>
+                    <li>Setup und Cleanup von Testdaten</li>
                 </ul>
                 <!--<li class="coloured">Testumgebung muss möglichst nah an der <br/>End-User-Umgebung sein</li>-->
-                <li style="padding-top: 0" class="coloured">Manual effort<b> > </b>effort for test automation</li>
+                <li style="padding-top: 0" class="coloured">Manueller Aufwand <b>></b> Aufwand für Automatisierung</li>
             </ul>
         </section>
 
+
+        <!--<section>-->
+        <!--<h2>Immutable Filesystem Layers-->
+        <!--<p style="font-size: x-large">(explained on the example of Docker)</p></h2>-->
+        <!--<div style="padding-top: 0em;">-->
+        <!--<img width="60%" src="pics/docker-layers.png">-->
+        <!--</div>-->
+        <!--</section>-->
+
         <section>
-            <h2 style="margin: 0">Virtual Machines vs. Container
-                <br/><span style="font-size: x-large;">(explained on the example of Docker)</span></h2>
-            <img width="95%" src="pics/vm_vs_docker.png">
-        </section>
-        <section>
-            <h2>Immutable Filesystem Layers
-                <p style="font-size: x-large">(explained on the example of Docker)</p></h2>
-            <div style="padding-top: 0em;">
-                <img width="60%" src="pics/docker-layers.png">
-            </div>
+            <h1>2. Nutzen Container-Technologie</h1>
         </section>
 
         <section>
-            <h2 style="padding-bottom: 0.2em">Advantages of Container Technology</h2>
-            <img class="image" src="pics/container-technology.jpg"
-                 style="height: 4em; border: 0; box-shadow: none; margin: 0em; padding-bottom: 0.2em">
-            <ul class=" blue_hook">
-                <li><b class="coloured">Isolation</b> of environments</li>
-                <li><b class="coloured">Repository</b> for versioning and distribution</li>
-                <li><b class="coloured">Reproducible</b> application environment</li>
-                <ul style="list-style: disc">
-                    <li>Dockerfile, docker-compose.yml</li>
+            <section>
+                <h2 style="padding-bottom: 0.2em">Vorteile der Container-Technologie</h2>
+                <img class="image" src="pics/container-technology.jpg"
+                     style="height: 4em; border: 0; box-shadow: none; margin: 0em; padding-bottom: 0.2em">
+                <ul class=" blue_hook">
+                    <li><b class="coloured">Isolation</b> von Umgebungen</li>
+                    <li><b class="coloured">Repository</b> für Versionierung und Verteilung</li>
+                    <li><b class="coloured">Reproduzierbarer Aufbau</b> von Umgebungen</li>
+                    <ul style="list-style: disc">
+                        <li>Dockerfile, docker-compose.yml</li>
+                    </ul>
+                    <li>Start von Containern <b class="coloured">on-the-fly</b></li>
+                    <li>Optimiert für <b class="coloured">Parallelisierung</b></li>
+                    <ul style="list-style: disc">
+                        <li>Geteilter Linux Kernel (Speicherplatz, CPU, RAM)</li>
+                        <li>Cloud-ready (Kubernetes, OpenShift, Mesos)</li>
+                    </ul>
                 </ul>
-                <li>Starting containers <b class="coloured">on-the-fly</b></li>
-                <li>Optimized for <b class="coloured">parallel execution</b></li>
-                <ul style="list-style: disc">
-                    <li>Less memory overhead</li>
-                    <li>Shared Linux kernel</li>
-                </ul>
-            </ul>
+            </section>
+
+            <section>
+                <h2 style="margin: 0">Virtuelle Maschinen vs. Container
+                    <br/><span style="font-size: x-large;">(am Beispiel Docker)</span></h2>
+                <img width="95%" src="pics/vm_vs_docker.png">
+            </section>
         </section>
 
 
@@ -198,17 +206,18 @@
                 <h2>Containerized GUIs </h2>
             </a>
             <!-- @formatter:off-->
-            <pre><code class="hljs-shebang" data-trim contenteditable="false">
+            <div data-markdown contenteditable="false">
+```bash
 ### start the docker container via x-forwarding
 docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:rw rasch/inkscape
-            </code></pre>
-
-            <pre><code class="hljs-shebang" data-trim contenteditable="false">
+```
+```bash
 ### start the docker container with VNC interface
 # connect via URL: http://localhost:6911/vnc_auto.html?password=vncpassword
 docker run -it -p 5911:5901 -p 6911:6901 consol/ubuntu-xfce-vnc
 docker run -it -p 5912:5901 -p 6912:6901 consol/centos-xfce-vnc
-            </code></pre>
+```
+            </div>
             <!-- @formatter:on-->
             <div style="padding-top: 0.7em;">
                 <img width="42%" style="vertical-align:top; margin-right: 0.5em" src="pics/inkscape.png">
@@ -267,8 +276,12 @@ docker run -it -p 5912:5901 -p 6912:6901 consol/centos-xfce-vnc
 
         <!--<section>-->
         <section>
+            <h1>3. Überblick Sakuli Framework</h1>
+        </section>
+
+        <section>
             <h2>
-                <div style=" height: 1.5em;">What's provided by <img
+                <div style=" height: 1.5em;">Was bietet <img
                         style="margin-left: 0.2em; box-shadow: none" src="pics/sakuli-logo.png"/> ?
                 </div>
             </h2>
@@ -288,7 +301,7 @@ docker run -it -p 5912:5901 -p 6912:6901 consol/centos-xfce-vnc
                              src="pics/3maennchen_mit_sakuli.png" style=" height: 3em; border: 0; ">
                     </td>
                     <td style="padding: 0; text-align: left; vertical-align: bottom; border-left: 1px">
-                        <h3 style="padding-left: 0.7em;">Category</h3>
+                        <h3 style="padding-left: 0.7em;">Kategorie</h3>
                     </td>
                 </tr>
 
@@ -301,7 +314,7 @@ docker run -it -p 5912:5901 -p 6912:6901 consol/centos-xfce-vnc
                     <td style="text-align: center"><img src="pics/bubble_green.png"
                                                         class="bubbels"></td>
                     <td class="bubbels-text">
-                        Web tests through HTML selectors
+                        Web Tests via HTML-Selektoren
                     </td>
                 </tr>
 
@@ -314,8 +327,8 @@ docker run -it -p 5912:5901 -p 6912:6901 consol/centos-xfce-vnc
                     <td style="text-align: center"><img src="pics/bubble_green.png"
                                                         class="bubbels"></td>
                     <td class="bubbels-text">
-                        Testing native UI content
-                        <div style="font-size: large">(beside of browser content, like PDF's or plugins)</div>
+                        Testen von nativen GUI Inhalten
+                        <div style="font-size: large">(nicht HTML-Inhalte, z. B. PDF's oder Plugins)</div>
                     </td>
                 </tr>
                 <tr>
@@ -338,7 +351,7 @@ docker run -it -p 5912:5901 -p 6912:6901 consol/centos-xfce-vnc
                                                         class="bubbels"></td>
                     <td style="text-align: center"><img src="pics/bubble_green.png"
                                                         class="bubbels"></td>
-                    <td class="bubbels-text">Headless execution</span>                         </td>
+                    <td class="bubbels-text">Headless-Execution</td>
                 </tr>
                 <tr>
                     <td style="text-align: center"><img src="pics/bubble_green.png"
@@ -349,8 +362,8 @@ docker run -it -p 5912:5901 -p 6912:6901 consol/centos-xfce-vnc
                     <td style="text-align: center"><img src="pics/bubble_gray.png"
                                                         class="bubbels"></td>
                     <td class="bubbels-text">
-                        Test writing assistance
-                        <div style="font-size: large">(recorder, screenshot finder)</div>
+                        Unterstützung bei Testerstellung
+                        <div style="font-size: large">(Recorder, Screenshot-Finder)</div>
                     </td>
                 </tr>
                 <tr>
@@ -362,8 +375,8 @@ docker run -it -p 5912:5901 -p 6912:6901 consol/centos-xfce-vnc
                     <td style="text-align: center"><img src="pics/bubble_green.png"
                                                         class="bubbels"></td>
                     <td class="bubbels-text">
-                        Automatable / Test result reporting
-                        <div style="font-size: large">(CI, DB, monitoring environment)</div>
+                        Automatisierbarkeit & Ergebnis-Aufbereitung
+                        <div style="font-size: large">(CI, DB, Monitoring Systeme)</div>
                     </td>
                 </tr>
                 </tbody>
@@ -394,12 +407,12 @@ docker run -it -p 5912:5901 -p 6912:6901 consol/centos-xfce-vnc
                 <tr style="font-size: 0.9em;">
                     <td width="47%" style="padding: 0; vertical-align: top; font-size: 0.7em">
                         <ul>
-                            <li>Area: <b>Browser</b> content <br/>(e.g. HTML pages, single page apps)</li>
-                            <li>Object identification by DOM elements</li>
-                            <li>Detects when Page/AJAX-Requests are loaded (no waits needed)</li>
-                            <li>Can handle with modern web frameworks</li>
-                            <li>Recorder / identifier assistance UI</li>
-                            <li>Assert functionality</li>
+                            <li>Aktionsbereich: <b>Browser</b>-Inhalte <br/>(HTML-Seiten, Single-Page-Apps)</li>
+                            <li>Objekt-Adressierung über <br/><b>DOM-Elemente</b></li>
+                            <li>Erkennt, wenn Seiten/AJAX-Requests fertig geladen sind (keine waits)</li>
+                            <li>Guter Umgang mit modernen Web-Frameworks</li>
+                            <li>Recorder- / Selektoren-UI-Assistent</li>
+                            <li>Assert Funktionen</li>
                         </ul>
                         <!--<div class="backgrounds">-->
                         <!--<img src="pics/dom.png" style="opacity: 0.7; border: 0;">-->
@@ -408,14 +421,14 @@ docker run -it -p 5912:5901 -p 6912:6901 consol/centos-xfce-vnc
                     <td style="padding: 10px"></td>
                     <td width="47%" style="padding: 0; vertical-align: top; font-size: 0.7em">
                         <ul>
-                            <li>Area: <b>Screen</b> content <br/>(e.g. rich clients, browser plugins)</li>
-                            <li>Object identification by image patterns (screenshot snippets)</li>
-                            <li>Not restricted to a browser, validates and controls what users would see</li>
-                            <li>Flexible region patterns for the screen navigation</li>
-                            <li>OCR features
+                            <li>Aktionsbereich: <b>Bildschirm</b> -Inhalte <br/>(z.B. Rich-Clients, Browser-Plugins)</li>
+                            <li>Objekt-Adressierung über <br/><b>Image-Patterns</b> (Mini-Screenshots)</li>
+                            <li>Off-Browser-Testing, sieht und steuert das, was der User sieht</li>
+                            <li>Flexible Region-Patterns für die Navigation innerhalb des Bildschirms</li>
+                            <li>OCR-Features
                                 <small style="vertical-align: baseline">(experimental)</small>
                             </li>
-                            <li>Implemented on top of <b>java.awt.Robot</b> and <b>openCV</b></li>
+                            <li>Nutzt <b>java.awt.Robot</b> und <b>openCV</b></li>
                         </ul>
                     </td>
                 </tr>
@@ -506,7 +519,7 @@ docker run -it -p 5912:5901 -p 6912:6901 consol/centos-xfce-vnc
         <section>
 
             <section>
-                <h2>Test definition (Java Script)</h2>
+                <h2>Test Definition (Java Script)</h2>
                 <img width="50%" class="image" src="pics/test_suite_aufbau.png">
             </section>
             <section>
@@ -544,7 +557,7 @@ try {
             </section>
 
             <section>
-                <h3 style="text-transform: inherit">Call all Sahi Functions</h3>
+                <h3 style="text-transform: inherit">Unterstützung für alle Sahi-Funktionen</h3>
                 <!-- @formatter:off -->
         <pre><code class="javascript" data-trim contenteditable="false">
 // testacase.js
@@ -564,7 +577,7 @@ testCase.endOfStep("Test Sahi landing page", 5);
             </section>
 
             <section>
-                <h3 style="text-transform: inherit">Fluent API for UI Testing</h3>
+                <h3 style="text-transform: inherit">Fluent API für UI-Testing</h3>
                 <!-- @formatter:off -->
         <pre><code class="javascript" data-trim contenteditable="false">
 // testacase.js
@@ -667,11 +680,15 @@ function openPdfFile(pdfFileLocation) {
         </section>
 
         <section>
-            <h2>Sakuli End-2-End Testing Container</h2>
+            <h2>Sakuli End-2-End-Testing Container</h2>
 
             <div style="margin-top: 2em">
                 <img width="100%" style="box-shadow: none" src="pics/container_sakuli.png">
             </div>
+        </section>
+
+        <section>
+            <h1>4. DEMO</h1>
         </section>
 
         <section>
@@ -680,7 +697,8 @@ function openPdfFile(pdfFileLocation) {
             </a>
 
             <!-- @formatter:off-->
-            <pre><code data-trim contenteditable="false">
+            <div data-markdown contenteditable="false">
+```bash
 # start the docker container
 docker run -it -p 5911:5901 -p 6911:6901 consol/sakuli-ubuntu-xfce
 docker run -it -p 5912:5901 -p 6912:6901 consol/sakuli-centos-xfce
@@ -688,7 +706,8 @@ docker run -it -p 5912:5901 -p 6912:6901 consol/sakuli-centos-xfce
 # start in parallel via docker-compose
 # use docker-compos.yml from https://github.com/ConSol/sakuli/tree/master/docker
 docker-compose up
-            </code></pre>
+```
+</div>
             <!-- @formatter:on-->
             <div style="padding-top: 0.4em;">
                 <a target="_blank"
@@ -743,7 +762,8 @@ docker-compose up
             </a>
 
             <!-- @formatter:off-->
-            <pre><code data-trim contenteditable="false">
+            <div data-markdown contenteditable="false">
+```bash
 git clone https://github.com/toschneck/sakuli-example-bakery-testing.git
 
 # start jenkins
@@ -758,7 +778,8 @@ bakery-app/app-deployment-docker-compose/deploy_app.sh
 sakuli-tests/execute_all.sh
 #start tests for monitoring
 sakuli-tests/execute_all_4_monitoring.sh
-            </code></pre>
+```
+</div>
             <!-- @formatter:on-->
             <div style="padding-top: 0.5em"></div>
             <table width="90%">
@@ -779,22 +800,25 @@ sakuli-tests/execute_all_4_monitoring.sh
             </table>
         </section>
 
+        <section>
+            <h1>4. Ausblick</h1>
+        </section>
 
         <section>
             <h2>What's next?</h2>
             <ul style="font-size: 0.8em; padding-top: 1em">
-                <li>Headless execution -
+                <li>Headless-Execution -
                     <b>Linux:</b>
                     VNC & Docker
                     <img style="box-shadow: none" src="css/theme/pics/green_hook_list.png"/>
                     <b>Windows:</b> <b style="color: red; font-size: 1.3em">?</b>
                 </li>
-                <li>Make container <b>OpenShift</b> ready (security, source-2-image)</li>
-                <li><b>Video</b> recording of the test execution (error documentation)</li>
-                <li><b>Web UI</b> to handle Sakuli test suites</li>
-                <li>Connect 3rd-party <b>test management tools</b> (HP QC, TestRail, ...)</li>
-                <li>Improve test <b>result presentation</b> in CI tools</li>
-                <li><b>Selenium</b> as an alternative to Sahi</li>
+                <li>Cloud-ready container für <b>OpenShift</b> (security, source-2-image)</li>
+                <li><b>Video</b>-Aufzeichnung der Testabläufe zur Fehlerdokumentation</li>
+                <li><b>Web-UI</b> für die Test-Suite-Verwaltung und Reporting</li>
+                <li>Externe <b>Test-Management-Systeme</b> anbinden <br/>(HP QC, TestRail, ...)</li>
+                <li>Darstellung von <b>Testergebnissen</b> in CI-Tools verbessern</li>
+                <li><b>Selenium</b> als Alternative zu Sahi ermöglichen</li>
             </ul>
         </section>
 
@@ -856,7 +880,7 @@ sakuli-tests/execute_all_4_monitoring.sh
         <!--<h1 class="coloured" style="text-transform: inherit">Fragen?</h1>-->
         <!--</section>-->
         <section>
-            <h1 class="coloured" style="text-transform: inherit">Thank's Herbstcampus!</h1>
+            <h1 class="coloured" style="text-transform: inherit">Danke Software-QS-Tag!</h1>
 
             <table style="font-size: x-large;margin-top: 4em" width="70%">
                 <tr>
@@ -961,20 +985,21 @@ sakuli-tests/execute_all_4_monitoring.sh
     });
 
     //custom added functionality
-    function isPrintingPdf() {
+    isPrintingPdf = function() {
         return ( /print-pdf/gi ).test(window.location.search);
     }
+    Reveal.showControls = function () {
+        if (Reveal.isFirstSlide()) {
+            Reveal.configure({controls: false});
+        } else {
+            Reveal.configure({controls: true});
+        }
+    };
+
     if (isPrintingPdf()) {
         console.log("PDF - no control functions!");
     } else {
         console.log("NO PDF - override control functions!");
-        Reveal.showControls = function () {
-            if (Reveal.isFirstSlide()) {
-                Reveal.configure({controls: false});
-            } else {
-                Reveal.configure({controls: true});
-            }
-        };
         Reveal.addEventListener('slidechanged', function (event) {
             Reveal.showControls();
         });
