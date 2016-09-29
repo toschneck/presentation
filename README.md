@@ -1,6 +1,6 @@
 ![](pics/contarinerized-salkuli-docker.png)
 
-### Presentation: [Containerized End-2-End Testing](https://rawgit.com/toschneck/presentation/software-qs-tag/index.html#/)
+### Presentation: [Containerized End-2-End Testing](https://rawgit.com/toschneck/presentation/jug-saxony-day/index.html#/)
 <iframe width="854" height="480" src="./index.html" frameborder="0"></iframe>
 
 ### Example: [Sakuli Example Bakery Testing] (https://github.com/toschneck/sakuli-example-bakery-testing)
