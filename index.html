@@ -145,8 +145,9 @@
 
         <section>
             <h2 style="padding-bottom: 0.2em">Characteristics of End-2-End Testing</h2>
-            <img class="image" src="pics/gear.png"
-                 style="height: 5em; border: 0; box-shadow: none; margin: 0em; padding-bottom: 0.2em">
+            <div><img class="image" src="pics/gear.png"
+                      style="height: 4.5em; border: 0; box-shadow: none; margin: 0em; padding-bottom: 0.2em">
+            </div>
             <ul>
                 <li style="padding-top: 0" class="coloured">Different types of testing:</li>
                 <ul style="font-size: large">
@@ -375,7 +376,7 @@ docker run -it -p 5912:5901 -p 6912:6901 consol/centos-xfce-vnc
 
         <section>
             <h2 style="margin-bottom: 0.2em; padding-bottom: 0.3em"><img style="height: 1.5em;box-shadow: none"
-                                                                       src="pics/sakuli-logo.png"/>
+                                                                         src="pics/sakuli-logo.png"/>
                 Monitoring Integration</h2>
             <img style="margin-left: 2em;box-shadow: none" src="css/theme/pics/green_hook_list.png">
             Nagios
@@ -624,9 +625,75 @@ function openPdfFile(pdfFileLocation) {
         <section>
             <section>
                 <h1>Test Definition (Java)</h1>
+                <!-- @formatter:off-->
+                <pre><code class="java" data-trim contenteditable="false">
+public class FirstExampleTest extends AbstractSakuliTest {
+
+    private static final String CITRUS_URL = "http://www.citrusframework.org/";
+    private Environment env;
+    private Region screen;
+
+    @BeforeClass
+    @Override
+    public void initTC() throws Exception {
+        super.initTC();
+        env = new Environment();
+        screen = new Region();
+        browser.open();
+    }
+
+    @Override
+    protected TestCaseInitParameter getTestCaseInitParameter() throws Exception {
+        return new TestCaseInitParameter("test_citrus");
+    }
+
+    @Test
+    public void testMyApp() throws Exception {
+        // ... testcode
+    }
+}
+                       </code></pre>
+          <!-- @formatter:on -->
+                <div style="font-size: large">
+                    For the Maven dependencies, take a look at the <a href="" target="_blank">Java DSL Documentaion</a>.
+                </div>
             </section>
             <section>
-                <h1>Maven Dependencies</h1>
+                <h1>Test Definition (Java)</h1>
+                <!-- @formatter:off-->
+                <pre><code class="java" data-trim contenteditable="false">
+public class FirstExampleTest extends AbstractSakuliTest {
+
+    // ... initializing code
+
+    @Test
+    public void testCitrusHtmlContent() throws Exception {
+        browser.navigateTo(CITRUS_URL);
+        ElementStub heading1 = browser.paragraph("Citrus Integration Testing");
+        heading1.highlight();
+        assertTrue(heading1.isVisible());
+
+        ElementStub download = browser.link("/Download v.*/");
+        download.highlight();
+        assertTrue(download.isVisible());
+        download.click();
+
+        ElementStub downloadLink = browser.cell("2.6.1");
+        downloadLink.highlight();
+        assertTrue(downloadLink.isVisible());
+    }
+
+    @Test
+    public void testCitrusPictures() throws Exception {
+        browser.navigateTo(CITRUS_URL);
+        env.setSimilarity(0.8);
+        screen.find("citrus_logo.png").highlight();
+        env.type(Key.END);
+        screen.find("consol_logo.png").highlight();
+    }
+}
+                       </code></pre>
+          <!-- @formatter:on -->
             </section>
         </section>
 
@@ -788,7 +855,7 @@ sakuli-tests/execute_all_4_monitoring.sh
                         <a href="https://github.com/consol/sakuli-examples" target="_blank">
                             <img src="pics/github-mark.png" style="box-shadow: none; height: 35px"><b
                                 style="padding-left: 0.8em">Consol/sakuli-examples</b>
-                        </a>      <br/>
+                        </a> <br/>
 
                         <div style="padding-top: 0.5em"></div>
                         <a href="https://github.com/toschneck/sakuli-example-bakery-testing" target="_blank">
@@ -811,8 +878,9 @@ sakuli-tests/execute_all_4_monitoring.sh
                         </a>
 
                         <div style="padding-top: 0.8em"></div>
-                        <a href="https://www.informatik-aktuell.de/entwicklung/methoden/graphical-user-interface-gui-in-containern-testen.html" target="_blank">
-                            <img src="pics/ia_artikel.png" style="margin-left:6px; padding: 6px"; width="300 px">
+                        <a href="https://www.informatik-aktuell.de/entwicklung/methoden/graphical-user-interface-gui-in-containern-testen.html"
+                           target="_blank">
+                            <img src="pics/ia_artikel.png" style="margin-left:6px; padding: 6px" ; width="300 px">
                         </a>
                     </td>
                 </tr>
@@ -908,7 +976,7 @@ sakuli-tests/execute_all_4_monitoring.sh
 <script>
     // More info https://github.com/hakimel/reveal.js#configuration
     Reveal.initialize({
-        controls: true,
+        controls: false,
         progress: true,
         history: true,
         center: true,

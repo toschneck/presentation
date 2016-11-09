@@ -355,6 +355,12 @@ body {
 .reveal .hljs-string, .nginx .hljs-string {
   color: darkgreen; }
 
+.reveal .hljs-name, .nginx .hljs-name {
+  color: darkblue; }
+
+.reveal .hljs-tag, .nginx .hljs-tag {
+  color: darkblue; }
+
 .reveal .coloured {
   color: #0072af; }
 
