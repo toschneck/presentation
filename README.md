@@ -1,6 +1,6 @@
 ![](pics/contarinerized-salkuli-docker.png)
 
-### Presentation: [Containerized End-2-End Testing](https://rawgit.com/toschneck/presentation/oop2017/index.html#/)
+### Presentation: [Containerized End-2-End Testing](https://rawgit.com/toschneck/presentation/agile-testing-meetup/index.html#/)
 <iframe width="854" height="480" src="./index.html" frameborder="0"></iframe>
 
 ### Example: [Sakuli Examples](https://github.com/consol/sakuli-examples)
