@@ -1,0 +1,190 @@
+/**
+ * White theme for reveal.js. This is the opposite of the 'black' theme.
+ *
+ * Copyright (C) 2015 Hakim El Hattab, http://hakim.se
+ */
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+// Include theme-specific fonts
+@import url(../../lib/font/source-sans-pro/source-sans-pro.css);
+
+$colorSoftwareQsTag: #0072af;
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: #fff;
+// Background generator
+@mixin bodyBackground() {
+  //@include radial-gradient( #add9e4, #f7fbfc );
+
+  //@include radial-gradient(rgba(255,255,255,1), rgba(240,240,240,1));
+  //@include radial-gradient(rgba(247, 255, 212,0.5),rgba(255,255,255,0.5));
+  @include radial-gradient(rgba(255, 243, 156, 0.18),rgba(255,255,255,0.5));
+  //@include radial-gradient(rgba(255,255,255,0.5),rgba(247, 255, 212,0.5));
+}
+
+//body {
+//  background: #fff;
+//  background: -moz-radial-gradient(center, circle cover, white 80%, #ccc 100%);
+//  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(80%, white), color-stop(100%, #ccc));
+//  background: -webkit-radial-gradient(center, circle cover, white 80%, #ccc 100%);
+//  background: -o-radial-gradient(center, circle cover, white 80%, #ccc 100%);
+//  background: -ms-radial-gradient(center, circle cover, white 80%, #ccc 100%);
+//  background: radial-gradient(center, circle cover, white 80%, #ccc 100%);
+//  background-color: #fff;
+//}
+
+$mainColor: #595959;
+$headingColor: #626262;
+
+$mainFontSize: 38px;
+$mainFont: Arial, sans-serif;
+$headingFont: Arial, sans-serif;
+$headingTextShadow: none;
+$headingLetterSpacing: normal;
+$headingTextTransform: none;
+$headingFontWeight: 600;
+//$linkColor: #2a76dd;
+//$linkColorLightBlue: #327daf;
+$linkColor: #00aada;
+$linkColorLightBlue: $colorSoftwareQsTag;
+//$linkColor: #55d400;
+//$linkColorLightBlue: #55d400;
+$linkColorHover: lighten($linkColor, 15%);
+$selectionBackgroundColor: lighten($linkColor, 25%);
+
+$heading1Size: 2.5em;
+$heading2Size: 1.4em;
+$heading3Size: 1.1em;
+$heading4Size: 1em;
+
+section.has-dark-background {
+  &, h1, h2, h3, h4, h5, h6 {
+    color: #fff;
+  }
+}
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+.reveal .slide-background {
+  background: url("pics/bg_bottom_banner.png");
+  background-position: bottom right;
+  background-size: 20%;
+  background-repeat: no-repeat;
+}
+
+.reveal .fully {
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.reveal .slide-number {
+  color: $linkColorLightBlue;
+  right: 50%;
+  opacity: 1;
+  font-size: 0.8em;
+  visibility: hidden;
+}
+
+.reveal .controls {
+  right: auto;
+}
+
+.reveal h1 {
+  //text-transform: uppercase;
+  //text-transform: capitalize;
+  font-size: 2em;
+}
+
+.reveal h2 {
+  text-transform: none;
+  padding-bottom: 0.6em;
+}
+
+.reveal table td {
+  padding: 0;
+  border-bottom: 0;
+}
+
+.reveal li {
+  padding: 0.1em;
+}
+
+.reveal ul ul li {
+  font-size: xx-large;
+  padding: 0;
+}
+
+.reveal .blue_hook {
+  list-style-image: url('pics/blue_hook_list.png');
+}
+
+.reveal .red_x {
+  list-style-image: url('pics/red_x.png');
+}
+.reveal .arrow_right {
+  list-style-image: url('pics/arrow_right.png');
+}
+
+.reveal .green_hook {
+  //list-style-image: url('pics/blue_hook_list.png');
+  list-style-image: url('pics/green_hook_list.png');
+}
+
+.reveal section img {
+  margin: 0;
+  border: 0;
+}
+
+.reveal td img {
+  vertical-align: middle;
+}
+
+.reveal pre code {
+  max-height: 40em;
+  font-size: 0.7em;
+  line-height: normal;
+  background: #e1e1e1;
+  color: black;
+}
+
+.reveal, .nginx {
+  .hljs-title, .hljs-keyword, .hljs-variable {
+    color: saddlebrown;
+  }
+
+  .hljs-number {
+    color: $linkColorLightBlue;
+  }
+
+  .hljs-string {
+    color: darkgreen;
+  }
+
+  .hljs-name {
+    color: darkblue;
+  }
+  .hljs-tag {
+    color: darkblue;
+  }
+}
+
+.reveal .coloured {
+  color: $linkColorLightBlue;
+}
+
+.reveal .bubbels {
+  max-height: 42px;
+  margin-bottom: 0.2em;
+  box-shadow: none
+}
+
+.reveal .bubbels-text {
+  margin: 0;
+  padding: 0 0 0.2em 1em;
+  font-size: 0.7em;
+}

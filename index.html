@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="utf-8">
@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="lib/css/zenburn.css">
 
     <link rel="stylesheet" href="css/reveal.css">
-    <link rel="stylesheet" href="css/theme/sakuli_white.css" id="theme">
+    <!--<link rel="stylesheet" href="css/theme/sakuli_white.css" id="theme">-->
+    <link rel="stylesheet" href="css/theme/sakuli_se_white.css" id="theme">
     <!-- Printing and PDF exports -->
     <script>
         var link = document.createElement('link');
@@ -39,18 +40,21 @@
             <!--style="vertical-align:top; width:11em; border: 0;box-shadow: none"/>-->
             <!--</div>-->
 
-            <h2 style="padding-top: 2em; margin-bottom: 0;text-transform: none">
-                Containerized End-2-End Testing
+            <h1 style="padding-top: 2em; margin-bottom: 0;text-transform: none">
+                Testing
+            </h1>
+            <h2 style="padding-top: 1em; margin-bottom: 0;text-transform: none">
+                Selenium? Rich-Clients? Containers?
             </h2>
 
-            <h2 style="padding-top: 0.2em;">
-                <img src="pics/sakuli-logo.png" style="width:5em; border: 0;box-shadow: none" alt="Sakuli">
-                +
-                <img src="pics/docker-img.jpg" style="width:5em; border: 0;box-shadow: none" alt="Docker">
-            </h2>
+            <!--<h2 style="padding-top: 0.2em;">-->
+            <!--<img src="pics/sakuli-logo.png" style="width:5em; border: 0;box-shadow: none" alt="Sakuli">-->
+            <!--+-->
+            <!--<img src="pics/docker-img.jpg" style="width:5em; border: 0;box-shadow: none" alt="Docker">-->
+            <!--</h2>-->
 
             <!-- Referent: Tobias Schneck, ConSol Software GmbH-->
-            <p style="padding-top: 6.5em; text-align: right">
+            <p style="padding-top: 4.5em; text-align: right">
                 <small><a href="mailto:tobias.schneck@consol.de">Tobias Schneck</a>, <a
                         href="http://www.consol.de">ConSol Software GmbH</a>
                 </small>
@@ -63,651 +67,258 @@
             <!--</div>-->
         </section>
 
-        <!-- <section>
-            <h2>Agenda</h2>
-            <b>
-                <ol class="coloured">
-                    <li>Einordnung End-2-End-Testing</li>
-                    <li>Welche Vorteile bieten <br/>Container-Technologien?</li>
-                    <li>Der Sakuli End-2-End-Testing Container</li>
-                    <li>Integration in die CI-Umgebung</li>
-                    <li>Ausblick</li>
-                </ol>
-            </b>
-        </section> -->
-
-        <!--<section>-->
-        <!--<h2>Motivation für End-2-End-Testing</h2>-->
-
-        <!--<ul style="padding-top: 0.5em">-->
-        <!--<li><b> Business</b>-kritische Applikationen bestehen oft aus einer Vielzahl an Komponenten-->
-        <!--</li>-->
-        <!--<li>Applikations-<b>Qualität</b> aus Anwendersicht ist nur am Ende der Funktionskette messbar-->
-        <!--<p style="margin: 0; margin-top: 0.5em">-->
-        <!--<img class="image" src="pics/gear.png" style="border: 0; box-shadow: none; padding-left: 3%"-->
-        <!--width="33%">-->
-        <!--</p>-->
-        <!--</li>-->
-        <!--<li>GUI ist die Schnittstelle zum <b>End-User</b></li>-->
-        <!--</ul>-->
-        <!--</section>-->
-
-        <!--
         <section>
-            <h2>Test Pyramid</h2>
-            <table>
-                <tr>
-                    <td><img class="image" src="pics/test_pyramide.png"
-                             style="height:12em; border: 0; box-shadow: none">
-                    </td>
-                    <td width="37%" style="vertical-align: middle;" class="blue_hook">
-                        <ul>
-                            <li><b>Robust</b></li>
-                            <li><b>Independent</b></li>
-                            <li><b>Isolated</b></li>
-                            <li><b>Fast</b></li>
-                        </ul>
-                    </td>
-                </tr>
-            </table>
+            <h2>During the UI development phase ...</h2>
+            <img height="300px" src="pics/comic_strip/ui_button.jpg">
+            <!--https://s-media-cache-ak0.pinimg.com/564x/c0/7d/30/c07d300ba6918319034230ee45418428.jpg-->
         </section>
-        -->
-
-        <!--<section>-->
-        <!--<h2>Anforderung an Testumgebungen</h2>-->
-        <!--<ul>-->
-        <!--<li class="coloured"><b>Robust</b></li>-->
-        <!--<ul style="font-size: 0.8em">-->
-        <!--<li>Keine "zufälligen" Fehler</li>-->
-        <!--<li>Fehler sind reproduzierbar</li>-->
-        <!--</ul>-->
-        <!--<li class="coloured"><b>Unabhängig</b></li>-->
-        <!--<ul style="font-size: 0.8em">-->
-        <!--<li>Möglichst wenig Abhängigkeiten zu externen Systemen</li>-->
-        <!--<li>Umgebung sollte exklusiv zur Verfügung stehen</li>-->
-        <!--</ul>-->
-        <!--<li class="coloured"><b>Isoliert</b></li>-->
-        <!--<ul style="font-size: 0.8em">-->
-        <!--<li>Tests haben keine Abhängigkeit untereinander</li>-->
-        <!--<li>Tests sollten parallelisierbar sein</li>-->
-        <!--</ul>-->
-        <!--<li class="coloured"><b>Schnell</b></li>-->
-        <!--<ul style="font-size: 0.8em">-->
-        <!--<li>Kurze Laufzeiten mit aussagekräftigem Feedback</li>-->
-        <!--</ul>-->
-        <!--<div style="font-size: 0.5em; text-align: right; margin-top: 1em">-->
-        <!--(vgl. Roland Huß - Integration Testing mit Docker)-->
-        <!--</div>-->
-        <!--</ul>-->
-
-        <!--<aside class="notes">-->
-        <!--Quelle: Roland Huss-->
-        <!--</aside>-->
-        <!--</section>-->
 
         <section>
-            <h2 style="padding-bottom: 0.2em">Characteristics of End-2-End Testing</h2>
-            <div><img class="image" src="pics/gear.png"
-                      style="height: 4.5em; border: 0; box-shadow: none; margin: 0em; padding-bottom: 0.2em">
-            </div>
-            <ul>
-                <li style="padding-top: 0" class="coloured">Different types of testing:</li>
-                <ul style="font-size: large">
-                    <li>Regression tests</li>
-                    <li>Functional approval tests</li>
+            <h1>Yeah - release 1.0 is out!</h1>
+            <img style="margin-top: 1em" height="380px" src="pics/comic_strip/office_party.jpg">
+            <!--http://images.nymag.com/news/features/establishments/workingfam101004_560.jpg-->
+        </section>
+        <section>
+            <h1>Next step: <br/>Make this things perfect!</h1>
+            <img style="margin-top: 1em" height="380px" src="pics/comic_strip/truck_cockpit_view.jpg">
+            <!--http://i.imgur.com/FwITKwm.jpg-->
+        </section>
+        <section>
+            <h3 style="line-height: 1.8">
+                <ul class="red_x">
+                    <li>Validate the order confirmation PDF?</li>
+                    <li>Test the rich-client implementation as well?</li>
+                    <li>Where to run the test?</li>
+                    <li>Rewrite all of our tests?</li>
                 </ul>
-                <li style="padding-top: 0" class="coloured">Parallel tests with GUIs are complex</li>
-                <ul style="font-size: large">
-                    <li>Stateful tests: user logins, sessions, history</li>
-                    <li>Setup and cleanup of test data</li>
-                </ul>
-                <!--<li class="coloured">Testumgebung muss möglichst nah an der <br/>End-User-Umgebung sein</li>-->
-                <li style="padding-top: 0" class="coloured">Manual effort<b> > </b>effort for test automation</li>
+            </h3>
+        </section>
+        <section>
+            <img style="margin: 1em 100px 0.7em 100px " height="380px" src="pics/comic_strip/lets-get-started.jpg">
+            <ul class="arrow_right">
+                <li>Generate PDF file</li>
+                <li>Open it in a native PDF viewer</li>
+                <li>Validate the content</li>
             </ul>
+            <!--http://i.imgur.com/FwITKwm.jpg-->
         </section>
 
         <section>
-            <h2 style="padding-bottom: 0.2em">Advantages of Container Technology</h2>
-            <img class="image" src="pics/container-technology.jpg"
-                 style="height: 4em; border: 0; box-shadow: none; margin: 0em; padding-bottom: 0.2em">
-            <ul class=" blue_hook">
-                <li><b class="coloured">Isolation</b> of environments</li>
-                <li><b class="coloured">Repository</b> for versioning and distribution</li>
-                <li><b class="coloured">Reproducible</b> application environment</li>
-                <ul style="list-style: disc">
-                    <li>Dockerfile, docker-compose.yml</li>
-                </ul>
-                <li>Optimized for <b class="coloured">parallel execution</b> and <b class="coloured">cloud systems</b></li>
-                <ul style="list-style: disc">
-                    <li>Less memory and CPU overhead (shared Linux kernel)</li>
-                    <li>Starting containers on-the-fly</li>
-                    <li>Unique command line interface (orchestration tools)</li>
-                </ul>
-            </ul>
-        </section>
-
-        <!--<section>-->
-        <!--<h2 style="margin: 0">Virtuelle Maschinen vs. Container-->
-        <!--<br/><span style="font-size: x-large;">(am Beispiel Docker)</span></h2>-->
-        <!--<img width="95%" src="pics/vm_vs_docker.png">-->
-        <!--</section>-->
-        <!--<section>-->
-        <!--<h2>Immutable Filesystem Layers-->
-        <!--<p style="font-size: x-large">(am Beispiel Docker)</p></h2>-->
-        <!--<div style="padding-top: 0.5em;">-->
-        <!--<img width="60%" src="pics/docker-layers.png">-->
-        <!--</div>-->
-        <!--</section>-->
-
-        <section>
-            <a target="_blank" href="video/containerized_gui.mp4">
-                <h2>Containerized GUIs </h2>
-            </a>
+            <h2>Test Definition (Java)</h2>
             <!-- @formatter:off-->
-            <div data-markdown contenteditable="false">
-```bash
-### start the docker container via x-forwarding
-docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:rw rasch/inkscape
-```
-```bash
-### start the docker container with VNC interface
-# connect via URL: http://localhost:6911/vnc_auto.html?password=vncpassword
-docker run -it -p 5911:5901 -p 6911:6901 consol/ubuntu-xfce-vnc
-docker run -it -p 5912:5901 -p 6912:6901 consol/centos-xfce-vnc
-docker run -it -p 5913:5901 -p 6913:6901 consol/ubuntu-icewm-vnc:dev
-docker run -it -p 5913:5901 -p 6914:6901 consol/centos-icewm-vnc:dev
-```
-            </div>
-            <!-- @formatter:on-->
-            <div style="padding-top: 0.1em;">
-                <img width="42%" style="vertical-align:top; margin-right: 0.5em" src="pics/inkscape.png">
-                <a target="_blank"
-                   href="http://localhost:6911/vnc_auto.html?password=vncpassword">
-                    <img width="42%" style="vertical-align: top; margin-left: 0.5em;" src="pics/centos_xfce_vnc.png">
-                </a>
-            </div>
-
-            <aside class="notes">
-                für local_VNC overview
-                docker run -it -p 5911:5901 -p 6911:6901 -e "VNC_PW=vncpasword" consol/centos-xfce
-            </aside>
-        </section>
-
-        <!--<section>-->
-        <!--<h2>Container mit GUI?</h2>-->
-        <!--<ul>-->
-        <!--<li>Oberfläche (X-Window), Steuerung, Apps</li>-->
-        <!--</ul>-->
-        <!--<div class="fragment" style="padding-top: 0.4em;">-->
-        <!--<img width="60%" style="box-shadow: none" src="pics/container_headless_gui.png">-->
-        <!--</div>-->
-        <!--</section>-->
-
-        <!--<section>-->
-        <!--<h2>Anforderung End-2-End-Testing Tool</h2>-->
-        <!--<ul>-->
-        <!--<li>Web-Test-Tools haben nur Zugriff auf DOM-Elemente</li>-->
-        <!--<li>Grafisch basierte Tests sind ressourcenintensiv</li>-->
-        <!--<li>OS-unabhängiges Framework</li>-->
-        <!--<li>Rendering testbar?</li>-->
-        <!--<li>Wie kann man Nicht-HTML-Inhalte testen bzw. damit umgehen?-->
-        <!--<br/>-->
-        <!--<b style="font-size: xx-large;" class="coloured">=> Flash, PKI-Abfragen, Java Applets, Plugins</b>-->
-        <!--</li>-->
-        <!--</ul>-->
-
-        <!--<div style="padding-top: 0.3em">-->
-        <!--<img src="pics/java_applet.png" style="height: 4.3em;"></div>-->
-        <!--<aside class="notes">-->
-        <!--<ul>-->
-        <!--<li>Sahi, Selenium, Casperjs, Webinject...</li>-->
-        <!--<li>AutoIT, Sikuli, Autohotkey, .... Grenzen (fairerweise: ihre natürlichen).</li>-->
-        <!--<li>zu speziell: blinde Flecken (oder auch PIN-Abfrage!)</li>-->
-        <!--<li>(teilweise) OS-abhängig: z.b. Auto IT -> WIndows</li>-->
-        <!--<li>zu generisch: für Web- -> Seitenaufbau (DOM) kennt.</li>-->
-        <!--<li>Realitätsbezug: Tools die Browsr simulieren -> Rendering-Engine? . D.h. ob die Seite beim User-->
-        <!--wirklich-->
-        <!--so aussieht?-->
-        <!--</li>-->
-        <!--</ul>-->
-        <!--</aside>-->
-
-        <!--</section>-->
-
-        <!--<section>-->
-        <section>
-            <h2>
-                <div style=" height: 1.5em;">What's provided by <img
-                        style="margin-left: 0.2em; box-shadow: none" src="pics/sakuli-logo.png"/> ?
-                </div>
-            </h2>
-            <table>
-                <tbody>
-                <tr>
-                    <td width="13%" style="padding: 0; text-align: center">
-                        <img class="image"
-                             src="pics/sahi_worker.png" style="height: 3em; border: 0;">
-                    </td>
-                    <td width="13%" style="padding: 0;  text-align: center">
-                        <img class="image"
-                             src="pics/sikuli_worker.png" style="height: 3em; border: 0;">
-                    </td>
-                    <td width="13%" style="padding: 0 0 0.3em 0; text-align: center">
-                        <img class="image"
-                             src="pics/3maennchen_mit_sakuli.png" style=" height: 3em; border: 0; ">
-                    </td>
-                    <td style="padding: 0; text-align: left; vertical-align: bottom; border-left: 1px">
-                        <h3 style="padding-left: 0.7em;">Category</h3>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td style="text-align: center"><img src="pics/bubble_green.png"
-                                                        class="bubbels">
-                    </td>
-                    <td style="text-align: center"><img src="pics/bubble_red.png"
-                                                        class="bubbels"></td>
-                    <td style="text-align: center"><img src="pics/bubble_green.png"
-                                                        class="bubbels"></td>
-                    <td class="bubbels-text">
-                        Web tests through HTML selectors
-                    </td>
-                </tr>
-
-                <tr>
-                    <td style="text-align: center"><img src="pics/bubble_red.png"
-                                                        class="bubbels">
-                    </td>
-                    <td style="text-align: center"><img src="pics/bubble_green.png"
-                                                        class="bubbels"></td>
-                    <td style="text-align: center"><img src="pics/bubble_green.png"
-                                                        class="bubbels"></td>
-                    <td class="bubbels-text">
-                        Restricted to browser content
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center"><img src="pics/bubble_green.png"
-                                                        class="bubbels">
-                    </td>
-                    <td style="text-align: center"><img src="pics/bubble_green.png"
-                                                        class="bubbels"></td>
-                    <td style="text-align: center"><img src="pics/bubble_green.png"
-                                                        class="bubbels"></td>
-                    <td class="bubbels-text">
-                        Open Source & Java API
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center"><img src="pics/bubble_red.png"
-                                                        class="bubbels">
-                    </td>
-                    <td style="text-align: center"><img src="pics/bubble_red.png"
-                                                        class="bubbels"></td>
-                    <td style="text-align: center"><img src="pics/bubble_green.png"
-                                                        class="bubbels"></td>
-                    <td class="bubbels-text">Headless execution</span>                         </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center"><img src="pics/bubble_green.png"
-                                                        class="bubbels">
-                    </td>
-                    <td style="text-align: center"><img src="pics/bubble_gray.png"
-                                                        class="bubbels"></td>
-                    <td style="text-align: center"><img src="pics/bubble_gray.png"
-                                                        class="bubbels"></td>
-                    <td class="bubbels-text">
-                        Test writing assistance
-                        <div style="font-size: large">(recorder, tag finder)</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center"><img src="pics/bubble_gray.png"
-                                                        class="bubbels">
-                    </td>
-                    <td style="text-align: center"><img src="pics/bubble_red.png"
-                                                        class="bubbels"></td>
-                    <td style="text-align: center"><img src="pics/bubble_green.png"
-                                                        class="bubbels"></td>
-                    <td class="bubbels-text">
-                        Automatable / Test result reporting
-                        <div style="font-size: large">(CI, DB, monitoring environment)</div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <section>
-            <h2 style="margin-bottom: 0.2em; padding-bottom: 0.3em"><img style="height: 1.5em;box-shadow: none"
-                                                                         src="pics/sakuli-logo.png"/>
-                Monitoring Integration</h2>
-            <div style="font-size: x-large">
-            <img style="margin-left: 1em;box-shadow: none" src="css/theme/pics/green_hook_list.png">
-            Nagios
-            <img style="margin-left: 1em;box-shadow: none" src="css/theme/pics/green_hook_list.png">
-            OMD
-            <img style="margin-left: 1em;box-shadow: none" src="css/theme/pics/green_hook_list.png">
-            Incinga
-            <img style="margin-left: 1em;box-shadow: none" src="css/theme/pics/green_hook_list.png">
-            Check_MK
-            </div>
-            <a target="_blank" href="https://github.com/ConSol/sakuli/blob/master/docs/index.md">
-                <img width="85%" style="border: 0; margin-top: 0.7em" src="pics/nagios.png">
-            </a>
-        </section>
-
-        <!--<section>-->
-        <!--<table style="margin-bottom: 0.5em;">-->
-        <!--<tbody>-->
-        <!--<tr style="padding-bottom: 0.2em">-->
-        <!--<td width="40%"-->
-        <!--style="text-align: center; padding:0; background: url(pics/dom.png) no-repeat bottom; background-size: 80%">-->
-        <!--<img style="border: 0; padding: 0; margin: 0; height: 2em; box-shadow: none"-->
-        <!--src="pics/sahi.png">-->
-        <!--</td>-->
-        <!--<td style="text-align: center"><img-->
-        <!--style="height: 6em; border: 0; padding: 0; margin: 0; box-shadow: none"-->
-        <!--src="pics/3maennchen_mit_sakuli.png"></td>-->
-        <!--<td width="40%"-->
-        <!--style="text-align: center;padding: 0; background: url(pics/screen_shots.png) no-repeat bottom; background-size: 77%">-->
-        <!--<img style="border: 0; padding: 0; margin: 0;height: 2em; box-shadow: none"-->
-        <!--src="pics/sikuli.png">-->
-        <!--</td>-->
-        <!--</tr>-->
-        <!--</tbody>-->
-        <!--</table>-->
-        <!--<table>-->
-        <!--<tbody>-->
-        <!--<tr style="font-size: 0.9em;">-->
-        <!--<td width="47%" style="padding: 0; vertical-align: top; font-size: 0.7em">-->
-        <!--<ul>-->
-        <!--<li>Aktionsbereich: Browser-Inhalt <br/>(z.B. kein Scrollen notwendig)</li>-->
-        <!--<li>Objekt-Adressierung von DOM-Elementen</li>-->
-        <!--<li>Java-API</li>-->
-        <!--<li>Erkennt, wenn Seiten/AJAX-Requests fertig geladen sind</li>-->
-        <!--<li>Guter Umgang mit AJAX & Web-Frameworks</li>-->
-        <!--<li>Recorder-Funktionalität</li>-->
-        <!--<li>Assert Funktionalität</li>-->
-        <!--</ul>-->
-        <!--&lt;!&ndash;<div class="backgrounds">&ndash;&gt;-->
-        <!--&lt;!&ndash;<img src="pics/dom.png" style="opacity: 0.7; border: 0;">&ndash;&gt;-->
-        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-        <!--</td>-->
-        <!--<td style="padding: 10px"></td>-->
-        <!--<td width="47%" style="padding: 0; vertical-align: top; font-size: 0.7em">-->
-        <!--<ul>-->
-        <!--<li>Aktionsbereich: Bildschirm-Inhalt <br/>(Scrollen u.U. notwendig)</li>-->
-        <!--<li>Objekt-Adressierung über Grafik-Patterns</li>-->
-        <!--<li>Java-API</li>-->
-        <!--<li>Keine Beschränkung auf den Browser</li>-->
-        <!--<li>Sieht und steuert das, was der User sieht</li>-->
-        <!--<li>Flexible Region-Pattern</li>-->
-        <!--<li>OCR-Features-->
-        <!--<small style="vertical-align: baseline">(experimental)</small>-->
-        <!--</li>-->
-        <!--<li>Setzt auf <b>java.awt.Robot</b> und <b>openCV</b> auf</li>-->
-        <!--</ul>-->
-        <!--</td>-->
-        <!--</tr>-->
-        <!--</tbody>-->
-        <!--</table>-->
-        <!--</section>-->
-        <!--</section>-->
-        <!--<section>-->
-        <!--<h2>-->
-        <!--<div style=" height: 1.5em;">Kurzprofil <img-->
-        <!--style="margin-left: 0.2em; box-shadow: none" src="pics/sakuli-logo.png"/></div>-->
-        <!--</h2>-->
-        <!--<ul>-->
-        <!--<li><b>Automatisierung von End-2-End-Tests</b></li>-->
-        <!--<li><b>End-2-End-Monitoring für Applikationen</b></li>-->
-        <!--<li><b>Erweiterbare "Forwarder"-Module</b>-->
-        <!--<ul style="font-size: xx-large">-->
-        <!--<li>SQL-Datenbank, Nagios oder andre Fremdsysteme</li>-->
-        <!--</ul>-->
-        <!--</li>-->
-        <!--<li><b>Open-Source</b> (Apache License 2.0)</li>-->
-        <!--<ul style="font-size: xx-large">-->
-        <!--<li>-->
-        <!--<div style="font-size: xx-large;">-->
-        <!--<a href="https://github.com/ConSol/sakuli" target="_blank">-->
-        <!--<img src="pics/github_logo.png"-->
-        <!--style="box-shadow: none; vertical-align: baseline; margin-bottom: -3px; height: 1.1em">-->
-        <!--&lt;!&ndash;<b style="margin-left: 0.4em">&ndash;&gt;-->
-        <!--&lt;!&ndash;https://github.com/ConSol/sakuli&ndash;&gt;-->
-        <!--&lt;!&ndash;</b>&ndash;&gt;-->
-        <!--</a>-->
-        <!--998 commits, 8 contributors-->
-        <!--</div>-->
-        <!--</li>-->
-        <!--&lt;!&ndash;<li>&ndash;&gt;-->
-        <!--&lt;!&ndash;<div class="coloured" style=" font-size: xx-large;">&ndash;&gt;-->
-        <!--&lt;!&ndash;<a href="https://twitter.com/sakuli_e2e">&ndash;&gt;-->
-        <!--&lt;!&ndash;<img src="pics/twitter_handle.png" style="box-shadow: none; height: 1em">&ndash;&gt;-->
-        <!--&lt;!&ndash;<b style="margin-left: 0.2em">&ndash;&gt;-->
-        <!--&lt;!&ndash;https://twitter.com/sakuli_e2e&ndash;&gt;-->
-        <!--&lt;!&ndash;</b>&ndash;&gt;-->
-        <!--&lt;!&ndash;</a>&ndash;&gt;-->
-        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-        <!--&lt;!&ndash;</li>&ndash;&gt;-->
-        <!--<li>Entwicklung seit Mitte 2013</li>-->
-        <!--&lt;!&ndash;<li>804 commits, 6 contributors</li>&ndash;&gt;-->
-        <!--</ul>-->
-        <!--<li><b>Im Einsatz bei verschiedenen Branchen</b>-->
-        <!--<ul style="font-size: xx-large">-->
-        <!--<li> IT & Telekommunikation-->
-        <!--<li>Banken & Versicherungen</li>-->
-        <!--<li>Bau & Innenausbau</li>-->
-        <!--&lt;!&ndash;<li>...</li>&ndash;&gt;-->
-
-        <!--</ul>-->
-
-        <!--</li>-->
-        <!--</ul>-->
-        <!--</section>-->
-
-
-        <!--<section>-->
-        <!--&lt;!&ndash;<section>&ndash;&gt;-->
-        <!--&lt;!&ndash;<h2>DEMO</h2>&ndash;&gt;-->
-        <!--&lt;!&ndash;<iframe width="560" height="315" src="https://www.youtube.com/embed/z3opwqqy3io" frameborder="0"&ndash;&gt;-->
-        <!--&lt;!&ndash;allowfullscreen></iframe>&ndash;&gt;-->
-        <!--&lt;!&ndash;<p>&ndash;&gt;-->
-        <!--&lt;!&ndash;<a href="video/m-net_order_processing.wmv" target="_blank">Video File </a>&ndash;&gt;-->
-        <!--&lt;!&ndash;</p>&ndash;&gt;-->
-        <!--&lt;!&ndash;&lt;!&ndash;src="pics/video_preview.png"></a>&ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;</section>&ndash;&gt;-->
-        <section>
-
-            <section>
-                <h2>Test Definition (Java Script)</h2>
-                <img width="50%" class="image" src="pics/test_suite_aufbau.png">
-            </section>
-            <section>
-                <h3 style="text-transform: inherit">Test Case Structure</h3>
-                <!-- @formatter:off -->
-        <pre><code class="javascript" data-trim contenteditable="false">
-// testcase.js
-
-/*************************************
-* Initialization
-*************************************/
-_dynamicInclude($includeFolder);
-var testCase = new TestCase(60, 70);
-var env = new Environment();
-var appNotepad = new Application("gedit");
-var region = new Region();
-
-/******************************
-* Description of the test case
-******************************/
-try {
-
-    //...
-
-/************************************************
-* Exception handling and shutdown of test case
-**********************************************/
-} catch (e) {
-    testCase.handleException(e);
-} finally {
-    testCase.saveResult();
-}
-        </code></pre>
-            <!-- @formatter:on -->
-            </section>
-
-            <section>
-                <h3 style="text-transform: inherit">Call all Sahi Functions for Web Testing</h3>
-                <!-- @formatter:off -->
-        <pre><code class="javascript" data-trim contenteditable="false">
-// testacase.js
-/************************
-* Call Sahi Functions
-***********************/
-
-_navigateTo("http://sahi.example.com/_s_/dyn/Driver_initialized");
-_highlight(_link("SSL Manager"));
-_isVisible(_link("SSL Manager"));
-_highlight(_link("Logs"))
-_click(_link("Logs"))
-
-testCase.endOfStep("Test Sahi landing page", 5);
-        </code></pre>
-          <!-- @formatter:on -->
-            </section>
-
-            <section>
-                <h3 style="text-transform: inherit">Fluent API for UI Testing</h3>
-                <!-- @formatter:off -->
-        <pre><code class="javascript" data-trim contenteditable="false">
-// testacase.js
-
-/*** open calculator app ***/
-var calculatorApp = new Application("galculator").open();
-testCase.endOfStep("Open Calculator", 3);
-
-/*** calculate 525 + 100 ***/
-var calculatorRegion = calculatorApp.getRegion();
-calculatorRegion.type("525")
-    .find("plus.png")
-    .click()
-    .type("100");
-
-calcRegion.find("result.png").click();
-calcRegion.waitForImage("625", 5);
-
-testCase.endOfStep("calculate 525 +100", 20);
-        </code></pre>
-            <!-- @formatter:on -->
-            </section>
-
-            <section>
-                <h3 style="text-transform: inherit">Custom Functions</h3>
-                <!-- @formatter:off -->
-        <pre><code class="javascript" data-trim contenteditable="false">
-// e.g. excluded into a separate common.js
-
-/**********
-* Combine click and highlight
-*********/
-function clickHighlight($selector) {
-    _highlight($selector);
-    _click($selector);
-}
-
-/***************
-* Open PDF in native viewer
-**************/
-var PDF_EDITOR_NAME = "masterpdfeditor3";
-
-function openPdfFile(pdfFileLocation) {
-    return new Application(PDF_EDITOR_NAME + ' "' + pdfFileLocation + '"').open();
-}
-
-        </code></pre>
-          <!-- @formatter:on -->
-            </section>
-        </section>
-        <section>
-            <section>
-                <h2>Test Definition (Java)</h2>
-                <!-- @formatter:off-->
                 <pre><code class="java" data-trim contenteditable="false">
-public class FirstExampleTest extends AbstractSakuliTest {
+@Test
+public void testOrderPDF() throws Exception {
+    driver.get(TEST_URL);
+    WebElement heading1 = driver.findElement(By.name("Cookie Bakery Application"));
+    dsl.highlightElement(heading1);
+    assertTrue(heading1.isDisplayed());
 
-    private static final String CITRUS_URL = "http://www.citrusframework.org/";
-    private Environment env;
-    private Region screen;
+    WebElement download = driver.findElement(By.partialLinkText("Print PDF"));
+    dsl.highlightElement(download);
+    assertTrue(download.isDisplayed());
+    download.click();
 
-    @BeforeClass
-    @Override
-    public void initTC() throws Exception {
-        super.initTC();
-        env = new Environment();
-        screen = new Region();
-        browser.open();
-    }
+    //save as pdf
+    screen.find("save_button.png").highlight().click();
+    String pdfFilePath = "/tmp/order-confirmation.pdf";
+    env.type("a", Key.CTRL) //mark filename in "save under" dialog
+            .type(pdfFilePath + Key.ENTER); //type filename and press ENTER
+
+    //open pdf and validate
+    openPDF(pdfFilePath);
+    screen.waitForImage("pdf_order_header", 30).highlight();
+    Stream.of(
+            "pdf_blueberry",
+            "pdf_caramel",
+            "pdf_chocolate",
+            "pdf_place_order"
+    ).forEach(validationPicture -> screen.find(validationPicture).highlight());
+}
+
+private Application openPDF(String pdfFilePath) {
+    return pdfEditor = new Application(PDF_EDITOR_NAME + " \"" + pdfFilePath + "\"").open();
+}
+                       </code></pre>
+        <!-- @formatter:on-->
+        </section>
+
+        <section>
+            <h3 style="line-height: 1.8">
+                <ul class="red_x">
+                    <li class="green_hook">Validate the order confirmation PDF?</li>
+                    <li>Test the rich-client implementation as well?</li>
+                    <li>Where to run the test?</li>
+                    <li>Rewrite all of our tests?</li>
+                </ul>
+            </h3>
+        </section>
+        <section>
+            <img style="margin: 1em 100px 0.7em 100px " height="380px" src="pics/comic_strip/lets-get-started.jpg">
+            <ul class="arrow_right">
+                <li>Keep current tests</li>
+                <li>Use same codebase</li>
+                <li>Keep it simple</li>
+            </ul>
+        </section>
+        <section>
+            <h2 style="padding-bottom: 0">Add Maven Dependencies</h2>
+            <!-- @formatter:off-->
+                <pre><code class="xml" data-trim contenteditable="false">
+    <dependencies>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-server</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.sakuli</groupId>
+            <artifactId>selenium-java-dsl</artifactId>
+            <version>${sakuli.version}</version>
+            <type>jar</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.8.8</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <!-- ConSol Labs repository holds the Sakuli libraries-->
+    <repositories>
+        <repository>
+            <id>labs-consol</id>
+            <name>ConSol* Labs Repository</name>
+            <url>http://labs.consol.de/maven/repository</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </repositories>
+               </code></pre>
+            <!-- @formatter:on-->
+        </section>
+        <section>
+            <h2>Extend from class AbstractSakuliSeTest</h2>
+            <!-- @formatter:off-->
+                <pre><code class="java" data-trim contenteditable="false">
+public class BakeryOrderConfirmationTest extends AbstractSakuliSeTest {
+
+    private static final String TEST_URL = "http://bakery-web-server:8080/bakery/";
+    private static final String PDF_EDITOR_NAME = "masterpdfeditor4";
+    private Application pdfEditor;
 
     @Override
     protected TestCaseInitParameter getTestCaseInitParameter() throws Exception {
-        return new TestCaseInitParameter("test_citrus");
+        //specifies the resource folder for the screenshots
+        return new TestCaseInitParameter("bakery_test");
     }
 
-    @Test
-    public void testMyApp() throws Exception {
-        // ... testcode
-    }
-}
-                       </code></pre>
-          <!-- @formatter:on -->
-                <div style="font-size: large">
-                    For the Maven dependencies, take a look at the <a href="" target="_blank">Java DSL Documentaion</a>.
-                </div>
-            </section>
-            <section>
-                <h2>Test Definition (Java)</h2>
-                <!-- @formatter:off-->
-                <pre><code class="java" data-trim contenteditable="false">
-public class FirstExampleTest extends AbstractSakuliTest {
-
-    // ... initializing code
-
-    @Test
-    public void testCitrusHtmlContent() throws Exception {
-        browser.navigateTo(CITRUS_URL);
-        ElementStub heading1 = browser.paragraph("Citrus Integration Testing");
-        heading1.highlight();
-        assertTrue(heading1.isVisible());
-
-        ElementStub download = browser.link("/Download v.*/");
-        download.highlight();
-        assertTrue(download.isVisible());
-        download.click();
-
-        ElementStub downloadLink = browser.cell("2.6.1");
-        downloadLink.highlight();
-        assertTrue(downloadLink.isVisible());
+    @AfterMethod
+    @Override
+    public void saveTcStep() throws Throwable {
+        super.saveTcStep();
+        pdfEditor.closeApp();
     }
 
-    @Test
-    public void testCitrusPictures() throws Exception {
-        browser.navigateTo(CITRUS_URL);
-        env.setSimilarity(0.8);
-        screen.find("citrus_logo.png").highlight();
-        env.type(Key.END);
-        screen.find("consol_logo.png").highlight();
+    // will be used in each test case step
+    private Application openPDF(String pdfFilePath) {
+       return pdfEditor = new Application(PDF_EDITOR_NAME + " \"" + pdfFilePath + "\"").open();
     }
 }
-                       </code></pre>
-          <!-- @formatter:on -->
-            </section>
+               </code></pre>
+          <!-- @formatter:on-->
         </section>
 
         <section>
-            <h2>Sakuli End-2-End Testing Container</h2>
+            <h3 style="line-height: 1.8">
+                <ul class="red_x">
+                    <li class="green_hook">Validate the order confirmation PDF?</li>
+                    <li>Test the rich-client implementation as well?</li>
+                    <li>Where to run the test?</li>
+                    <li class="green_hook">Rewrite all of our tests?</li>
+                </ul>
+            </h3>
+        </section>
 
+        <section>
+            <img style="margin: 1em 100px 0.7em 100px " height="380px" src="pics/comic_strip/lets-get-started.jpg">
+            <ul class="arrow_right">
+                <li>Test the report function in the rich client</li>
+                <li>Make a order over the web client</li>
+                <li>Validate the reported count of produces orders</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Control Web and Rich clients</h2>
+            <!-- @formatter:off-->
+                <pre><code class="java" data-trim contenteditable="false">
+@Test
+public void testWebOrderToReportClient() throws Exception {
+    driver.get(TEST_URL);
+    WebElement heading1 = driver.findElement(By.name("Cookie Bakery Application"));
+    assertTrue(heading1.isDisplayed());
+
+    WebElement order = driver.findElement(By.cssSelector("button blueberry-order"));
+    assertTrue(order.isDisplayed());
+    for (int i = 0; i < 20; i++) {
+        LOGGER.info("place blueberry order " + i);
+        order.click();
+    }
+
+    //open native client application over $PATH
+    reportClient = new Application("baker-report-client").open();
+    Region reportClientRegion = reportClient.getRegion();
+
+    //generate the report
+    reportClientRegion.type("r", Key.ALT); //type ALT + r to open the report view
+    reportClientRegion.find("get-daily-report-button").click();
+    reportClientRegion.waitForImage("report-header", 10);
+    try {
+        reportClientRegion.find("blueberry_muffin_logo");
+        reportClientRegion.find("report_blueberry");
+        reportClientRegion.find("report_blueberry").below(100).find("report_value_20");
+    } catch (Exception e) {
+        //useful for custom error messaten
+        throw new SakuliException("Validation of the report client failed - no muffins produced?");
+    }
+}
+               </code></pre>
+          <!-- @formatter:on-->
+        </section>
+
+        <section>
+            <h3 style="line-height: 1.8">
+                <ul class="green_hook">
+                    <li>Validate the order confirmation PDF?</li>
+                    <li>Test the rich-client implementation as well?</li>
+                    <li class="red_x">Where to run the test?</li>
+                    <li>Rewrite all of our tests?</li>
+                </ul>
+            </h3>
+        </section>
+
+
+        <section>
+            <img style="margin: 0 100px 0.7em 100px " height="380px" src="pics/comic_strip/lets-get-started.jpg">
+            <ul class="arrow_right">
+                <li>Run all UI tests in the container</li>
+                <li>Make it scalable for parallel execution</li>
+                <li>Keep the possibility to "watch" the test</li>
+                <li>Should be triggered by our CI server</li>
+                <li>Use our internal private cloud setup</li>
+            </ul>
+        </section>
+
+
+        <section>
+            <h2>We need a containerized GUI! </h2>
             <div style="margin-top: 2em">
                 <img width="100%" style="box-shadow: none" src="pics/container_sakuli.png">
             </div>
@@ -715,7 +326,7 @@ public class FirstExampleTest extends AbstractSakuliTest {
 
         <section>
             <a target="_blank" href="video/sakuli_containers.mp4">
-                <h2>Demo - Sakuli Container</h2>
+                <h2>Let's try the Sakuli Container</h2>
             </a>
 
             <!-- @formatter:off-->
@@ -739,46 +350,61 @@ docker-compose up
                     <img width="47%" style="box-shadow: none;" src="pics/docker_sakuli_example.png">
                 </a>
             </div>
-
-            <aside class="notes">
-                für local_VNC overview
-                docker-compose -f docker-compose_example_xfce.yml rm -f && docker-compose -f
-                docker-compose_example_xfce.yml up
-            </aside>
         </section>
 
-        <!--<section>-->
-        <!--<h2>Architektur</h2>-->
-        <!--<img width="80%" style="background: whitesmoke; border: none" src="pics/sakuli_architectur.png">-->
-        <!--</section>-->
-
-        <!--<section>-->
-        <!--<h2>Erweiterbare Architektur</h2>-->
-        <!--<img width="80%" style="box-shadow: none" src="pics/kombination_with_citrus.png">-->
-        <!--</section>-->
-
-        <!--<section>-->
-        <!--<h2>Ausblick - Queue Architektur</h2>-->
-        <!--<ul style="font-size: 0.8em">-->
-        <!--<li>Skalierung durch Client-Worker-Prinzip</li>-->
-        <!--<li>Einfachere Wartung</li>-->
-        <!--<li>Zentraler Scheduler</li>-->
-        <!--</ul>-->
-        <!--<div style="height: 13em"><img style="background: whitesmoke" src="pics/queue_architecture.png">-->
-        <!--</div>-->
-        <!--</section>-->
 
         <section>
-            <h2 style="padding-bottom: 0">Bakery Demo Setup</h2>
-            <a href="https://github.com/toschneck/sakuli-example-bakery-testing" target="_blank"><img width="90%"
-                                                                                                      style=" border: none"
-                                                                                                      src="pics/ci_umgebung.png"/></a>
+            <h2>Mount and Run the Testsuite</h2>
+            <!-- @formatter:off-->
+            <div data-markdown contenteditable="false">
+```bash
+# docker-compose.yml
+version: '2'
+                
+services:
+  sakuli_se_bakery_test:
+    image: consol/sakuli-ubuntu-xfce-java
+    environment:
+    - TZ=Europe/Berlin
+    volumes:
+    - .:/opt/maven
+    - data:/root/.m2
+    network_mode: "bridge"
+    ports:
+    - 5911:5901    # VNC port
+    - 6911:6901    # webVNC port
+    # to keep container running and login via `docker exec -it [image_name] bash`
+    #command: "'--tail-log'"
+
+volumes:
+  data:
+    driver: local
+```
+        </div>
+        <div data-markdown contenteditable="false">
+```bash
+# start it from the command line
+docker-compose up
+```
+        </div>
+            <!-- @formatter:on-->
         </section>
         <section>
             <h2 style="padding-bottom: 0">Bakery Demo Setup</h2>
-            <a href="https://github.com/toschneck/sakuli-example-bakery-testing" target="_blank"><img width="90%"
-                                                                                                      style=" border: none"
-                                                                                                      src="pics/ci_umgebung_2.png"/></a>
+
+            <a href="https://github.com/toschneck/sakuli-example-bakery-testing" target="_blank">
+                <img width="90%"
+                     style="border: none"
+                     src="pics/ci_umgebung.png"/>
+            </a>
+        </section>
+        <section>
+            <h2 style="padding-bottom: 0">Bakery Demo Setup</h2>
+            <a href="https://github.com/toschneck/sakuli-example-bakery-testing" target="_blank">
+                <img width="90%"
+                     style="border: none"
+                     src="pics/ci_umgebung_2.png"/>
+            </a>
         </section>
         <section>
             <a target="_blank" href="video/sakuli_ci_cm6_demo.mp4">
@@ -802,6 +428,9 @@ bakery-app/app-deployment-docker-compose/deploy_app.sh
 sakuli-tests/execute_all.sh
 #start tests for monitoring
 sakuli-tests/execute_all_4_monitoring.sh
+
+# for OpenShift deploy configuration, see READE.md
+openshift/build_and_deploy_all.sh
 ```
 </div>
             <!-- @formatter:on-->
@@ -824,6 +453,25 @@ sakuli-tests/execute_all_4_monitoring.sh
             </table>
         </section>
 
+        <!--TODO TS: maybe add it-->
+        <!--<section>-->
+            <!--<h2 style="margin-bottom: 0.2em; padding-bottom: 0.3em"><img style="height: 1.5em;box-shadow: none"-->
+                                                                         <!--src="pics/sakuli-logo.png"/>-->
+                <!--Monitoring Integration</h2>-->
+            <!--<div style="font-size: x-large">-->
+                <!--<img style="margin-left: 1em;box-shadow: none" src="css/theme/pics/green_hook_list.png">-->
+                <!--Nagios-->
+                <!--<img style="margin-left: 1em;box-shadow: none" src="css/theme/pics/green_hook_list.png">-->
+                <!--OMD-->
+                <!--<img style="margin-left: 1em;box-shadow: none" src="css/theme/pics/green_hook_list.png">-->
+                <!--Incinga-->
+                <!--<img style="margin-left: 1em;box-shadow: none" src="css/theme/pics/green_hook_list.png">-->
+                <!--Check_MK-->
+            <!--</div>-->
+            <!--<a target="_blank" href="https://github.com/ConSol/sakuli/blob/master/docs/index.md">-->
+                <!--<img width="85%" style="border: 0; margin-top: 0.7em" src="pics/nagios.png">-->
+            <!--</a>-->
+        <!--</section>-->
 
         <section>
             <h2>What's next?</h2>
@@ -834,12 +482,10 @@ sakuli-tests/execute_all_4_monitoring.sh
                     <img style="box-shadow: none" src="css/theme/pics/green_hook_list.png"/>
                     <b>Windows:</b> <b style="color: red; font-size: 1.3em">?</b>
                 </li>
-                <li>Cloud-ready container for <b>OpenShift</b> (security, source-2-image)</li>
                 <li><b>Video</b> recording of the test execution (error documentation)</li>
                 <li><b>Web UI</b> to handle Sakuli test suites</li>
                 <li>Connect 3rd-party <b>test management tools</b> (HP QC, TestRail, ...)</li>
                 <li>Improve test <b>result presentation</b> in CI tools</li>
-                <li><b>Selenium</b> as an alternative to Sahi</li>
                 <li>Implement <b>Junit 5</b> test runner</li>
             </ul>
         </section>
@@ -883,7 +529,8 @@ sakuli-tests/execute_all_4_monitoring.sh
                         </a>
                         <!--<div style="padding-top: 0.2em">-->
                         <a href="https://twitter.com/sakuli_e2e">
-                            <img src="pics/twitter_bird_logo_.png" style="padding-left:40px;box-shadow: none; height: 1em">
+                            <img src="pics/twitter_bird_logo_.png"
+                                 style="padding-left:40px;box-shadow: none; height: 1em">
                             <b>@sakuli_e2e</b>
                         </a>
                         <!--</div>-->
@@ -891,16 +538,14 @@ sakuli-tests/execute_all_4_monitoring.sh
                         <div style="padding-top: 2em"></div>
                         <a href="https://www.informatik-aktuell.de/entwicklung/methoden/graphical-user-interface-gui-in-containern-testen.html"
                            target="_blank">
-                            <img src="pics/ia_artikel.png" style="margin-left:6px; padding: 10px 22px 10px 22px;" ; width="600px">
+                            <img src="pics/ia_artikel.png" style="margin-left:6px; padding: 10px 22px 10px 22px;" ;
+                                 width="600px">
                         </a>
                     </td>
                 </tr>
             </table>
         </section>
 
-        <!--<section>-->
-        <!--<h1 class="coloured" style="text-transform: inherit">Fragen?</h1>-->
-        <!--</section>-->
         <section>
             <h1 class="coloured" style="text-transform: inherit">Thank you!</h1>
 
