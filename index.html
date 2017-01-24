@@ -5,10 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description"
-          content="Containerized End-2-End Testing, more information under https://github.com/ConSol/sakuli ">
+          content="Testing - Selenium? Rich-Clients? Containers? more information under https://github.com/ConSol/sakuli ">
     <meta name="author" content="Tobias Schneck">
 
-    <title>Containerized End-2-End Testing</title>
+    <title>Testing - Selenium? Rich-Clients? Containers?</title>
 
     <!-- Code syntax highlighting -->
     <link rel="stylesheet" href="lib/css/zenburn.css">
@@ -74,13 +74,13 @@
         </section>
 
         <section>
-            <h1>Yeah - release 1.0 is out!</h1>
-            <img style="margin-top: 1em" height="380px" src="pics/comic_strip/office_party.jpg">
+            <h2>Yeah - release 1.0 is out!</h2>
+            <img style="margin-top: 0.5em" height="400px" src="pics/comic_strip/office_party.jpg">
             <!--http://images.nymag.com/news/features/establishments/workingfam101004_560.jpg-->
         </section>
         <section>
-            <h1>Next step: <br/>Make this things perfect!</h1>
-            <img style="margin-top: 1em" height="380px" src="pics/comic_strip/truck_cockpit_view.jpg">
+            <h2>Next step: <br/>Make this things perfect!</h2>
+            <img style="margin-top: 0.5em" height="380px" src="pics/comic_strip/truck_cockpit_view.jpg">
             <!--http://i.imgur.com/FwITKwm.jpg-->
         </section>
         <section>
@@ -97,7 +97,7 @@
             <img style="margin: 1em 100px 0.7em 100px " height="380px" src="pics/comic_strip/lets-get-started.jpg">
             <ul class="arrow_right">
                 <li>Generate PDF file</li>
-                <li>Open it in a native PDF viewer</li>
+                <li>Open the file in a native PDF viewer</li>
                 <li>Validate the content</li>
             </ul>
             <!--http://i.imgur.com/FwITKwm.jpg-->
@@ -154,7 +154,7 @@ private Application openPDF(String pdfFilePath) {
             </h3>
         </section>
         <section>
-            <img style="margin: 1em 100px 0.7em 100px " height="380px" src="pics/comic_strip/lets-get-started.jpg">
+            <img style="margin: 0 100px 0.7em 100px " height="350px" src="pics/comic_strip/lets-go-i-m-ready.jpg">
             <ul class="arrow_right">
                 <li>Keep current tests</li>
                 <li>Use same codebase</li>
@@ -247,16 +247,16 @@ public class BakeryOrderConfirmationTest extends AbstractSakuliSeTest {
         </section>
 
         <section>
-            <img style="margin: 1em 100px 0.7em 100px " height="380px" src="pics/comic_strip/lets-get-started.jpg">
+            <img style="margin: 1em 100px 0.7em 100px " height="380px" src="pics/comic_strip/lets-go-guys.jpg">
             <ul class="arrow_right">
-                <li>Test the report function in the rich client</li>
-                <li>Make a order over the web client</li>
+                <li>Make an order at the web client</li>
+                <li>Trigger the reporting function in the rich client</li>
                 <li>Validate the reported count of produces orders</li>
             </ul>
         </section>
 
         <section>
-            <h2>Control Web and Rich clients</h2>
+            <h2>Control Web and Rich Clients</h2>
             <!-- @formatter:off-->
                 <pre><code class="java" data-trim contenteditable="false">
 @Test
@@ -286,7 +286,8 @@ public void testWebOrderToReportClient() throws Exception {
         reportClientRegion.find("report_blueberry").below(100).find("report_value_20");
     } catch (Exception e) {
         //useful for custom error messaten
-        throw new SakuliException("Validation of the report client failed - no muffins produced?");
+        throw new SakuliException("Validation of the report client failed"
+                    + " - no muffins produced?");
     }
 }
                </code></pre>
@@ -306,13 +307,13 @@ public void testWebOrderToReportClient() throws Exception {
 
 
         <section>
-            <img style="margin: 0 100px 0.7em 100px " height="380px" src="pics/comic_strip/lets-get-started.jpg">
+            <img style="margin: 0 100px 0.7em 100px " height="380px" src="pics/comic_strip/lets-go-team.jpg">
             <ul class="arrow_right">
                 <li>Run all UI tests in the container</li>
                 <li>Make it scalable for parallel execution</li>
                 <li>Keep the possibility to "watch" the test</li>
-                <li>Should be triggered by our CI server</li>
-                <li>Use our internal private cloud setup</li>
+                <li>Should be triggered by the CI server</li>
+                <li>Use our internal private cloud infrastructure</li>
             </ul>
         </section>
 
@@ -357,7 +358,7 @@ docker-compose up
             <h2>Mount and Run the Testsuite</h2>
             <!-- @formatter:off-->
             <div data-markdown contenteditable="false">
-```bash
+```yml
 # docker-compose.yml
 version: '2'
                 
