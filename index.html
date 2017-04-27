@@ -86,10 +86,134 @@
         <section>
             <h3 style="line-height: 1.8">
                 <ul class="red_x">
+                    <li>Rewrite all of our tests?</li>
                     <li>Validate the order confirmation PDF?</li>
                     <li>Test the rich-client implementation as well?</li>
                     <li>Where to run the test?</li>
-                    <li>Rewrite all of our tests?</li>
+                </ul>
+            </h3>
+        </section>
+        <section>
+            <img style="margin: 0 100px 0.7em 100px " height="350px" src="pics/comic_strip/lets-go-i-m-ready.jpg">
+            <ul class="arrow_right">
+                <li>Keep current tests</li>
+                <li>Use same codebase</li>
+                <li>Keep it simple</li>
+            </ul>
+        </section>
+        <section>
+            <h2 style="padding-bottom: 0">Add Maven Dependencies</h2>
+            <!-- @formatter:off-->
+                <pre><code class="xml" data-trim contenteditable="false">
+    <dependencies>
+        <!--- selenium and testNG dependency ... -->
+
+        <dependency>
+            <groupId>org.sakuli</groupId>
+            <artifactId>sakuli-selenium-setup</artifactId>
+            <version>1.1.0-SNAPSHOT-247_sakuli_se</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <!-- ConSol Labs repository holds the Sakuli libraries-->
+    <repository>
+        <id>labs-consol</id>
+        <name>ConSol Labs Repository</name>
+        <url>http://labs.consol.de/maven/repository</url>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+        <releases>
+            <enabled>true</enabled>
+        </releases>
+    </repository>
+    <repository>
+        <id>labs-consol-snapshots</id>
+        <name>ConSol Labs Snapshot-Repository</name>
+        <url>http://labs.consol.de/maven/snapshots-repository</url>
+        <snapshots>
+            <enabled>true</enabled>
+        </snapshots>
+        <releases>
+            <enabled>true</enabled>
+        </releases>
+    </repository>
+               </code></pre>
+            <!-- @formatter:on-->
+        </section>
+        <section>
+            <h2>Use the Sakuli Annotations</h2>
+            <!-- @formatter:off-->
+                <pre><code class="java" data-trim contenteditable="false">
+@Listeners(SakuliSeTest.class)
+public class BasicSakuliSeTest {
+
+    private static final String TEST_URL = "http://bakery-web-server:8080/bakery/";
+    private static final String PDF_EDITOR_NAME = "masterpdfeditor4";
+    protected WebDriver driver;
+    protected Region screen;
+    protected Environment env;
+    protected SeTestCaseAction tcAction;
+
+    private Application pdfEditor;
+
+    @BeforeMethod
+    public void setUp() throws Exception {
+        driver = getSeleniumDriver();
+        env = new Environment();
+        screen = new Region();
+        tcAction = new SeTestCaseAction();
+    }
+
+    private Application openPDF(String pdfFilePath) {
+       return pdfEditor = new Application(PDF_EDITOR_NAME + " \"" + pdfFilePath + "\"").open();
+    }
+
+    //....
+}
+               </code></pre>
+          <!-- @formatter:on-->
+        </section>
+
+        <section>
+            <h2>Use the Sakuli Annotations</h2>
+            <!-- @formatter:off-->
+                <pre><code class="java" data-trim contenteditable="false">
+@Listeners(SakuliSeTest.class)
+public class BasicSakuliSeTest {
+
+    //....
+    private static final String SAKULI_URL = "https://github.com/ConSol/sakuli/blob/master/README.md";
+
+    @Test
+    @SakuliTestCase
+    public void test1() throws Exception {
+        //your test code
+        driver.get(SAKULI_URL);
+        screen.highlight();
+        screen.find("sakuli_logo.png").highlight();
+    }
+
+    @Test
+    @SakuliTestCase(testCaseName = "mysecondtest", warningTime = 10, criticalTime = 20, additionalImagePaths = "/common_pics")
+    public void test2() throws Exception {
+        //your test code
+        driver.get(SAKULI_URL);
+        screen.highlight();
+        screen.type(Key.END).find("github_logo.png").highlight();
+    }
+}
+               </code></pre>
+          <!-- @formatter:on-->
+        </section>
+        <section>
+            <h3 style="line-height: 1.8">
+                <ul class="red_x">
+                    <li class="green_hook">Rewrite all of our tests?</li>
+                    <li>Validate the order confirmation PDF?</li>
+                    <li>Test the rich-client implementation as well?</li>
+                    <li>Where to run the test?</li>
                 </ul>
             </h3>
         </section>
@@ -104,7 +228,7 @@
         </section>
 
         <section>
-            <h2>Test Definition (Java)</h2>
+            <h2>Test Definition (Selenium)</h2>
             <!-- @formatter:off-->
                 <pre><code class="java" data-trim contenteditable="false">
 @Test
@@ -118,6 +242,20 @@ public void testOrderPDF() throws Exception {
     dsl.highlightElement(download);
     assertTrue(download.isDisplayed());
     download.click();
+
+    //save as pdf ???
+}
+                       </code></pre>
+        <!-- @formatter:on-->
+        </section>
+        <section>
+            <h2>Test Definition (Selenium + Sakuli SE)</h2>
+            <!-- @formatter:off-->
+                <pre><code class="java" data-trim contenteditable="false">
+@Test
+@SakuliTestCase
+public void testOrderPDF() throws Exception {
+    //... open pdf in browser
 
     //save as pdf
     screen.find("save_button.png").highlight().click();
@@ -146,102 +284,10 @@ private Application openPDF(String pdfFilePath) {
         <section>
             <h3 style="line-height: 1.8">
                 <ul class="red_x">
-                    <li class="green_hook">Validate the order confirmation PDF?</li>
-                    <li>Test the rich-client implementation as well?</li>
-                    <li>Where to run the test?</li>
-                    <li>Rewrite all of our tests?</li>
-                </ul>
-            </h3>
-        </section>
-        <section>
-            <img style="margin: 0 100px 0.7em 100px " height="350px" src="pics/comic_strip/lets-go-i-m-ready.jpg">
-            <ul class="arrow_right">
-                <li>Keep current tests</li>
-                <li>Use same codebase</li>
-                <li>Keep it simple</li>
-            </ul>
-        </section>
-        <section>
-            <h2 style="padding-bottom: 0">Add Maven Dependencies</h2>
-            <!-- @formatter:off-->
-                <pre><code class="xml" data-trim contenteditable="false">
-    <dependencies>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-server</artifactId>
-            <version>3.0.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.sakuli</groupId>
-            <artifactId>selenium-java-dsl</artifactId>
-            <version>${sakuli.version}</version>
-            <type>jar</type>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>6.8.8</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-
-    <!-- ConSol Labs repository holds the Sakuli libraries-->
-    <repositories>
-        <repository>
-            <id>labs-consol</id>
-            <name>ConSol* Labs Repository</name>
-            <url>http://labs.consol.de/maven/repository</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-        </repository>
-    </repositories>
-               </code></pre>
-            <!-- @formatter:on-->
-        </section>
-        <section>
-            <h2>Extend from class AbstractSakuliSeTest</h2>
-            <!-- @formatter:off-->
-                <pre><code class="java" data-trim contenteditable="false">
-public class BakeryOrderConfirmationTest extends AbstractSakuliSeTest {
-
-    private static final String TEST_URL = "http://bakery-web-server:8080/bakery/";
-    private static final String PDF_EDITOR_NAME = "masterpdfeditor4";
-    private Application pdfEditor;
-
-    @Override
-    protected TestCaseInitParameter getTestCaseInitParameter() throws Exception {
-        //specifies the resource folder for the screenshots
-        return new TestCaseInitParameter("bakery_test");
-    }
-
-    @AfterMethod
-    @Override
-    public void saveTcStep() throws Throwable {
-        super.saveTcStep();
-        pdfEditor.closeApp();
-    }
-
-    // will be used in each test case step
-    private Application openPDF(String pdfFilePath) {
-       return pdfEditor = new Application(PDF_EDITOR_NAME + " \"" + pdfFilePath + "\"").open();
-    }
-}
-               </code></pre>
-          <!-- @formatter:on-->
-        </section>
-
-        <section>
-            <h3 style="line-height: 1.8">
-                <ul class="red_x">
-                    <li class="green_hook">Validate the order confirmation PDF?</li>
-                    <li>Test the rich-client implementation as well?</li>
-                    <li>Where to run the test?</li>
                     <li class="green_hook">Rewrite all of our tests?</li>
+                    <li class="green_hook">Validate the order confirmation PDF?</li>
+                    <li>Test the rich-client implementation as well?</li>
+                    <li>Where to run the test?</li>
                 </ul>
             </h3>
         </section>
@@ -260,6 +306,7 @@ public class BakeryOrderConfirmationTest extends AbstractSakuliSeTest {
             <!-- @formatter:off-->
                 <pre><code class="java" data-trim contenteditable="false">
 @Test
+@SakuliTestCase
 public void testWebOrderToReportClient() throws Exception {
     driver.get(TEST_URL);
     WebElement heading1 = driver.findElement(By.name("Cookie Bakery Application"));
@@ -283,7 +330,10 @@ public void testWebOrderToReportClient() throws Exception {
     try {
         reportClientRegion.find("blueberry_muffin_logo");
         reportClientRegion.find("report_blueberry");
-        reportClientRegion.find("report_blueberry").below(100).find("report_value_20");
+        reportClientRegion.find("report_blueberry")
+                    .below(100)
+                    .find("report_value_20");
+                    
     } catch (Exception e) {
         //useful for custom error messaten
         throw new SakuliException("Validation of the report client failed"
@@ -297,10 +347,10 @@ public void testWebOrderToReportClient() throws Exception {
         <section>
             <h3 style="line-height: 1.8">
                 <ul class="green_hook">
+                    <li>Rewrite all of our tests?</li>
                     <li>Validate the order confirmation PDF?</li>
                     <li>Test the rich-client implementation as well?</li>
                     <li class="red_x">Where to run the test?</li>
-                    <li>Rewrite all of our tests?</li>
                 </ul>
             </h3>
         </section>
@@ -361,21 +411,22 @@ docker-compose up
 ```yml
 # docker-compose.yml
 version: '2'
-                
+
 services:
-  sakuli_se_bakery_test:
-    image: consol/sakuli-ubuntu-xfce-java
+  sakuli_se_test:
+    image: consol/sakuli-ubuntu-xfce-java:v1.1.0-beta
     environment:
     - TZ=Europe/Berlin
     volumes:
     - .:/opt/maven
-    - data:/root/.m2
+    - data:/headless/.m2
     network_mode: "bridge"
     ports:
-    - 5911:5901    # VNC port
-    - 6911:6901    # webVNC port
-    # to keep container running and login via `docker exec -it [image_name] bash`
-    #command: "'--tail-log'"
+    - 5911:5901
+    - 6911:6901
+    # to keep container running and login via `docker exec -it javaexample_sakuli_java_test_1 bash`
+    # command: "'--tail-log'"
+    command: mvn clean test -P docker -f /opt/maven/pom.xml
 
 volumes:
   data:
@@ -390,6 +441,18 @@ docker-compose up
         </div>
             <!-- @formatter:on-->
         </section>
+
+        <section>
+            <h3 style="line-height: 1.8">
+                <ul class="green_hook">
+                    <li>Rewrite all of our tests?</li>
+                    <li>Validate the order confirmation PDF?</li>
+                    <li>Test the rich-client implementation as well?</li>
+                    <li>Where to run the test?</li>
+                </ul>
+            </h3>
+        </section>
+
         <section>
             <h2 style="padding-bottom: 0">Bakery Demo Setup</h2>
 
@@ -456,22 +519,22 @@ openshift/build_and_deploy_all.sh
 
         <!--TODO TS: maybe add it-->
         <!--<section>-->
-            <!--<h2 style="margin-bottom: 0.2em; padding-bottom: 0.3em"><img style="height: 1.5em;box-shadow: none"-->
-                                                                         <!--src="pics/sakuli-logo.png"/>-->
-                <!--Monitoring Integration</h2>-->
-            <!--<div style="font-size: x-large">-->
-                <!--<img style="margin-left: 1em;box-shadow: none" src="css/theme/pics/green_hook_list.png">-->
-                <!--Nagios-->
-                <!--<img style="margin-left: 1em;box-shadow: none" src="css/theme/pics/green_hook_list.png">-->
-                <!--OMD-->
-                <!--<img style="margin-left: 1em;box-shadow: none" src="css/theme/pics/green_hook_list.png">-->
-                <!--Incinga-->
-                <!--<img style="margin-left: 1em;box-shadow: none" src="css/theme/pics/green_hook_list.png">-->
-                <!--Check_MK-->
-            <!--</div>-->
-            <!--<a target="_blank" href="https://github.com/ConSol/sakuli/blob/master/docs/index.md">-->
-                <!--<img width="85%" style="border: 0; margin-top: 0.7em" src="pics/nagios.png">-->
-            <!--</a>-->
+        <!--<h2 style="margin-bottom: 0.2em; padding-bottom: 0.3em"><img style="height: 1.5em;box-shadow: none"-->
+        <!--src="pics/sakuli-logo.png"/>-->
+        <!--Monitoring Integration</h2>-->
+        <!--<div style="font-size: x-large">-->
+        <!--<img style="margin-left: 1em;box-shadow: none" src="css/theme/pics/green_hook_list.png">-->
+        <!--Nagios-->
+        <!--<img style="margin-left: 1em;box-shadow: none" src="css/theme/pics/green_hook_list.png">-->
+        <!--OMD-->
+        <!--<img style="margin-left: 1em;box-shadow: none" src="css/theme/pics/green_hook_list.png">-->
+        <!--Incinga-->
+        <!--<img style="margin-left: 1em;box-shadow: none" src="css/theme/pics/green_hook_list.png">-->
+        <!--Check_MK-->
+        <!--</div>-->
+        <!--<a target="_blank" href="https://github.com/ConSol/sakuli/blob/master/docs/index.md">-->
+        <!--<img width="85%" style="border: 0; margin-top: 0.7em" src="pics/nagios.png">-->
+        <!--</a>-->
         <!--</section>-->
 
         <section>
@@ -513,6 +576,11 @@ openshift/build_and_deploy_all.sh
                                 style="padding-left: 0.8em">ConSol/sakuli-examples</b>
                         </a> <br/>
 
+                        <div style="padding-top: 0.5em"></div>
+                        <a href="https://github.com/toschneck/sakuli-se-example" target="_blank">
+                            <img src="pics/github-mark.png" style="box-shadow: none; height: 35px"><b
+                                style="padding-left: 0.8em">toschneck/sakuli-se-example</b>
+                        </a>
                         <div style="padding-top: 0.5em"></div>
                         <a href="https://github.com/toschneck/sakuli-example-bakery-testing" target="_blank">
                             <img src="pics/github-mark.png" style="box-shadow: none; height: 35px"><b
@@ -565,7 +633,7 @@ openshift/build_and_deploy_all.sh
                             <tr>
                                 <td>
                                     <a style="float: left; padding-right: 1em" href="mailto:tobias.schneck@consol.de"
-                                       target="_blank">tobias.schneck@consol.</a>
+                                       target="_blank">tobias.schneck@consol</a>
                                 </td>
                             </tr>
                             <tr>
