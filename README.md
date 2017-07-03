@@ -1,9 +1,9 @@
 ![](pics/contarinerized-salkuli-docker.png)
 
-### Presentation: [Testing - Selenium? Rich-Clients? Containers?](https://rawgit.com/toschneck/presentation/sttt2017-sakuli-se/index.html#/)
+### Presentation: [Testing - Selenium? Rich-Clients? Containers?](https://rawgit.com/toschneck/presentation/devops-day-sakuli-se/index.html#/)
 <iframe width="854" height="480" src="./index.html" frameborder="0"></iframe>
 
-### Example: [Sakuli Se Examples](https://github.com/toschneck/sakuli-se-example)
+### Example: [Sakuli Se Examples](https://github.com/ConSol/sakuli-examples/tree/master/java-selenium-example)
 ### Example: [Sakuli Example Bakery Testing](https://github.com/toschneck/sakuli-example-bakery-testing)
 ### Example: [Sakuli Examples](https://github.com/consol/sakuli-examples)
 

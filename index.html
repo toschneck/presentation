@@ -149,7 +149,6 @@
 @Listeners(SakuliSeTest.class)
 public class BasicSakuliSeTest {
 
-    private static final String TEST_URL = "http://bakery-web-server:8080/bakery/";
     private static final String PDF_EDITOR_NAME = "masterpdfeditor4";
     protected WebDriver driver;
     protected Region screen;
@@ -164,6 +163,12 @@ public class BasicSakuliSeTest {
         env = new Environment();
         screen = new Region();
         tcAction = new SeTestCaseAction();
+    }
+
+    @AfterMethod(alwaysRun = true)
+    public void tearDown() throws Exception {
+        if (driver != null)
+            driver.close();
     }
 
     private Application openPDF(String pdfFilePath) {
@@ -232,50 +237,101 @@ public class BasicSakuliSeTest {
             <!-- @formatter:off-->
                 <pre><code class="java" data-trim contenteditable="false">
 @Test
-public void testOrderPDF() throws Exception {
-    driver.get(TEST_URL);
-    WebElement heading1 = driver.findElement(By.name("Cookie Bakery Application"));
-    dsl.highlightElement(heading1);
-    assertTrue(heading1.isDisplayed());
+@SakuliTestCase
+public void testCitrusHtmlContent() throws Exception {
+    testCitrusContent("HTML");
 
-    WebElement download = driver.findElement(By.partialLinkText("Print PDF"));
-    dsl.highlightElement(download);
-    assertTrue(download.isDisplayed());
-    download.click();
+    //VALIDATE HTML content
+    WebElement heading = driver.findElement(
+                By.cssSelector("#citrus-framework--reference-documentation-"));
+    dsl.highlightElement(heading);
+    assertEquals(heading.getText(), "Citrus Framework - Reference Documentation");
+    assertTrue(heading.isDisplayed());
 
-    //save as pdf ???
+    //VALIDATE PDF ???
 }
-                       </code></pre>
+
+public void testCitrusContent(String dest) throws Exception {
+    searchHeading();
+
+    WebElement docuLink = driver.findElement(By.partialLinkText("Documentation"));
+    dsl.highlightElement(docuLink);
+    assertTrue(docuLink.isDisplayed());
+    docuLink.click();
+
+    WebElement userGuideLink = driver.findElement(By.partialLinkText("User Guide"));
+    dsl.highlightElement(userGuideLink);
+    assertTrue(userGuideLink.isDisplayed());
+    userGuideLink.click();
+
+    WebElement htmlUserGuideLink = driver.findElement(By.partialLinkText(dest));
+    dsl.highlightElement(htmlUserGuideLink);
+    assertTrue(htmlUserGuideLink.isDisplayed());
+    htmlUserGuideLink.click();
+}
+        </code></pre>
         <!-- @formatter:on-->
         </section>
         <section>
             <h2>Test Definition (Selenium + Sakuli SE)</h2>
             <!-- @formatter:off-->
                 <pre><code class="java" data-trim contenteditable="false">
+
 @Test
-@SakuliTestCase
-public void testOrderPDF() throws Exception {
-    //... open pdf in browser
+@SakuliTestCase(additionalImagePaths = "citrus_pics")
+public void testCitrusPdfContent() throws Exception {
+                    
+    //opens PDF download page and click download
+    testCitrusContent("PDF");
+    screen.find("reload_button.png").highlight();
 
-    //save as pdf
-    screen.find("save_button.png").highlight().click();
-    String pdfFilePath = "/tmp/order-confirmation.pdf";
-    env.type("a", Key.CTRL) //mark filename in "save under" dialog
-            .type(pdfFilePath + Key.ENTER); //type filename and press ENTER
+    //search citrus logo on PDF
+    scroll( () -> screen.exists("citrus_fruit.png", 1),
+            () -> env.type(Key.DOWN).type(Key.DOWN).type(Key.DOWN).type(Key.DOWN),
+            10
+    );
+    env.sleep(hSec);
 
-    //open pdf and validate
-    openPDF(pdfFilePath);
-    screen.waitForImage("pdf_order_header", 30).highlight();
-    Stream.of(
-            "pdf_blueberry",
-            "pdf_caramel",
-            "pdf_chocolate",
-            "pdf_place_order"
-    ).forEach(validationPicture -> screen.find(validationPicture).highlight());
+    //navigate over bookmark menu of PDF viewer
+    screen.find("reload_button.png")
+            .below(40).highlight()
+            .mouseMove();
+    screen.find("bookmark_button.png").highlight().click();
+    screen.find("bookmark_entry.png").highlight().click();
+    screen.find("test_case_pdf_heading.png").highlight().click();
+
+    //scroll until the expected diagram is visible
+    scroll( () -> screen.exists("test_case_diagram.png", 1),
+            () -> env.type(Key.DOWN).type(Key.DOWN).type(Key.DOWN).type(Key.DOWN),
+            10
+    );
 }
 
-private Application openPDF(String pdfFilePath) {
-    return pdfEditor = new Application(PDF_EDITOR_NAME + " \"" + pdfFilePath + "\"").open();
+                       </code></pre>
+        <!-- @formatter:on-->
+        </section>
+        <section>
+            <h2>Using Java power for UI testing!</h2>
+            <!-- @formatter:off-->
+                <pre><code class="java" data-trim contenteditable="false">
+//...
+    scroll( //search for logo
+            () -> screen.exists("citrus_fruit.png", 1),
+            //scroll action
+            () -> env.type(Key.DOWN).type(Key.DOWN).type(Key.DOWN).type(Key.DOWN),
+            //times to try
+            10
+    );
+//...
+
+
+public void scroll(Supplier&lt;Region&gt; check, Supplier doScroll, int times) throws SakuliException {
+    for (int i = 1; !Optional.ofNullable(check.get()).isPresent() && i <= times; i++) {
+        Logger.logInfo("Scroll page (" + i + ")");
+        doScroll.get();
+    }
+    Optional.ofNullable(check.get()).orElseThrow(() ->
+            new SakuliException("Cannot find region by scrooling!")).highlight();
 }
                        </code></pre>
         <!-- @formatter:on-->
@@ -405,6 +461,33 @@ docker-compose up
 
 
         <section>
+            <h2>Setup Selenium in Docker</h2>
+            <!-- @formatter:off-->
+            <div data-markdown contenteditable="false">
+```Dockerfile
+#Dockerfile
+FROM consol/sakuli-ubuntu-xfce-java:v1.1.0-SNAPSHOT-247_sakuli_se
+
+MAINTAINER Tobias Schneck "tobias.schneck@consol.de"
+ENV REFRESHED_AT 2017-07-02
+
+ENV SEL_DRIVER $HOME/seleniumdriver
+RUN mkdir $SEL_DRIVER && cd $SEL_DRIVER \
+    && wget https://chromedriver.storage.googleapis.com/2.25/chromedriver_linux64.zip \
+    && unzip *.zip && rm *.zip && ls -la
+
+```
+        </div>
+        <div data-markdown contenteditable="false">
+```bash
+# build and start it from the command line
+docker build -t local/sakuli-se-image . \
+    && docker run -it -p 6911:6901 --user $(id -u) -v $(pwd):/opt/maven local/sakuli-se-image
+```
+        </div>
+            <!-- @formatter:on-->
+        </section>
+        <section>
             <h2>Mount and Run the Testsuite</h2>
             <!-- @formatter:off-->
             <div data-markdown contenteditable="false">
@@ -414,7 +497,7 @@ version: '2'
 
 services:
   sakuli_se_test:
-    image: consol/sakuli-ubuntu-xfce-java:v1.1.0-beta
+    build: .
     environment:
     - TZ=Europe/Berlin
     volumes:
@@ -576,11 +659,6 @@ openshift/build_and_deploy_all.sh
                                 style="padding-left: 0.8em">ConSol/sakuli-examples</b>
                         </a> <br/>
 
-                        <div style="padding-top: 0.5em"></div>
-                        <a href="https://github.com/toschneck/sakuli-se-example" target="_blank">
-                            <img src="pics/github-mark.png" style="box-shadow: none; height: 35px"><b
-                                style="padding-left: 0.8em">toschneck/sakuli-se-example</b>
-                        </a>
                         <div style="padding-top: 0.5em"></div>
                         <a href="https://github.com/toschneck/sakuli-example-bakery-testing" target="_blank">
                             <img src="pics/github-mark.png" style="box-shadow: none; height: 35px"><b
