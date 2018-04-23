@@ -8,7 +8,7 @@
           content="Testing - Selenium? Rich-Clients? Containers? more information under https://github.com/ConSol/sakuli ">
     <meta name="author" content="Tobias Schneck">
 
-    <title>Testing - Selenium? Rich-Clients? Containers?</title>
+    <title>UI-Testing - Selenium? Rich-Clients? Containers?</title>
 
     <!-- Code syntax highlighting -->
     <link rel="stylesheet" href="lib/css/zenburn.css">
@@ -39,9 +39,15 @@
             <!--<div style="text-align: left"><img src="pics/background_first_slide_top.png"-->
             <!--style="vertical-align:top; width:11em; border: 0;box-shadow: none"/>-->
             <!--</div>-->
+            <img style="
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+             background-color: white;
+             padding: 30px;
+" src="pics/apex_connect_logo.png">
 
-            <h1 style="padding-top: 2em; margin-bottom: 0;text-transform: none">
-                Testing
+
+            <h1 style="padding-top: 1em; margin-bottom: 0;text-transform: none">
+                UI-Testing
             </h1>
             <h2 style="padding-top: 1em; margin-bottom: 0;text-transform: none">
                 Selenium? Rich-Clients? Containers?
@@ -79,7 +85,74 @@
             <!--http://images.nymag.com/news/features/establishments/workingfam101004_560.jpg-->
         </section>
         <section>
-            <h2>Next step: <br/>Make this things perfect!</h2>
+            <h2>Writing first web UI tests!</h2>
+            <table style="padding-top: 2em">
+                <tr>
+                    <td style="text-align: center">Sahi OS</td>
+                    <td style="text-align: center"><b>Selenium</b></td>
+                    <td style="text-align: center">TestCafe</td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <div style="height: 1em"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; padding: 0px 30px 0px 30px"><img
+                            style="box-shadow: none; height: 150px" src="pics/sahi.png"></td>
+                    <td style="text-align: center; padding: 0px 30px 0px 30px"><img
+                            style="box-shadow: none; height: 150px" src="pics/selenium-logo.png"></td>
+                    <td style="text-align: center; padding: 0px 30px 0px 30px"><img
+                            style="box-shadow: none; height: 120px" src="pics/testcafe.png"></td>
+                </tr>
+            </table>
+        </section>
+        <section>
+            <a href="https://github.com/ConSol/sakuli-examples/blob/5997e758ac970ff13551f4cf6196e53fb9fe4969/java-selenium-example/src/test/java/org/sakuli/example/citrus/CitrusHtmSeleniumTest.java"
+               target="_blank">
+                <h2><img src="pics/github-mark.png" style="box-shadow: none; height: 0.7em">
+                    First Selenium Test</h2>
+            </a>
+            <!-- @formatter:off-->
+            <pre><code class="java" data-trim contenteditable="false">
+public class CitrusHtmSeleniumTest {
+
+    private static final String CITRUS_URL = "http://www.citrusframework.org/";
+    private WebDriver driver;
+    private CustomSeleniumDsl dsl;
+
+    @BeforeMethod
+    public void setUp() {
+        driver = new ChromeDriver();
+        dsl = new CustomSeleniumDsl((JavascriptExecutor) driver);
+    }
+
+    @Test
+    public void testCitrusHtmlContent() throws Exception {
+        driver.get(CITRUS_URL);
+
+        //find Heading
+        WebElement heading1 = driver.findElement(By.cssSelector("p.first"));
+        dsl.highlightElement(heading1);
+        assertEquals(heading1.getText(), "Citrus Integration\nTesting");
+        assertTrue(heading1.isDisplayed());
+
+        //validate HTML content
+        WebElement heading2 = driver.findElement(By.tagName("h1"));
+        dsl.highlightElement(heading2);
+        assertEquals(heading2.getText(), "Integration challenge");
+        assertTrue(heading2.isDisplayed());
+    }
+
+    @AfterMethod
+    public void tearDown() { driver.close();}
+}
+            </code></pre>
+            <!-- @formatter:on-->
+        </section>
+        <section>
+            <h2>Next step <b style="color: red; font-size: 1.3em">?</b> <br/>Make this things perfect!</h2>
             <img style="margin-top: 0.5em" height="380px" src="pics/comic_strip/truck_cockpit_view.jpg">
             <!--http://i.imgur.com/FwITKwm.jpg-->
         </section>
@@ -101,51 +174,62 @@
                 <li>Keep it simple</li>
             </ul>
         </section>
+        <!--TODO TS check links, whitespaces and design issues from code formatting-->
         <section>
-            <h2 style="padding-bottom: 0">Add Maven Dependencies</h2>
+            <h2 style="margin-bottom: 0.2em; padding-bottom: 0.3em">
+                <img style="height: 1.5em;box-shadow: none"
+                     src="pics/sakuli-logo.png"/>
+                Concept</h2>
+            <img style="width: 100%;margin-top: 0.7em; padding: 10px" src="pics/sakuli_concept.png">
+        </section>
+        <section>
+            <a href="https://github.com/ConSol/sakuli-examples/blob/6b724dcf618e16455a529276459a109c77a8a236/java-selenium-example/pom.xml"
+               target="_blank">
+                <h2 style="padding-bottom: 0"><img src="pics/github-mark.png" style="box-shadow: none; height: 0.7em">
+                    Add Maven Dependencies</h2>
+            </a>
             <!-- @formatter:off-->
                 <pre><code class="xml" data-trim contenteditable="false">
-    <dependencies>
-        <!--- selenium and testNG dependency ... -->
+<dependencies>
+    <!--- selenium and testNG dependency ... -->
+    <dependency>
+        <groupId>org.sakuli</groupId>
+        <artifactId>sakuli-selenium-setup</artifactId>
+        <version>1.2.0-247-sakuli-se-SNAPSHOT</version>
+        <scope>test</scope>
+    </dependency>
+</dependencies>
 
-        <dependency>
-            <groupId>org.sakuli</groupId>
-            <artifactId>sakuli-selenium-setup</artifactId>
-            <version>1.1.0-SNAPSHOT-247_sakuli_se</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-
-    <!-- ConSol Labs repository holds the Sakuli libraries-->
-    <repository>
-        <id>labs-consol</id>
-        <name>ConSol Labs Repository</name>
-        <url>http://labs.consol.de/maven/repository</url>
-        <snapshots>
-            <enabled>false</enabled>
-        </snapshots>
-        <releases>
-            <enabled>true</enabled>
-        </releases>
-    </repository>
-    <repository>
-        <id>labs-consol-snapshots</id>
-        <name>ConSol Labs Snapshot-Repository</name>
-        <url>http://labs.consol.de/maven/snapshots-repository</url>
-        <snapshots>
-            <enabled>true</enabled>
-        </snapshots>
-        <releases>
-            <enabled>true</enabled>
-        </releases>
-    </repository>
+ <!-- ConSol Labs repository holds the Sakuli libraries-->
+<repository>
+    <id>labs-consol</id>
+    <name>ConSol Labs Repository</name>
+    <url>http://labs.consol.de/maven/repository</url>
+    <snapshots>
+        <enabled>false</enabled>
+    </snapshots>
+    <releases>
+        <enabled>true</enabled>
+    </releases>
+</repository>
+<repository>
+    <id>labs-consol-snapshots</id>
+    <name>ConSol Labs Snapshot-Repository</name>
+    <url>http://labs.consol.de/maven/snapshots-repository</url>
+    <snapshots>
+        <enabled>true</enabled>
+    </snapshots>
+    <releases>
+        <enabled>true</enabled>
+    </releases>
+</repository>
                </code></pre>
             <!-- @formatter:on-->
         </section>
         <section>
             <h2>Use the Sakuli Annotations</h2>
             <!-- @formatter:off-->
-                <pre><code class="java" data-trim contenteditable="false">
+            <pre><code class="java" data-trim contenteditable="false">
 @Listeners(SakuliSeTest.class)
 public class BasicSakuliSeTest {
 
@@ -178,39 +262,45 @@ public class BasicSakuliSeTest {
     //....
 }
                </code></pre>
-          <!-- @formatter:on-->
+            <!-- @formatter:on-->
         </section>
 
         <section>
-            <h2>Use the Sakuli Annotations</h2>
+            <a href="https://github.com/ConSol/sakuli-examples/blob/6b724dcf618e16455a529276459a109c77a8a236/java-selenium-example/src/test/java/org/sakuli/example/github/GitHubSakuliSeExampleTest.java"
+               target="_blank">
+                <h2><img src="pics/github-mark.png" style="box-shadow: none; height: 0.7em">
+                    Use the Sakuli Annotations</h2>
+            </a>
             <!-- @formatter:off-->
-                <pre><code class="java" data-trim contenteditable="false">
-@Listeners(SakuliSeTest.class)
-public class BasicSakuliSeTest {
+            <pre><code class="java" data-trim contenteditable="false">
+public class GitHubSakuliSeExampleTest extends AbstractSakuliSeTest {
 
-    //....
-    private static final String SAKULI_URL = "https://github.com/ConSol/sakuli/blob/master/README.md";
+    private String SAKULI_URL = "https://github.com/ConSol/sakuli/blob/master/README.adoc";
 
     @Test
-    @SakuliTestCase
+    @SakuliTestCase(additionalImagePaths = "/common_pics")
     public void test1() throws Exception {
         //your test code
         driver.get(SAKULI_URL);
-        screen.highlight();
+        screen.highlight(5);
         screen.find("sakuli_logo.png").highlight();
     }
 
     @Test
-    @SakuliTestCase(testCaseName = "mysecondtest", warningTime = 10, criticalTime = 20, additionalImagePaths = "/common_pics")
+    @SakuliTestCase(
+                testCaseName = "mysecondtest",
+                warningTime = 15, criticalTime = 25,
+                additionalImagePaths = "/common_pics")
     public void test2() throws Exception {
         //your test code
         driver.get(SAKULI_URL);
-        screen.highlight();
+        screen.highlight(5);
         screen.type(Key.END).find("github_logo.png").highlight();
     }
+
 }
                </code></pre>
-          <!-- @formatter:on-->
+            <!-- @formatter:on-->
         </section>
         <section>
             <h3 style="line-height: 1.8">
@@ -226,16 +316,20 @@ public class BasicSakuliSeTest {
             <img style="margin: 1em 100px 0.7em 100px " height="380px" src="pics/comic_strip/lets-get-started.jpg">
             <ul class="arrow_right">
                 <li>Generate PDF file</li>
-                <li>Open the file in a native PDF viewer</li>
+                <li>Open it in a native PDF viewer</li>
                 <li>Validate the content</li>
             </ul>
             <!--http://i.imgur.com/FwITKwm.jpg-->
         </section>
 
         <section>
-            <h2>Test Definition (Selenium)</h2>
+            <a href="https://github.com/ConSol/sakuli-examples/blob/cadce12010b2893f443050bad921d5654b3d7f81/java-selenium-example/src/test/java/org/sakuli/example/citrus/CitrusHtmlPdfTest.java#L32"
+               target="_blank">
+                <h2><img src="pics/github-mark.png" style="box-shadow: none; height: 0.7em">
+                    Test Definition <span style="font-size: 0.5em">(Selenium only)</span></h2>
+            </a>
             <!-- @formatter:off-->
-                <pre><code class="java" data-trim contenteditable="false">
+            <pre><code class="java" data-trim contenteditable="false">
 @Test
 @SakuliTestCase
 public void testCitrusHtmlContent() throws Exception {
@@ -270,24 +364,29 @@ public void testCitrusContent(String dest) throws Exception {
     htmlUserGuideLink.click();
 }
         </code></pre>
-        <!-- @formatter:on-->
+            <!-- @formatter:on-->
         </section>
         <section>
-            <h2>Test Definition (Selenium + Sakuli SE)</h2>
+            <a href="https://github.com/ConSol/sakuli-examples/blob/cadce12010b2893f443050bad921d5654b3d7f81/java-selenium-example/src/test/java/org/sakuli/example/citrus/CitrusHtmlPdfTest.java#L48"
+               target="_blank">
+                <h2><img src="pics/github-mark.png" style="box-shadow: none; height: 0.7em">
+                    Test Definition <span style="font-size: 0.5em">(Selenium + Sakuli SE)</span></h2>
+            </a>
             <!-- @formatter:off-->
-                <pre><code class="java" data-trim contenteditable="false">
-
+            <pre><code class="java" data-trim contenteditable="false">
 @Test
 @SakuliTestCase(additionalImagePaths = "citrus_pics")
 public void testCitrusPdfContent() throws Exception {
-                    
+
     //opens PDF download page and click download
     testCitrusContent("PDF");
     screen.find("reload_button.png").highlight();
 
-    //search citrus logo on PDF
-    scroll( () -> screen.exists("citrus_fruit.png", 1),
+    scroll( //search citrus logo on PDF
+            () -> screen.exists("pdf_citrus_title.png", 1),
+            //scroll action
             () -> env.type(Key.DOWN).type(Key.DOWN).type(Key.DOWN).type(Key.DOWN),
+            //times to try
             10
     );
     env.sleep(hSec);
@@ -301,19 +400,18 @@ public void testCitrusPdfContent() throws Exception {
     screen.find("test_case_pdf_heading.png").highlight().click();
 
     //scroll until the expected diagram is visible
-    scroll( () -> screen.exists("test_case_diagram.png", 1),
+    scroll(() -> screen.exists("test_case_diagram.png", 1),
             () -> env.type(Key.DOWN).type(Key.DOWN).type(Key.DOWN).type(Key.DOWN),
             10
     );
 }
-
                        </code></pre>
-        <!-- @formatter:on-->
+            <!-- @formatter:on-->
         </section>
         <section>
             <h2>Using Java power for UI testing!</h2>
             <!-- @formatter:off-->
-                <pre><code class="java" data-trim contenteditable="false">
+            <pre><code class="java" data-trim contenteditable="false">
 //...
     scroll( //search for logo
             () -> screen.exists("citrus_fruit.png", 1),
@@ -334,7 +432,7 @@ public void scroll(Supplier&lt;Region&gt; check, Supplier doScroll, int times) t
             new SakuliException("Cannot find region by scrooling!")).highlight();
 }
                        </code></pre>
-        <!-- @formatter:on-->
+            <!-- @formatter:on-->
         </section>
 
         <section>
@@ -360,7 +458,7 @@ public void scroll(Supplier&lt;Region&gt; check, Supplier doScroll, int times) t
         <section>
             <h2>Control Web and Rich Clients</h2>
             <!-- @formatter:off-->
-                <pre><code class="java" data-trim contenteditable="false">
+            <pre><code class="java" data-trim contenteditable="false">
 @Test
 @SakuliTestCase
 public void testWebOrderToReportClient() throws Exception {
@@ -397,7 +495,43 @@ public void testWebOrderToReportClient() throws Exception {
     }
 }
                </code></pre>
-          <!-- @formatter:on-->
+            <!-- @formatter:on-->
+        </section>
+        <section>
+            <a href="https://github.com/ConSol/sakuli-examples/blob/487d2617fb8c7fbf419e9d35e03a888d992bdb66/java-selenium-example/src/test/java/org/sakuli/example/uiOnly/OsNativeTest.java#L57"
+               target="_blank">
+                <h2><img src="pics/github-mark.png" style="box-shadow: none; height: 0.7em">
+                    Rich Client Gnome Editor</h2>
+            </a>
+            <!-- @formatter:off-->
+            <pre><code class="java" data-trim contenteditable="false">
+@Test
+@SakuliTestCase(warningTime = 50, criticalTime = 60)
+public void testEditorOpensReadMe() throws Exception {
+    checkEnvironment();
+    gedit.open();
+
+    // shows fluent API and how sub regions can be used
+    final Region geditAnchor = screen.waitForImage("gedit", 5)
+            .highlight()
+            .click();
+    // move focus mouse pointer
+    geditAnchor.below(100).highlight().mouseMove();
+
+    // use already known region
+    final Region otherDocument = geditAnchor
+            // great larger search region
+            .below(200).setW(300).highlight()
+            .waitForImage("search", 20).highlight()
+            .click()
+            .type("Hello Guys!")
+             // base region of "search" button grows 400px
+            .grow(400, 400).highlight(2)
+            .find("other_documents").highlight();
+    //...
+}
+            </code></pre>
+            <!-- @formatter:on-->
         </section>
 
         <section>
@@ -438,18 +572,18 @@ public void testWebOrderToReportClient() throws Exception {
 
             <!-- @formatter:off-->
             <div data-markdown contenteditable="false">
-```bash
-# start the docker container
-docker run -it -p 5911:5901 -p 6911:6901 consol/sakuli-ubuntu-xfce
-docker run -it -p 5912:5901 -p 6912:6901 consol/sakuli-centos-xfce
-docker run -it -p 5913:5901 -p 6913:6901 consol/sakuli-ubuntu-xfce-java
-docker run -it -p 5914:5901 -p 6914:6901 consol/sakuli-centos-xfce-java
+                ```bash
+                # start the docker container
+                docker run -it -p 5911:5901 -p 6911:6901 consol/sakuli-ubuntu-xfce
+                docker run -it -p 5912:5901 -p 6912:6901 consol/sakuli-centos-xfce
+                docker run -it -p 5913:5901 -p 6913:6901 consol/sakuli-ubuntu-xfce-java
+                docker run -it -p 5914:5901 -p 6914:6901 consol/sakuli-centos-xfce-java
 
-# start in parallel via docker-compose
-# use docker-compos.yml from https://github.com/ConSol/sakuli/tree/master/docker
-docker-compose up
-```
-</div>
+                # start in parallel via docker-compose
+                # use docker-compos.yml from https://github.com/ConSol/sakuli/tree/master/docker
+                docker-compose up
+                ```
+            </div>
             <!-- @formatter:on-->
             <div style="padding-top: 0.4em;">
                 <a target="_blank"
@@ -457,71 +591,95 @@ docker-compose up
                     <img width="47%" style="box-shadow: none;" src="pics/docker_sakuli_example.png">
                 </a>
             </div>
+            <div style="font-size: 0.75em"> Based on: <a href="https://github.com/ConSol/docker-headless-vnc-container"
+                                                         target="_blank">
+                <img src="pics/github-mark.png" style="box-shadow: none; height: 0.7em">
+                ConSol/docker-headless-vnc-container
+            </a>
+            </div>
         </section>
 
 
         <section>
-            <h2>Setup Selenium in Docker</h2>
+            <a href="https://github.com/ConSol/sakuli-examples/blob/b767738f04e2c249d7f447dc4de788d856bb4674/java-selenium-example/Dockerfile#L2"
+               target="_blank">
+                <h2><img src="pics/github-mark.png" style="box-shadow: none; height: 0.7em">
+                    Setup Selenium in Docker</h2>
+            </a>
             <!-- @formatter:off-->
             <div data-markdown contenteditable="false">
-```Dockerfile
+                ```Dockerfile
 #Dockerfile
-FROM consol/sakuli-ubuntu-xfce-java:v1.1.0-SNAPSHOT-247_sakuli_se
+FROM consol/sakuli-ubuntu-xfce-java:v1.2.0-247-sakuli-se-SNAPSHOT
 
 MAINTAINER Tobias Schneck "tobias.schneck@consol.de"
-ENV REFRESHED_AT 2017-07-02
+ENV REFRESHED_AT 2018-04-23
 
-ENV SEL_DRIVER $HOME/seleniumdriver
-RUN mkdir $SEL_DRIVER && cd $SEL_DRIVER \
+### Install gedit as test app
+USER 0
+RUN apt-get update \
+    && apt-get install -y gedit \
+    && apt-get clean -y
+USER 1000
+
+### Install webdriver
+ENV WEB_DRIVER /headless/webdriver
+#chrome
+RUN mkdir $WEB_DRIVER && cd $WEB_DRIVER \
     && wget https://chromedriver.storage.googleapis.com/2.25/chromedriver_linux64.zip \
     && unzip *.zip && rm *.zip && ls -la
-
-```
-        </div>
-        <div data-markdown contenteditable="false">
-```bash
-# build and start it from the command line
-docker build -t local/sakuli-se-image . \
-    && docker run -it -p 6911:6901 --user $(id -u) -v $(pwd):/opt/maven local/sakuli-se-image
-```
-        </div>
+                ```
+            </div>
+            <div style="text-align: left; font-size: 0.8em">Build and start the container:</div>
+            <div data-markdown contenteditable="false">
+                ```bash
+docker build -t local/sakuli-se . \
+    && docker run -it -v $(pwd):/opt/maven --user $(id -u) -p 6911:6901 \
+    local/sakuli-se mvn -P docker test
+                ```
+            </div>
             <!-- @formatter:on-->
         </section>
         <section>
-            <h2>Mount and Run the Testsuite</h2>
+            <a href="https://github.com/ConSol/sakuli-examples/blob/69ed070b20815865ee46d14759255efb581c13f7/java-selenium-example/docker-compose.yml"
+               target="_blank">
+                <h2><img src="pics/github-mark.png" style="box-shadow: none; height: 0.7em">
+                    Define a repeatable Test Setup</h2>
+            </a>
             <!-- @formatter:off-->
             <div data-markdown contenteditable="false">
-```yml
-# docker-compose.yml
+                ```yaml
 version: '2'
-
 services:
-  sakuli_se_test:
-    build: .
-    environment:
-    - TZ=Europe/Berlin
-    volumes:
-    - .:/opt/maven
-    - data:/headless/.m2
-    network_mode: "bridge"
-    ports:
-    - 5911:5901
-    - 6911:6901
-    # to keep container running and login via `docker exec -it javaexample_sakuli_java_test_1 bash`
-    # command: "'--tail-log'"
-    command: mvn clean test -P docker -f /opt/maven/pom.xml
+                sakuli_se_test:
+                build: .
+                environment:
+                - TZ=Europe/Berlin
+                user: "1000"
+                volumes:
+                - .:/opt/maven
+                - data:/headless/.m2
+                network_mode: "bridge"
+                ports:
+                - 5911:5901
+                - 6911:6901
+                # to keep container running and login via `docker exec -it javaexample_sakuli_java_test_1 bash`
+                # command: "'--tail-log'"
+                command: mvn clean test -P docker -f /opt/maven/pom.xml
 
 volumes:
-  data:
+                data:
     driver: local
-```
-        </div>
-        <div data-markdown contenteditable="false">
-```bash
-# start it from the command line
-docker-compose up
-```
-        </div>
+
+                ```
+            </div>
+            <!--Build and start the container:-->
+            <div style="text-align: left; font-size: 0.8em">Build and start the container:</div>
+            <div data-markdown contenteditable="false">
+                ```bash
+                docker-compose up --build --force-recreate
+                ```
+            </div>
             <!-- @formatter:on-->
         </section>
 
@@ -536,104 +694,163 @@ docker-compose up
             </h3>
         </section>
 
-        <section>
-            <h2 style="padding-bottom: 0">Bakery Demo Setup</h2>
-
-            <a href="https://github.com/toschneck/sakuli-example-bakery-testing" target="_blank">
-                <img width="90%"
-                     style="border: none"
-                     src="pics/ci_umgebung.png"/>
-            </a>
-        </section>
-        <section>
-            <h2 style="padding-bottom: 0">Bakery Demo Setup</h2>
-            <a href="https://github.com/toschneck/sakuli-example-bakery-testing" target="_blank">
-                <img width="90%"
-                     style="border: none"
-                     src="pics/ci_umgebung_2.png"/>
-            </a>
-        </section>
-        <section>
-            <a target="_blank" href="video/sakuli_ci_cm6_demo.mp4">
-                <h2>Bakery Demo</h2>
-            </a>
-
-            <!-- @formatter:off-->
-            <div data-markdown contenteditable="false">
-```bash
-git clone https://github.com/toschneck/sakuli-example-bakery-testing.git
-
-# start jenkins
-jenkins/deploy_jenkins.sh
-# start OMD montioring
-omd-nagios/deploy_omd.sh
-
-# start the build of the application images
-bakery-app/app-deployment-docker-compose/deploy_app.sh
-
-#start tests
-sakuli-tests/execute_all.sh
-#start tests for monitoring
-sakuli-tests/execute_all_4_monitoring.sh
-
-# for OpenShift deploy configuration, see READE.md
-openshift/build_and_deploy_all.sh
-```
-</div>
-            <!-- @formatter:on-->
-            <div style="padding-top: 0.5em"></div>
-            <table width="90%">
-                <tr>
-                    <td width="50%">
-                        <a target="_blank" href="vnc_overview_local.html">
-                            <img style="box-shadow: none;padding-right: 0.5em; width: 100%"
-                                 src="pics/ci_bakery_test.png">
-                        </a>
-                    </td>
-                    <td style="vertical-align: top; text-align: right;padding-top: 0.4em;" width="50%">
-                        <a target="=_blank" href="http://localhost:8080/">
-                            <img style="box-shadow: none; width: 100%"
-                                 src="pics/ci_jenkins_pipeline.png">
-                        </a>
-                    </td>
-                </tr>
-            </table>
-        </section>
-
-        <!--TODO TS: maybe add it-->
         <!--<section>-->
-        <!--<h2 style="margin-bottom: 0.2em; padding-bottom: 0.3em"><img style="height: 1.5em;box-shadow: none"-->
-        <!--src="pics/sakuli-logo.png"/>-->
-        <!--Monitoring Integration</h2>-->
-        <!--<div style="font-size: x-large">-->
-        <!--<img style="margin-left: 1em;box-shadow: none" src="css/theme/pics/green_hook_list.png">-->
-        <!--Nagios-->
-        <!--<img style="margin-left: 1em;box-shadow: none" src="css/theme/pics/green_hook_list.png">-->
-        <!--OMD-->
-        <!--<img style="margin-left: 1em;box-shadow: none" src="css/theme/pics/green_hook_list.png">-->
-        <!--Incinga-->
-        <!--<img style="margin-left: 1em;box-shadow: none" src="css/theme/pics/green_hook_list.png">-->
-        <!--Check_MK-->
-        <!--</div>-->
-        <!--<a target="_blank" href="https://github.com/ConSol/sakuli/blob/master/docs/index.md">-->
-        <!--<img width="85%" style="border: 0; margin-top: 0.7em" src="pics/nagios.png">-->
+        <!--<h2 style="padding-bottom: 0">Bakery Demo Setup</h2>-->
+
+        <!--<a href="https://github.com/toschneck/sakuli-example-bakery-testing" target="_blank">-->
+        <!--<img width="90%"-->
+        <!--style="border: none"-->
+        <!--src="pics/ci_umgebung.png"/>-->
         <!--</a>-->
         <!--</section>-->
+        <!--<section>-->
+        <!--<h2 style="padding-bottom: 0">Bakery Demo Setup</h2>-->
+        <!--<a href="https://github.com/toschneck/sakuli-example-bakery-testing" target="_blank">-->
+        <!--<img width="90%"-->
+        <!--style="border: none"-->
+        <!--src="pics/ci_umgebung_2.png"/>-->
+        <!--</a>-->
+        <!--</section>-->
+        <!--<section>-->
+        <!--<a target="_blank" href="video/sakuli_ci_cm6_demo.mp4">-->
+        <!--<h2>Bakery Demo</h2>-->
+        <!--</a>-->
+
+        <!--&lt;!&ndash; @formatter:off&ndash;&gt;-->
+        <!--<div data-markdown contenteditable="false">-->
+        <!--```bash-->
+        <!--git clone https://github.com/toschneck/sakuli-example-bakery-testing.git-->
+
+        <!--# start jenkins-->
+        <!--jenkins/deploy_jenkins.sh-->
+        <!--# start OMD montioring-->
+        <!--omd-nagios/deploy_omd.sh-->
+
+        <!--# start the build of the application images-->
+        <!--bakery-app/app-deployment-docker-compose/deploy_app.sh-->
+
+        <!--#start tests-->
+        <!--sakuli-tests/execute_all.sh-->
+        <!--#start tests for monitoring-->
+        <!--sakuli-tests/execute_all_4_monitoring.sh-->
+
+        <!--# for OpenShift deploy configuration, see READE.md-->
+        <!--openshift/build_and_deploy_all.sh-->
+        <!--```-->
+        <!--</div>-->
+        <!--&lt;!&ndash; @formatter:on&ndash;&gt;-->
+        <!--<div style="padding-top: 0.5em"></div>-->
+        <!--<table width="90%">-->
+        <!--<tr>-->
+        <!--<td width="50%">-->
+        <!--<a target="_blank" href="vnc_overview_local.html">-->
+        <!--<img style="box-shadow: none;padding-right: 0.5em; width: 100%"-->
+        <!--src="pics/ci_bakery_test.png">-->
+        <!--</a>-->
+        <!--</td>-->
+        <!--<td style="vertical-align: top; text-align: right;padding-top: 0.4em;" width="50%">-->
+        <!--<a target="=_blank" href="http://localhost:8080/">-->
+        <!--<img style="box-shadow: none; width: 100%"-->
+        <!--src="pics/ci_jenkins_pipeline.png">-->
+        <!--</a>-->
+        <!--</td>-->
+        <!--</tr>-->
+        <!--</table>-->
+        <!--</section>-->
+
+        <section>
+            <h2>Why <img style="height: 1.5em;box-shadow: none"
+                         src="pics/sakuli-logo.png"/></h2>
+            <ul>
+                <li class="green_hook">Support different web testing providers:</li>
+                <ul style="list-style-type: disc; font-size: medium">
+                    <li>Sahi OS</li>
+                    <li>Selenium</li>
+                    <li>... more should follow</li>
+                </ul>
+                <li class="green_hook">Combines DOM access and native screen recognition</li>
+                <li class="green_hook">OpenSource</li>
+                <ul style="list-style-type: disc; font-size: medium">
+
+                    <li> no vendor lock in and easy to extend</li>
+                </ul>
+                </li>
+                <li class="green_hook">Ready-to-use Docker images</li>
+                <li class="green_hook">Cloud-ready: Kubernetes & OpenShift</li>
+            </ul>
+
+        </section>
+
+        <section>
+            <h2 style="margin-bottom: 0.2em; padding-bottom: 0.3em"><img style="height: 1.5em;box-shadow: none"
+                                                                         src="pics/sakuli-logo.png"/>
+                Monitoring Integration</h2>
+            <div style="font-size: x-large">
+                <img style="margin-left: 1em;box-shadow: none" src="css/theme/pics/green_hook_list.png">
+                Nagios
+                <img style="margin-left: 1em;box-shadow: none" src="css/theme/pics/green_hook_list.png">
+                OMD
+                <img style="margin-left: 1em;box-shadow: none" src="css/theme/pics/green_hook_list.png">
+                Incinga
+                <img style="margin-left: 1em;box-shadow: none" src="css/theme/pics/green_hook_list.png">
+                Check_MK
+            </div>
+            <a target="_blank" href="https://github.com/ConSol/sakuli/blob/master/docs/index.md">
+            </a>
+            <img style="width: 100%;margin-top: 0.7em" src="pics/omd_integration.png">
+        </section>
+        <section>
+            <h2 style="margin-bottom: 0.2em; padding-bottom: 0.3em"><img style="height: 1.5em;box-shadow: none"
+                                                                         src="pics/sakuli-logo.png"/>
+                CI Pipeline with Jenkins</h2>
+            <a target="_blank" href="https://github.com/ConSol/sakuli/blob/master/docs/index.md">
+            </a>
+            <img style="width: 100%;margin-top: 0.7em; padding: 10px" src="pics/ci_integration_sakuli.png">
+        </section>
+        <section>
+            <h2 style="margin-bottom: 0.2em; padding-bottom: 0.3em"><img style="height: 1.5em;box-shadow: none"
+                                                                         src="pics/sakuli-logo.png"/>
+                Test Management UI</h2>
+            <a target="_blank" href="https://github.com/ConSol/sakuli/blob/master/docs/index.md">
+            </a>
+            <ul class="arrow_right_small">
+                <li style="font-size: 0.75em">Comfortable writing and management of test suites</li>
+                <li style="font-size: 0.75em">Direct test execution with integrated live view and logs</li>
+                <li style="font-size: 0.75em">Extended reports for easy error detection</li>
+            </ul>
+            <img style="width: 100%;margin-top: 0.7em;" src="pics/sakuli-ui.png">
+        </section>
 
         <section>
             <h2>What's next?</h2>
             <ul style="font-size: 0.8em; padding-top: 1em">
-                <li>Headless execution -
-                    <b>Linux:</b>
-                    VNC & Docker
-                    <img style="box-shadow: none" src="css/theme/pics/green_hook_list.png"/>
-                    <b>Windows:</b> <b style="color: red; font-size: 1.3em">?</b>
-                </li>
-                <li><b>Video</b> recording of the test execution (error documentation)</li>
-                <li><b>Web UI</b> to handle Sakuli test suites</li>
-                <li>Connect 3rd-party <b>test management tools</b> (HP QC, TestRail, ...)</li>
-                <li>Improve test <b>result presentation</b> in CI tools</li>
-                <li>Implement <b>Junit 5</b> test runner</li>
+                <li class="arrow_right_small">Implement <b>Junit 5</b> test runner</li>
+                <li class="arrow_right_small"><b>Web UI</b> to handle Sakuli test suites</li>
+                <ul style="list-style-type: disc">
+                    <li class="green_hook_small">
+                        JavaScript
+                    </li>
+                    <li class="red_x_small">
+                        Java
+                    </li>
+                </ul>
+                <li class="arrow_right_small">Headless execution</li>
+                <ul style="list-style-type: disc">
+                    <li class="green_hook_small">
+                        <b>Linux:</b> VNC & Docker
+                    </li>
+                    <li class="red_x_small">
+                        <b>Windows:</b> only Terminalserver
+                    </li>
+                </ul>
+
+                <li class="arrow_right_small"><b>Video</b> recording of the test execution (error documentation)</li>
+                <li class="arrow_right_small">Add to cloud testing platform <b>ConSol SweeTest</b></li>
+                <ul style="list-style-type: disc;">
+                    <li style=" font-size: 0.8em">Improve test <b>result presentation</b></li>
+                    <li style=" font-size: 0.8em">Test executing and reporting across <b>container-based</b> clusters
+                    </li>
+                </ul>
             </ul>
         </section>
 
@@ -660,10 +877,12 @@ openshift/build_and_deploy_all.sh
                         </a> <br/>
 
                         <div style="padding-top: 0.5em"></div>
-                        <a href="https://github.com/toschneck/sakuli-example-bakery-testing" target="_blank">
+                        <a href="https://github.com/ConSol/sakuli-examples/tree/master/java-selenium-example"
+                           target="_blank">
                             <img src="pics/github-mark.png" style="box-shadow: none; height: 35px"><b
-                                style="padding-left: 0.8em">toschneck/sakuli-example-bakery-testing</b>
-                        </a>
+                                style="padding-left: 0.8em">ConSol/sakuli-examples/java-selenium-example</b>
+                        </a> <br/>
+
                     </td>
                 </tr>
                 <tr>
@@ -801,23 +1020,23 @@ openshift/build_and_deploy_all.sh
         dependencies: [
             {
                 src: 'lib/js/classList.js', condition: function () {
-                return !document.body.classList;
-            }
+                    return !document.body.classList;
+                }
             },
             {
                 src: 'plugin/markdown/marked.js', condition: function () {
-                return !!document.querySelector('[data-markdown]');
-            }
+                    return !!document.querySelector('[data-markdown]');
+                }
             },
             {
                 src: 'plugin/markdown/markdown.js', condition: function () {
-                return !!document.querySelector('[data-markdown]');
-            }
+                    return !!document.querySelector('[data-markdown]');
+                }
             },
             {
                 src: 'plugin/highlight/highlight.js', async: true, callback: function () {
-                hljs.initHighlightingOnLoad();
-            }
+                    hljs.initHighlightingOnLoad();
+                }
             },
             {src: 'plugin/zoom-js/zoom.js', async: true},
             {src: 'plugin/notes/notes.js', async: true}
@@ -826,7 +1045,7 @@ openshift/build_and_deploy_all.sh
 
     //custom added functionality
     isPrintingPdf = function () {
-        return ( /print-pdf/gi ).test(window.location.search);
+        return (/print-pdf/gi).test(window.location.search);
     }
     Reveal.showControls = function () {
         if (Reveal.isFirstSlide()) {

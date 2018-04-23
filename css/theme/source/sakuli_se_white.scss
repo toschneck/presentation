@@ -15,14 +15,14 @@ $colorSoftwareQsTag: #0072af;
 // Override theme settings (see ../template/settings.scss)
 $backgroundColor: #fff;
 // Background generator
-@mixin bodyBackground() {
-  //@include radial-gradient( #add9e4, #f7fbfc );
-
-  //@include radial-gradient(rgba(255,255,255,1), rgba(240,240,240,1));
-  //@include radial-gradient(rgba(247, 255, 212,0.5),rgba(255,255,255,0.5));
-  @include radial-gradient(rgba(255, 243, 156, 0.18),rgba(255,255,255,0.5));
-  //@include radial-gradient(rgba(255,255,255,0.5),rgba(247, 255, 212,0.5));
-}
+//@mixin bodyBackground() {
+//  //@include radial-gradient( #add9e4, #f7fbfc );
+//
+//  //@include radial-gradient(rgba(255,255,255,1), rgba(240,240,240,1));
+//  //@include radial-gradient(rgba(247, 255, 212,0.5),rgba(255,255,255,0.5));
+//  @include radial-gradient(rgba(255, 243, 156, 0.18),rgba(255,255,255,0.5));
+//  //@include radial-gradient(rgba(255,255,255,0.5),rgba(247, 255, 212,0.5));
+//}
 
 //body {
 //  background: #fff;
@@ -126,13 +126,28 @@ section.has-dark-background {
 .reveal .red_x {
   list-style-image: url('pics/red_x.png');
 }
+
+.reveal .red_x_small {
+  list-style-image: url('pics/red_x_small.png');
+  font-size: 0.8em;
+}
+
 .reveal .arrow_right {
   list-style-image: url('pics/arrow_right.png');
+}
+
+.reveal .arrow_right_small {
+  list-style-image: url('pics/arrow_right_small.png');
 }
 
 .reveal .green_hook {
   //list-style-image: url('pics/blue_hook_list.png');
   list-style-image: url('pics/green_hook_list.png');
+}
+
+.reveal .green_hook_small {
+  list-style-image: url('pics/green_hook_list_small.png');
+  font-size: 0.8em;
 }
 
 .reveal section img {

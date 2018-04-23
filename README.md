@@ -1,12 +1,26 @@
 ![](pics/contarinerized-salkuli-docker.png)
 
-### Presentation: [Testing - Selenium? Rich-Clients? Containers?](https://rawgit.com/toschneck/presentation/devops-day-sakuli-se/index.html#/)
-<iframe width="854" height="480" src="./index.html" frameborder="0"></iframe>
+### Presentation: [UI Testing - Selenium? Rich-Clients? Containers?](https://rawgit.com/toschneck/presentation/apex-connect-2018/index.html#/)
 
-### Example: [Sakuli Se Examples](https://github.com/ConSol/sakuli-examples/tree/master/java-selenium-example)
-### Example: [Sakuli Example Bakery Testing](https://github.com/toschneck/sakuli-example-bakery-testing)
+
+### Example: [Sakuli Selenium Examples](https://github.com/ConSol/sakuli-examples/tree/master/java-selenium-example)
 ### Example: [Sakuli Examples](https://github.com/consol/sakuli-examples)
 
-Setting up unit- and integration tests are tasks which developers have learned to deal. But  testing UIs from the perspective of an end user is mostly still a challenge. The key question usually to answer is: How it is possible to make these end-2-end tests stable, scalable and reproducible? The upcoming container technologies bring the hope of managing and automating your UI tests as easily as your container deployment. After a short introduction to the concepts, a live demo will show how it is possible to test a web- or a rich-client application in a containerized Linux UI. The example will be demonstrated by the open source tools __Docker__ and __Sakuli__. The execution and reporting of the tests will be managed by the continuous integration platform __Jenkins__, which brings the ability to integrate everything into your build pipeline.
+Das Entwickeln und Gestalten von einer UI ist für sich allein genommen bereits eine große Herausforderung. Ganz zu schweigen von der Aufgabe die UI-Tests zu automatisieren. Wurde beides erfolgreich gemeistert, kommen allerdings die nächsten Fragen:
+
+* Sollen wir auch die PDF-Auftragsbestätigung im Test validieren?
+  > Natürlich sollten wir!
+
+* Ist der Rich-Client auch zu testen?
+  > Ja, wieso denn auch nicht!
+
+* Wo sollen die Tests ausgeführt werden?
+  > Natürlich im Docker-Container und im Kubernetes-Cluster!
+
+* Können wir die Tests auf ein anderes Framework migrieren?
+  > Was bringt uns das? Wir wollen die bestehenden Tests doch weiterverwenden!
+
+Diese Fragen sind den Einen oder Anderen bestimmt nicht neu, aber was tun? Es wurde bereits viel Aufwand und Mühe in die Pflege der umfangreichen Selenium-Testsuiten gesteckt! Daher möchte man diese nur ungern verwerfen, nur um neue Anforderungen umzusetzen. Der Talk zeigt hierfür eine Lösung auf, die mit geringen Aufwand die bestehenden Selenium-Tests einfach erweitert. Die Open-Source-Erweiterung "Sakuli Se" bietet eine umfangreiche API, die es ermöglicht Rich-Clients, PDF-Inhalte oder auch Flash-Anwendungen ebenso leicht wie ein HTML-Button im selben Ausführungskontext zu testen. An Praxisbeispielen wird ebenso demonstriert wie durch vorgefertigte Dockerimages die Testausführung skalierbar bis in Cloud-Umgebung, wie Kubernetes oder OpenShift, aufgebaut werden kann.
+
 
 For more information see __[ConSol/sakuli](https://github.com/ConSol/sakuli)__.

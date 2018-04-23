@@ -11,13 +11,7 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
  * GLOBAL STYLES
  *********************************************/
 body {
-  background: rgba(255, 243, 156, 0.18);
-  background: -moz-radial-gradient(center, circle cover, rgba(255, 255, 255, 0.5) 0%, rgba(255, 243, 156, 0.18) 100%);
-  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(255, 255, 255, 0.5)), color-stop(100%, rgba(255, 243, 156, 0.18)));
-  background: -webkit-radial-gradient(center, circle cover, rgba(255, 255, 255, 0.5) 0%, rgba(255, 243, 156, 0.18) 100%);
-  background: -o-radial-gradient(center, circle cover, rgba(255, 255, 255, 0.5) 0%, rgba(255, 243, 156, 0.18) 100%);
-  background: -ms-radial-gradient(center, circle cover, rgba(255, 255, 255, 0.5) 0%, rgba(255, 243, 156, 0.18) 100%);
-  background: radial-gradient(center, circle cover, rgba(255, 255, 255, 0.5) 0%, rgba(255, 243, 156, 0.18) 100%);
+  background: #fff;
   background-color: #fff; }
 
 .reveal {
@@ -337,11 +331,22 @@ body {
 .reveal .red_x {
   list-style-image: url("pics/red_x.png"); }
 
+.reveal .red_x_small {
+  list-style-image: url("pics/red_x_small.png");
+  font-size: 0.8em; }
+
 .reveal .arrow_right {
   list-style-image: url("pics/arrow_right.png"); }
 
+.reveal .arrow_right_small {
+  list-style-image: url("pics/arrow_right_small.png"); }
+
 .reveal .green_hook {
   list-style-image: url("pics/green_hook_list.png"); }
+
+.reveal .green_hook_small {
+  list-style-image: url("pics/green_hook_list_small.png");
+  font-size: 0.8em; }
 
 .reveal section img {
   margin: 0;
