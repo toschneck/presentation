@@ -1,4 +1,3 @@
-![](pics/contarinerized-salkuli-docker.png)
 
 ### Presentation: [UI Testing - Selenium? Rich-Clients? Containers?](https://rawgit.com/toschneck/presentation/apex-connect-2018/index.html#/)
 
