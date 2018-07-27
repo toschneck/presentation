@@ -43,7 +43,8 @@
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
              background-color: white;
              padding: 30px;
-" src="pics/apex_connect_logo.png">
+             width: 40%;
+" src="pics/meetup.png">
 
 
             <h1 style="padding-top: 1em; margin-bottom: 0;text-transform: none">
@@ -62,6 +63,7 @@
             <!-- Referent: Tobias Schneck, ConSol Software GmbH-->
             <p style="padding-top: 4.5em; text-align: right">
                 <small><a href="mailto:tobias.schneck@consol.de">Tobias Schneck</a>, <a
+                        href="http://www.loodse.com">Loodse GmbH</a> / <a
                         href="http://www.consol.de">ConSol Software GmbH</a>
                 </small>
                 </br>
@@ -160,7 +162,7 @@ public class CitrusHtmSeleniumTest {
             <h3 style="line-height: 1.8">
                 <ul class="red_x">
                     <li>Rewrite all of our tests?</li>
-                    <li>Validate the order confirmation PDF?</li>
+                    <li>Validate the documentation PDF?</li>
                     <li>Test the rich-client implementation as well?</li>
                     <li>Where to run the test?</li>
                 </ul>
@@ -189,18 +191,18 @@ public class CitrusHtmSeleniumTest {
                     Add Maven Dependencies</h2>
             </a>
             <!-- @formatter:off-->
-                <pre><code class="xml" data-trim contenteditable="false">
+            <pre><code class="xml" data-trim contenteditable="false">
 <dependencies>
     <!--- selenium and testNG dependency ... -->
     <dependency>
         <groupId>org.sakuli</groupId>
         <artifactId>sakuli-selenium-setup</artifactId>
-        <version>1.2.0-247-sakuli-se-SNAPSHOT</version>
+        <version>1.3.0-247-sakuli-se-SNAPSHOT</version>
         <scope>test</scope>
     </dependency>
 </dependencies>
 
- <!-- ConSol Labs repository holds the Sakuli libraries-->
+                <!-- ConSol Labs repository holds the Sakuli libraries-->
 <repository>
     <id>labs-consol</id>
     <name>ConSol Labs Repository</name>
@@ -306,7 +308,7 @@ public class GitHubSakuliSeExampleTest extends AbstractSakuliSeTest {
             <h3 style="line-height: 1.8">
                 <ul class="red_x">
                     <li class="green_hook">Rewrite all of our tests?</li>
-                    <li>Validate the order confirmation PDF?</li>
+                    <li>Validate the documentation PDF?</li>
                     <li>Test the rich-client implementation as well?</li>
                     <li>Where to run the test?</li>
                 </ul>
@@ -389,7 +391,6 @@ public void testCitrusPdfContent() throws Exception {
             //times to try
             10
     );
-    env.sleep(hSec);
 
     //navigate over bookmark menu of PDF viewer
     screen.find("reload_button.png")
@@ -439,7 +440,7 @@ public void scroll(Supplier&lt;Region&gt; check, Supplier doScroll, int times) t
             <h3 style="line-height: 1.8">
                 <ul class="red_x">
                     <li class="green_hook">Rewrite all of our tests?</li>
-                    <li class="green_hook">Validate the order confirmation PDF?</li>
+                    <li class="green_hook">Validate the documentation PDF?</li>
                     <li>Test the rich-client implementation as well?</li>
                     <li>Where to run the test?</li>
                 </ul>
@@ -483,7 +484,6 @@ public void testWebOrderToReportClient() throws Exception {
     reportClientRegion.waitForImage("report-header", 10);
     try {
         reportClientRegion.find("blueberry_muffin_logo");
-        reportClientRegion.find("report_blueberry");
         reportClientRegion.find("report_blueberry")
                     .below(100)
                     .find("report_value_20");
@@ -538,7 +538,7 @@ public void testEditorOpensReadMe() throws Exception {
             <h3 style="line-height: 1.8">
                 <ul class="green_hook">
                     <li>Rewrite all of our tests?</li>
-                    <li>Validate the order confirmation PDF?</li>
+                    <li>Validate the documentation PDF?</li>
                     <li>Test the rich-client implementation as well?</li>
                     <li class="red_x">Where to run the test?</li>
                 </ul>
@@ -557,14 +557,27 @@ public void testEditorOpensReadMe() throws Exception {
             </ul>
         </section>
 
-
         <section>
-            <h2>We need a containerized GUI! </h2>
-            <div style="margin-top: 2em">
-                <img width="100%" style="box-shadow: none" src="pics/container_sakuli.png">
-            </div>
+            <section>
+                <h2>We need a containerized GUI! </h2>
+                <div style="margin-top: 2em">
+                    <img width="100%" style="box-shadow: none" src="pics/container_sakuli.png">
+                </div>
+                <div style="font-size: 0.75em"> Based on: <a
+                        href="https://github.com/ConSol/docker-headless-vnc-container"
+                        target="_blank">
+                    <img src="pics/github-mark.png" style="box-shadow: none; height: 0.7em">
+                    ConSol/docker-headless-vnc-container
+                </a>
+                </div>
+            </section>
+            <section>
+                <h2>Containers - the new VMs?</h2>
+                <div style="margin-top: 2em">
+                    <img width="100%" style="box-shadow: none" src="pics/vm_vs_docker.png">
+                </div>
+            </section>
         </section>
-
         <section>
             <a target="_blank" href="video/sakuli_containers.mp4">
                 <h2>Let's try the Sakuli Container</h2>
@@ -591,12 +604,6 @@ public void testEditorOpensReadMe() throws Exception {
                     <img width="47%" style="box-shadow: none;" src="pics/docker_sakuli_example.png">
                 </a>
             </div>
-            <div style="font-size: 0.75em"> Based on: <a href="https://github.com/ConSol/docker-headless-vnc-container"
-                                                         target="_blank">
-                <img src="pics/github-mark.png" style="box-shadow: none; height: 0.7em">
-                ConSol/docker-headless-vnc-container
-            </a>
-            </div>
         </section>
 
 
@@ -609,33 +616,33 @@ public void testEditorOpensReadMe() throws Exception {
             <!-- @formatter:off-->
             <div data-markdown contenteditable="false">
                 ```Dockerfile
-#Dockerfile
-FROM consol/sakuli-ubuntu-xfce-java:v1.2.0-247-sakuli-se-SNAPSHOT
+                #Dockerfile
+                FROM consol/sakuli-ubuntu-xfce-java:1.3.0-247-sakuli-se-SNAPSHOT
 
-MAINTAINER Tobias Schneck "tobias.schneck@consol.de"
-ENV REFRESHED_AT 2018-04-23
+                MAINTAINER Tobias Schneck "tobias.schneck@consol.de"
+                ENV REFRESHED_AT 2018-07-23
 
-### Install gedit as test app
-USER 0
-RUN apt-get update \
-    && apt-get install -y gedit \
-    && apt-get clean -y
-USER 1000
+                ### Install gedit as test app
+                USER 0
+                RUN apt-get update \
+                && apt-get install -y gedit \
+                && apt-get clean -y
+                USER 1000
 
-### Install webdriver
-ENV WEB_DRIVER /headless/webdriver
-#chrome
-RUN mkdir $WEB_DRIVER && cd $WEB_DRIVER \
-    && wget https://chromedriver.storage.googleapis.com/2.25/chromedriver_linux64.zip \
-    && unzip *.zip && rm *.zip && ls -la
+                ### Install webdriver
+                ENV WEB_DRIVER /headless/webdriver
+                #chrome
+                RUN mkdir $WEB_DRIVER && cd $WEB_DRIVER \
+                && wget https://chromedriver.storage.googleapis.com/2.25/chromedriver_linux64.zip \
+                && unzip *.zip && rm *.zip && ls -la
                 ```
             </div>
             <div style="text-align: left; font-size: 0.8em">Build and start the container:</div>
             <div data-markdown contenteditable="false">
                 ```bash
-docker build -t local/sakuli-se . \
-    && docker run -it -v $(pwd):/opt/maven --user $(id -u) -p 6911:6901 \
-    local/sakuli-se mvn -P docker test
+                docker build -t local/sakuli-se . \
+                && docker run -it -v $(pwd):/opt/maven --user $(id -u) -p 6911:6901 \
+                local/sakuli-se mvn -P docker test
                 ```
             </div>
             <!-- @formatter:on-->
@@ -649,27 +656,27 @@ docker build -t local/sakuli-se . \
             <!-- @formatter:off-->
             <div data-markdown contenteditable="false">
                 ```yaml
-version: '2'
-services:
-    sakuli_se_test:
-        build: .
-        environment:
-            - TZ=Europe/Berlin
-        user: "1000"
-        volumes:
-            - .:/opt/maven
-            - data:/headless/.m2
-        network_mode: "bridge"
-        ports:
-            - 5911:5901
-            - 6911:6901
-        # to keep container running and login via `docker exec -it javaexample_sakuli_java_test_1 bash`
-        # command: "'--tail-log'"
-        command: mvn clean test -P docker -f /opt/maven/pom.xml
+                version: '2'
+                services:
+                sakuli_se_test:
+                build: .
+                environment:
+                - TZ=Europe/Berlin
+                user: "1000"
+                volumes:
+                - .:/opt/maven
+                - data:/headless/.m2
+                network_mode: "bridge"
+                ports:
+                - 5911:5901
+                - 6911:6901
+                # to keep container running and login via `docker exec -it javaexample_sakuli_java_test_1 bash`
+                # command: "'--tail-log'"
+                command: mvn clean test -P docker -f /opt/maven/pom.xml
 
-volumes:
-    data:
-        driver: local
+                volumes:
+                data:
+                driver: local
                 ```
             </div>
             <!--Build and start the container:-->
@@ -686,7 +693,7 @@ volumes:
             <h3 style="line-height: 1.8">
                 <ul class="green_hook">
                     <li>Rewrite all of our tests?</li>
-                    <li>Validate the order confirmation PDF?</li>
+                    <li>Validate the documentation PDF?</li>
                     <li>Test the rich-client implementation as well?</li>
                     <li>Where to run the test?</li>
                 </ul>
@@ -816,7 +823,8 @@ volumes:
                 <li style="font-size: 0.75em">Comfortable writing and management of test suites</li>
                 <li style="font-size: 0.75em">Direct test execution with integrated live view and logs</li>
                 <li style="font-size: 0.75em">Extended reports for easy error detection</li>
-                <li style="font-size: 0.75em"><b><a href="video/sakuli_ui_overview.mp4" target="_blank">Video</a></b></li>
+                <li style="font-size: 0.75em"><b><a href="video/sakuli_ui_overview.mp4" target="_blank">Video</a></b>
+                </li>
             </ul>
             <img style="width: 100%;margin-top: 0.7em;" src="pics/sakuli-ui.png">
         </section>
@@ -861,7 +869,7 @@ volumes:
             <table style="font-size: 0.8em; padding-top: 0.5em">
                 <tr>
                     <td>
-                        <img src="pics/github.png" style="box-shadow: none; height: 5em">
+                        <img src="pics/github.png" style="box-shadow: none; height: 4em">
                     </td>
                     <td style="vertical-align: middle;  white-space:nowrap; padding-left: 1.5em">
                         <a href="https://github.com/ConSol/sakuli" target="_blank">
@@ -887,7 +895,8 @@ volumes:
                         <ul style="margin-left: 50px">
                             <li class="arrow_right">
                                 <b>
-                                    <a style="margin-left: 9px" href="http://showroom-sakuli.paas.consol.de" target="_blank">
+                                    <a style="margin-left: 9px" href="http://showroom-sakuli.paas.consol.de"
+                                       target="_blank">
                                         Sakuli Showroom
                                     </a>
                                 </b>
@@ -912,12 +921,12 @@ volumes:
                         </a>
                         <!--</div>-->
 
-                        <div style="padding-top: 2em"></div>
-                        <a href="https://www.informatik-aktuell.de/entwicklung/methoden/graphical-user-interface-gui-in-containern-testen.html"
-                           target="_blank">
-                            <img src="pics/ia_artikel.png" style="margin-left:6px; padding: 10px 22px 10px 22px;" ;
-                                 width="600px">
-                        </a>
+                        <!--<div style="padding-top: 2em"></div>-->
+                        <!--<a href="https://www.informatik-aktuell.de/entwicklung/methoden/graphical-user-interface-gui-in-containern-testen.html"-->
+                        <!--target="_blank">-->
+                        <!--<img src="pics/ia_artikel.png" style="margin-left:6px; padding: 10px 22px 10px 22px;" ;-->
+                        <!--width="600px">-->
+                        <!--</a>-->
                     </td>
                 </tr>
             </table>
@@ -926,10 +935,10 @@ volumes:
         <section>
             <h1 class="coloured" style="text-transform: inherit">Thank you!</h1>
 
-            <table style="font-size: large;margin-top: 3.5em" width="50%">
+            <table style="font-size: large;margin-top: 3.5em" width=50%">
                 <tr>
                     <td style="text-align: center">
-                        <img style="box-shadow: none"
+                        <img style="box-shadow: none; width: 200px"
                              src="pics/profil_pic_sakuli.jpg">
                     </td>
                     <td style="padding-right: 1.5em"></td>
@@ -940,14 +949,15 @@ volumes:
                             </tr>
                             <tr>
                                 <td>
-                                    <a style="float: left; padding-right: 1em" href="mailto:tobias.schneck@consol.de"
-                                       target="_blank">tobias.schneck@consol</a>
+                                    <a style="float: left; padding-right: 1em" href="mailto:tobi@loodse.com"
+                                       target="_blank">tobi@loodse.com</a>
                                 </td>
                             </tr>
                             <tr>
-                                <td style="padding-top: 0.2em">
+                                <td style="padding-top: 0.2em; width: 500px">
                                     <a href="https://twitter.com/toschneck" target="_blank">
-                                        <img src="pics/twitter_toschneck.png" style="box-shadow: none; height: 22px">
+                                        <img src="pics/twitter_bird_logo_.png" style="box-shadow: none; height: 22px">
+                                        @toschneck
                                     </a>
                                     <a style="padding-left: 1em" href="https://github.com/toschneck" target="_blank">
                                         <img src="pics/github-mark.png" style="box-shadow: none; height: 22px"><b
@@ -960,37 +970,36 @@ volumes:
                 </tr>
                 <tr>
                     <td style="text-align: center;vertical-align: top">
-                        <img src="pics/consol_c.png"
-                             style="padding-top: 3em; height: 5em; box-shadow: none;float: none">
+                        <img src="pics/loodse_logo.png"
+                             style="padding-top: 3em; width: 300px; box-shadow: none;float: none">
                     </td>
                     <td/>
                     <td style="padding-top: 3em; vertical-align: middle">
                         <table style="display: block; white-space:nowrap">
                             <tr>
-                                <td colspan="2"><b>ConSol Software GmbH</b></td>
+                                <td colspan="2"><b>Loodse GmbH</b></td>
                             </tr>
                             <tr>
-                                <td colspan="2">Franziskanerstraße 38</td>
+                                <td colspan="2">Fuhlsbüttler Straße 405</td>
                             </tr>
                             <tr>
-                                <td colspan="2">D-81669 München</td>
+                                <td colspan="2">D-22307 Hamburg</td>
                             </tr>
                             <tr>
-                                <td style="padding-right: 1em">Tel: +49-89-45841-100</td>
-                                <td><a href="mailto:info@consol.de">info@consol.de</a></td>
+                                <td><a href="mailto:info@loodse.com">info@loodse.com</a></td>
                             </tr>
                             <tr>
-                                <td style="padding-right: 1em">Fax: +49-89-45841-111</td>
-                                <td><a href="http://www.consol.de">www.consol.de</a></td>
+                                <td><a href="http://www.loodse.com">www.loodse.com</a></td>
                             </tr>
                             <tr>
                                 <td colspan="2" style="padding-top: 0.2em">
-                                    <a href="https://twitter.com/consol_de" target="_blank">
-                                        <img src="pics/twitter_consol_de.png" style="box-shadow: none; height: 22px">
+                                    <a href="https://twitter.com/loodse" target="_blank">
+                                        <img src="pics/twitter_bird_logo_.png" style="box-shadow: none; height: 22px">
+                                        @Loodse
                                     </a>
-                                    <a style="padding-left: 1em" href="https://github.com/consol" target="_blank">
+                                    <a style="padding-left: 1em" href="https://github.com/loodse" target="_blank">
                                         <img src="pics/github-mark.png" style="box-shadow: none; height: 22px"><b
-                                            style="padding-left: 0.4em; font-size: medium">ConSol</b>
+                                            style="padding-left: 0.4em; font-size: medium">Loodse</b>
                                     </a>
                                 </td>
                             </tr>
